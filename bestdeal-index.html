@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BestDeal — Comparez les prix partout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c26;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f0f5;
+    --muted: #7a7a90;
+    --accent: #7c6fff;
+    --accent2: #ff6b6b;
+    --accent3: #00d4aa;
+    --glow: rgba(124,111,255,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 24px;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--accent); }
+  .logo-tag {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .header-platforms {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .plat-pill {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 24px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(124,111,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── SEARCH BOX ── */
+  .search-wrap {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+  .search-box {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 18px 140px 18px 56px;
+    font-size: 16px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-box::placeholder { color: var(--muted); }
+  .search-box:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--glow);
+  }
+  .search-icon {
+    position: absolute;
+    left: 20px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 18px;
+    pointer-events: none;
+  }
+  .search-btn {
+    position: absolute;
+    right: 8px; top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .search-btn:hover { opacity: 0.9; transform: translateY(-50%) scale(1.02); }
+  .search-btn:active { transform: translateY(-50%) scale(0.98); }
+
+  /* ── SUGGESTIONS ── */
+  .suggestions {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .sug-chip {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--surface);
+  }
+  .sug-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--glow);
+  }
+
+  /* ── FILTERS ── */
+  .filters-bar {
+    display: none;
+    max-width: 900px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filters-bar.show { display: flex; }
+  .filter-label { font-size: 12px; color: var(--muted); margin-right: 4px; }
+  .filter-chip {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: transparent;
+  }
+  .filter-chip:hover, .filter-chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--glow);
+  }
+
+  /* ── RESULTS SECTION ── */
+  #results { display: none; max-width: 900px; margin: 0 auto; padding: 24px; }
+  #results.show { display: block; }
+
+  /* ── LOADING ── */
+  .loading-wrap {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .loading-wrap.show { display: block; }
+  .loading-platforms {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .loading-plat {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeIn 0.4s forwards;
+  }
+  .loading-plat .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    animation: pulse 1s ease-in-out infinite;
+  }
+  .loading-plat.done .dot { background: var(--accent3); animation: none; }
+  .loading-plat.done { color: var(--accent3); }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+  .loading-text {
+    font-size: 14px; color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── BEST OFFER CARD ── */
+  .best-card {
+    background: linear-gradient(135deg, #1a1430 0%, #13131a 100%);
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.4s ease forwards;
+  }
+  .best-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,111,255,0.2), transparent 70%);
+    pointer-events: none;
+  }
+  .best-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    background: rgba(124,111,255,0.12);
+    border: 1px solid rgba(124,111,255,0.3);
+    padding: 4px 10px; border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+  .best-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .best-meta { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .best-bottom {
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .best-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px; font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -1px;
+  }
+  .best-price-orig {
+    font-size: 16px; color: var(--muted);
+    text-decoration: line-through; margin-left: 8px;
+  }
+  .best-savings {
+    font-size: 12px; color: var(--accent3);
+    background: rgba(0,212,170,0.1);
+    border: 1px solid rgba(0,212,170,0.2);
+    padding: 3px 8px; border-radius: 6px;
+    margin-left: 8px;
+  }
+  .buy-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 14px; font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .buy-btn:hover { opacity: 0.9; transform: scale(1.02); }
+  .buy-btn .arrow { font-size: 16px; }
+
+  /* ── RESULT CARDS ── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    transition: border-color 0.2s, transform 0.2s;
+    animation: slideUp 0.4s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .result-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 12px;
+  }
+  .plat-badge {
+    font-size: 10px; font-weight: 600;
+    padding: 3px 8px; border-radius: 6px;
+    letter-spacing: 0.3px;
+  }
+  .plat-amz { background: rgba(255,153,0,0.12); color: #ff9900; }
+  .plat-ali { background: rgba(255,106,0,0.12); color: #ff6a00; }
+  .plat-ets { background: rgba(240,100,65,0.12); color: #f06441; }
+  .plat-tmu { background: rgba(124,111,255,0.12); color: var(--accent); }
+  .plat-eba { background: rgba(0,100,200,0.12); color: #0064c8; }
+  .card-rating {
+    font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .star { color: #f5c518; }
+  .card-title {
+    font-size: 14px; font-weight: 500;
+    line-height: 1.4; margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-delivery {
+    font-size: 11px; color: var(--accent3);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .card-bottom {
+    display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .card-buy {
+    font-size: 12px;
+    padding: 7px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+  .card-buy:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ── RESULTS HEADER ── */
+  .results-header {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+  }
+  .results-count {
+    font-size: 13px; color: var(--muted);
+  }
+  .results-count strong { color: var(--text); }
+  .sort-select {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* ── AFFILIATION NOTICE ── */
+  .affiliation-notice {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex; gap: 32px;
+    justify-content: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 0 0 60px;
+    flex-wrap: wrap; gap: 24px;
+  }
+  .stat { text-align: center; }
+  .stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px; font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); text-decoration: underline; }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--muted);
+  }
+  .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+  .empty h3 { font-family: 'Syne', sans-serif; font-size: 20px; color: var(--text); margin-bottom: 8px; }
+
+  @media (max-width: 600px) {
+    .header-platforms { display: none; }
+    .hero { padding: 60px 16px 40px; }
+    .best-price { font-size: 28px; }
+    .results-grid { grid-template-columns: 1fr; }
+    #results, .filters-bar { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">best<span>Deal</span><span class="logo-tag">BÊTA</span></div>
+  <div class="header-platforms">
+    <span class="plat-pill">Amazon</span>
+    <span class="plat-pill">AliExpress</span>
+    <span class="plat-pill">Etsy</span>
+    <span class="plat-pill">Temu</span>
+    <span class="plat-pill">eBay</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-glow"></div>
+  <h1>Le <em>meilleur prix</em><br>partout, en un clic</h1>
+  <p>Compare Amazon, AliExpress, Etsy, Temu et eBay simultanément. Trouve l'offre parfaite selon ton critère.</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input
+      class="search-box"
+      id="searchInput"
+      type="text"
+      placeholder="Rechercher un produit..."
+      autocomplete="off"
+    >
+    <button class="search-btn" onclick="startSearch()">Comparer →</button>
+  </div>
+
+  <div class="suggestions">
+    <span class="sug-chip" onclick="setSearch('gobelet personnalisé')">gobelet personnalisé</span>
+    <span class="sug-chip" onclick="setSearch('clé plate')">clé plate</span>
+    <span class="sug-chip" onclick="setSearch('pompe vide-cave')">pompe vide-cave</span>
+    <span class="sug-chip" onclick="setSearch('lampe LED bureau')">lampe LED bureau</span>
+    <span class="sug-chip" onclick="setSearch('coque iPhone')">coque iPhone</span>
+    <span class="sug-chip" onclick="setSearch('tapis de yoga')">tapis de yoga</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat"><div class="stat-val">5</div><div class="stat-label">plateformes analysées</div></div>
+  <div class="stat"><div class="stat-val">< 3s</div><div class="stat-label">temps de réponse</div></div>
+  <div class="stat"><div class="stat-val">100%</div><div class="stat-label">gratuit</div></div>
+  <div class="stat"><div class="stat-val">0</div><div class="stat-label">inscription requise</div></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-bar" id="filtersBar">
+  <span class="filter-label">Trier par :</span>
+  <span class="filter-chip active" data-sort="price" onclick="setSort(this,'price')">💰 Prix le plus bas</span>
+  <span class="filter-chip" data-sort="delivery" onclick="setSort(this,'delivery')">⚡ Livraison rapide</span>
+  <span class="filter-chip" data-sort="rating" onclick="setSort(this,'rating')">⭐ Mieux noté</span>
+  <span class="filter-chip" data-sort="best" onclick="setSort(this,'best')">🏆 Meilleur rapport</span>
+</div>
+
+<!-- LOADING -->
+<div class="loading-wrap" id="loadingWrap">
+  <div class="loading-platforms" id="loadingPlats"></div>
+  <p class="loading-text" id="loadingText">Analyse en cours...</p>
+</div>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="results-header">
+    <div class="results-count" id="resultsCount"></div>
+    <select class="sort-select" onchange="sortResults(this.value)">
+      <option value="price">Prix croissant</option>
+      <option value="delivery">Livraison rapide</option>
+      <option value="rating">Mieux notés</option>
+    </select>
+  </div>
+  <div id="bestOffer"></div>
+  <div class="results-grid" id="resultsGrid"></div>
+  <div class="affiliation-notice">
+    ℹ️ BestDeal utilise des liens d'affiliation. Lorsque vous achetez via notre site, nous percevons une commission de la plateforme partenaire, sans coût supplémentaire pour vous. Cela nous permet de maintenir ce service gratuit.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 BestDeal · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a> · <a href="#">Contact</a></p>
+  <p style="margin-top:8px">Service de comparaison de prix avec liens d'affiliation · Non affilié aux plateformes comparées</p>
+</footer>
+
+<script>
+// ── CONFIG AFFILIÉS (à remplacer par tes vrais IDs) ──
+const AFFILIATE_IDS = {
+  amazon:     'VOTRE-TAG-AMAZON',
+  aliexpress: 'VOTRE-ID-ALIEXPRESS',
+  etsy:       'VOTRE-ID-ETSY',
+  temu:       'VOTRE-ID-TEMU',
+  ebay:       'VOTRE-ID-EBAY',
+};
+
+// ── BASE DE DONNÉES PRODUITS SIMULÉS (MVP sans API) ──
+const PRODUCTS_DB = {
+  'gobelet': [
+    { id:1, title:'Gobelet isotherme gravé 500ml personnalisable', price:8.49, delivery:5, rating:4.7, reviews:1240, platform:'aliexpress', img:'🥤' },
+    { id:2, title:'Mug personnalisé inox mat brossé 350ml', price:12.99, delivery:2, rating:4.5, reviews:876, platform:'amazon', img:'☕' },
+    { id:3, title:'Gobelet artisanal céramique peint main', price:18.00, delivery:6, rating:5.0, reviews:312, platform:'etsy', img:'🏺' },
+    { id:4, title:'Thermos personnalisé logo entreprise 400ml', price:6.90, delivery:14, rating:4.2, reviews:3450, platform:'temu', img:'🥤' },
+    { id:5, title:'Gobelet voyage double paroi isotherme', price:9.99, delivery:3, rating:4.4, reviews:567, platform:'ebay', img:'🧃' },
+    { id:6, title:'Set 2 mugs personnalisés couple assorti', price:22.00, delivery:5, rating:4.9, reviews:203, platform:'etsy', img:'☕' },
+  ],
+  'clé': [
+    { id:1, title:'Jeu clés plates 6 à 32mm acier forgé', price:14.90, delivery:3, rating:4.6, reviews:892, platform:'amazon', img:'🔧' },
+    { id:2, title:'Clé plate mixte 13mm chromée', price:3.20, delivery:12, rating:4.1, reviews:2100, platform:'aliexpress', img:'🔑' },
+    { id:3, title:'Clé à molette réglable 200mm pro', price:8.50, delivery:2, rating:4.4, reviews:445, platform:'ebay', img:'🔧' },
+    { id:4, title:'Set clés plates et à fourche 12 pièces', price:19.99, delivery:4, rating:4.7, reviews:1560, platform:'amazon', img:'🛠️' },
+    { id:5, title:'Clé plate ultra fine 10mm acier', price:2.10, delivery:18, rating:3.9, reviews:780, platform:'temu', img:'🔑' },
+  ],
+  'pompe': [
+    { id:1, title:'Pompe vide-cave submersible 500W 8000L/h', price:49.99, delivery:3, rating:4.5, reviews:334, platform:'amazon', img:'💧' },
+    { id:2, title:'Pompe de relevage cave inondée 400W', price:38.50, delivery:5, rating:4.3, reviews:221, platform:'ebay', img:'🌊' },
+    { id:3, title:'Pompe immergée vide-cave 350W + tuyau 5m', price:29.90, delivery:21, rating:4.0, reviews:1890, platform:'aliexpress', img:'💧' },
+    { id:4, title:'Pompe vide-cave automatique flotteur 750W', price:67.00, delivery:2, rating:4.8, reviews:156, platform:'amazon', img:'🔌' },
+    { id:5, title:'Mini pompe vide-cave portable 200W', price:18.99, delivery:8, rating:4.2, reviews:445, platform:'temu', img:'💦' },
+  ],
+  'lampe': [
+    { id:1, title:'Lampe LED bureau tactile 3 intensités USB-C', price:19.99, delivery:2, rating:4.6, reviews:2340, platform:'amazon', img:'💡' },
+    { id:2, title:'Lampe architecte articulée vintage laiton', price:45.00, delivery:5, rating:4.9, reviews:87, platform:'etsy', img:'🪔' },
+    { id:3, title:'Lampe de bureau LED pliable rechargeable', price:9.99, delivery:14, rating:4.1, reviews:5670, platform:'aliexpress', img:'💡' },
+    { id:4, title:'Lampe LED bureau avec chargeur sans fil', price:34.99, delivery:3, rating:4.5, reviews:890, platform:'amazon', img:'🔆' },
+    { id:5, title:'Lampe bureau clip flexible LED 5W', price:6.50, delivery:10, rating:3.8, reviews:1230, platform:'temu', img:'💡' },
+  ],
+  'default': [
+    { id:1, title:'Résultat Amazon — meilleure offre trouvée', price:12.99, delivery:2, rating:4.5, reviews:1200, platform:'amazon', img:'📦' },
+    { id:2, title:'Résultat AliExpress — prix compétitif', price:7.49, delivery:12, rating:4.2, reviews:3400, platform:'aliexpress', img:'📦' },
+    { id:3, title:'Résultat Etsy — version artisanale', price:22.00, delivery:6, rating:4.9, reviews:230, platform:'etsy', img:'🎁' },
+    { id:4, title:'Résultat Temu — option économique', price:4.99, delivery:18, rating:3.9, reviews:8900, platform:'temu', img:'📦' },
+    { id:5, title:'Résultat eBay — occasion disponible', price:9.50, delivery:4, rating:4.3, reviews:560, platform:'ebay', img:'🏷️' },
+  ]
+};
+
+const PLATFORM_NAMES = {
+  amazon: 'Amazon', aliexpress: 'AliExpress',
+  etsy: 'Etsy', temu: 'Temu', ebay: 'eBay'
+};
+const PLATFORM_CLASSES = {
+  amazon: 'plat-amz', aliexpress: 'plat-ali',
+  etsy: 'plat-ets', temu: 'plat-tmu', ebay: 'plat-eba'
+};
+
+let currentResults = [];
+let currentSort = 'price';
+
+// ── GÉNÉRER LIEN AFFILIÉ ──
+function affiliateLink(platform, query) {
+  const q = encodeURIComponent(query);
+  const tag = AFFILIATE_IDS[platform];
+  switch(platform) {
+    case 'amazon':
+      return `https://www.amazon.fr/s?k=${q}&tag=${tag}`;
+    case 'aliexpress':
+      return `https://www.aliexpress.com/wholesale?SearchText=${q}&aff_id=${tag}`;
+    case 'etsy':
+      return `https://www.etsy.com/fr/search?q=${q}&ref=bestdeal`;
+    case 'temu':
+      return `https://www.temu.com/search_result.html?search_key=${q}`;
+    case 'ebay':
+      return `https://www.ebay.fr/sch/i.html?_nkw=${q}&mkcid=1&mkrid=${tag}`;
+    default:
+      return '#';
+  }
+}
+
+// ── RECHERCHE ──
+function setSearch(val) {
+  document.getElementById('searchInput').value = val;
+  startSearch();
+}
+
+function startSearch() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (!query) return;
+
+  document.getElementById('statsBar').style.display = 'none';
+  document.getElementById('hero').style.paddingBottom = '32px';
+  document.getElementById('hero').querySelector('p').style.display = 'none';
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('filtersBar').classList.remove('show');
+
+  const loading = document.getElementById('loadingWrap');
+  loading.classList.add('show');
+
+  const platforms = [
+    { name: 'Amazon', key: 'amazon', delay: 400 },
+    { name: 'AliExpress', key: 'aliexpress', delay: 700 },
+    { name: 'Etsy', key: 'etsy', delay: 950 },
+    { name: 'Temu', key: 'temu', delay: 1200 },
+    { name: 'eBay', key: 'ebay', delay: 1500 },
+  ];
+
+  const platsEl = document.getElementById('loadingPlats');
+  platsEl.innerHTML = platforms.map((p, i) =>
+    `<div class="loading-plat" id="lp-${p.key}" style="animation-delay:${i*0.1}s">
+      <span class="dot"></span>${p.name}
+    </div>`
+  ).join('');
+
+  const messages = [
+    'Interrogation des plateformes...',
+    'Comparaison des prix...',
+    'Calcul des meilleurs rapports...',
+    'Finalisation...'
+  ];
+  let msgIdx = 0;
+  const msgEl = document.getElementById('loadingText');
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % messages.length;
+    msgEl.textContent = messages[msgIdx];
+  }, 600);
+
+  platforms.forEach(p => {
+    setTimeout(() => {
+      const el = document.getElementById(`lp-${p.key}`);
+      if (el) el.classList.add('done');
+    }, p.delay);
+  });
+
+  setTimeout(() => {
+    clearInterval(msgInterval);
+    loading.classList.remove('show');
+    showResults(query);
+  }, 2200);
+}
+
+// ── AFFICHER RÉSULTATS ──
+function showResults(query) {
+  const q = query.toLowerCase();
+  let products = PRODUCTS_DB.default;
+  for (const key of Object.keys(PRODUCTS_DB)) {
+    if (key !== 'default' && q.includes(key)) {
+      products = PRODUCTS_DB[key];
+      break;
+    }
+  }
+
+  // Ajouter un peu de variation sur les prix
+  currentResults = products.map(p => ({
+    ...p,
+    title: p.title,
+    totalPrice: p.price,
+    affiliateUrl: affiliateLink(p.platform, query),
+    query
+  }));
+
+  renderResults();
+}
+
+function sortResults(criterion) {
+  currentSort = criterion;
+  renderResults();
+}
+
+function setSort(el, sort) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  sortResults(sort);
+}
+
+function renderResults() {
+  let sorted = [...currentResults];
+
+  if (currentSort === 'price') {
+    sorted.sort((a, b) => a.totalPrice - b.totalPrice);
+  } else if (currentSort === 'delivery') {
+    sorted.sort((a, b) => a.delivery - b.delivery);
+  } else if (currentSort === 'rating') {
+    sorted.sort((a, b) => b.rating - a.rating);
+  } else if (currentSort === 'best') {
+    sorted.sort((a, b) => {
+      const scoreA = (a.rating * 0.4) + ((1/a.totalPrice)*50*0.3) + ((1/a.delivery)*10*0.3);
+      const scoreB = (b.rating * 0.4) + ((1/b.totalPrice)*50*0.3) + ((1/b.delivery)*10*0.3);
+      return scoreB - scoreA;
+    });
+  }
+
+  const best = sorted[0];
+  const rest = sorted.slice(1);
+  const query = sorted[0]?.query || '';
+
+  // Best offer
+  const maxPrice = Math.max(...sorted.map(p => p.totalPrice));
+  const savings = maxPrice - best.totalPrice;
+
+  document.getElementById('bestOffer').innerHTML = `
+    <div class="best-card">
+      <div class="best-badge">⚡ Meilleure offre · ${PLATFORM_NAMES[best.platform]}</div>
+      <div class="best-title">${best.img} ${best.title}</div>
+      <div class="best-meta">
+        ⭐ ${best.rating} (${best.reviews.toLocaleString('fr-FR')} avis) ·
+        🚚 Livraison estimée ${best.delivery}-${best.delivery+2} jours
+      </div>
+      <div class="best-bottom">
+        <div>
+          <span class="best-price">${best.totalPrice.toFixed(2)} €</span>
+          ${savings > 0.5 ? `<span class="best-savings">économie ~${savings.toFixed(2)} €</span>` : ''}
+        </div>
+        <button class="buy-btn" onclick="goToBuy('${best.affiliateUrl}')">
+          Voir sur ${PLATFORM_NAMES[best.platform]} <span class="arrow">→</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Result cards
+  document.getElementById('resultsCount').innerHTML =
+    `<strong>${sorted.length} offres</strong> trouvées pour "${query}"`;
+
+  document.getElementById('resultsGrid').innerHTML = rest.map((p, i) => `
+    <div class="result-card" style="animation-delay:${i*0.07}s" onclick="goToBuy('${p.affiliateUrl}')">
+      <div class="card-top">
+        <span class="plat-badge ${PLATFORM_CLASSES[p.platform]}">${PLATFORM_NAMES[p.platform]}</span>
+        <span class="card-rating"><span class="star">★</span> ${p.rating} (${p.reviews.toLocaleString('fr-FR')})</span>
+      </div>
+      <div class="card-title">${p.img} ${p.title}</div>
+      <div class="card-delivery">⚡ Livraison ${p.delivery}-${p.delivery+2} jours</div>
+      <div class="card-bottom">
+        <span class="card-price">${p.totalPrice.toFixed(2)} €</span>
+        <button class="card-buy">Voir l'offre →</button>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('filtersBar').classList.add('show');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function goToBuy(url) {
+  window.open(url, '_blank', 'noopener');
+}
+
+// ── ENTER KEY ──
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') startSearch();
+});
+</script>
+</body>
+</html>
