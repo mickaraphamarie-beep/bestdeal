@@ -518,7 +518,7 @@ function affiliateLink(platform, query) {
   const q = encodeURIComponent(query);
   switch(platform) {
     case 'amazon': return `https://www.amazon.fr/s?k=${q}&tag=${AFFILIATE_IDS.amazon}`;
-   case 'aliexpress': return `https://s.click.aliexpress.com/e/_c3EseUaH`;
+    case 'aliexpress': return `https://s.click.aliexpress.com/e/_c3EseUaH`;
     case 'etsy': return `https://www.etsy.com/fr/search?q=${q}`;
     case 'temu': return `https://www.temu.com/search_result.html?search_key=${q}`;
     case 'ebay': return `https://www.ebay.fr/sch/i.html?_nkw=${q}`;
@@ -979,7 +979,7 @@ function searchFromPhoto(term) {
 // ══════════════════════════════════════
 // PREMIUM SYSTEM
 // ══════════════════════════════════════
-const STRIPE_PK = 'pk_test_51TejzNAn3OUsM55DoYIi4cScOTr1u8TURwPytdHfkjRNzSxImqjhVhxw53mOuxuMsF3dRBQpRqDmHoWGx9LJxOHt00iPw9zjw3';
+const STRIPE_PK = 'pk_live_51TejzCAXdWahqNbAwbDp0ID3wULdzdWxs2W6AI7ZbvF6TExo8J7XJI4txfImbKwhrC3o1m9lpY6gvwdDYawC6KbC00HcXrEmqQ';
 const PREMIUM_KEY = 'bestdeal_premium_v1';
 const FREE_USES_KEY = 'bestdeal_free_uses';
 
