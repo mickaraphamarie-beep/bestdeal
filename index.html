@@ -952,6 +952,14 @@ function searchFromPhoto(term) {
       <span id="payBtnText">Payer 9,00 € →</span>
     </button>
     <p style="font-size:11px;color:#7a7a90;text-align:center;margin-top:10px">🔒 Paiement sécurisé par Stripe · Aucun abonnement</p>
+    <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.07);padding-top:16px">
+      <p style="font-size:12px;color:#7a7a90;margin-bottom:8px;text-align:center">Tu as un code cadeau ?</p>
+      <div style="display:flex;gap:8px">
+        <input id="giftInput" type="text" placeholder="Entre ton code..." style="flex:1;background:#1c1c26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:13px;color:#f0f0f5;font-family:DM Sans;outline:none">
+        <button onclick="applyGiftCode()" style="padding:8px 14px;background:#1c1c26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#f0f0f5;font-size:13px;cursor:pointer;font-family:DM Sans;white-space:nowrap">Appliquer</button>
+      </div>
+      <p id="giftError" style="font-size:11px;color:#ff6b6b;margin-top:6px;display:none">Code incorrect, réessaie.</p>
+    </div>
 
     <!-- Stripe card element -->
     <div id="cardWrap" style="display:none;margin-top:16px">
@@ -981,6 +989,7 @@ function searchFromPhoto(term) {
 // ══════════════════════════════════════
 const STRIPE_PK = 'pk_live_51TejzCAXdWahqNbAwbDp0ID3wULdzdWxs2W6AI7ZbvF6TExo8J7XJI4txfImbKwhrC3o1m9lpY6gvwdDYawC6KbC00HcXrEmqQ';
 const PREMIUM_KEY = 'bestdeal_premium_v1';
+const GIFT_CODE = 'ninjamiapanpan3';
 const FREE_USES_KEY = 'bestdeal_free_uses';
 
 let stripe, cardElement, clientSecret;
@@ -1186,6 +1195,17 @@ function addPremiumHeaderBtn() {
     btn.textContent = '✨ Premium 9€';
     btn.onclick = openModal;
     document.querySelector('header').appendChild(btn);
+  }
+}
+
+function applyGiftCode() {
+  const code = document.getElementById('giftInput').value.trim();
+  if (code === GIFT_CODE) {
+    closeModal();
+    activatePremium();
+  } else {
+    document.getElementById('giftError').style.display = 'block';
+    setTimeout(() => document.getElementById('giftError').style.display = 'none', 3000);
   }
 }
 
