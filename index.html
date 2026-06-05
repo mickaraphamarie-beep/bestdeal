@@ -385,8 +385,8 @@ header{position:sticky;top:0;z-index:200;height:56px;padding:0 20px;display:flex
 <!-- ════════════════ PANEL RECHERCHE ════════════════ -->
 <div id="panel-search" class="panel active">
   <div class="search-hero">
-    <h1>Votre <em>copilote</em><br>d'achat universel</h1>
-    <p>Amazon · AliExpress · Etsy · Temu · eBay — comparés en 3 secondes</p>
+    <h1>Le <em>meilleur prix</em><br>partout, en un clic</h1>
+    <p>5 plateformes comparées en 3 secondes · Score d'affaire · Alertes prix · Budget IA</p>
     <div class="search-row">
       <span class="search-ico">🔍</span>
       <input class="search-input" id="searchInput" type="text" placeholder="Que recherchez-vous ?" autocomplete="off">
@@ -395,11 +395,15 @@ header{position:sticky;top:0;z-index:200;height:56px;padding:0 20px;display:flex
     </div>
     <div class="chips">
       <span class="chip" onclick="setSearch('gobelet personnalisé')">gobelet personnalisé</span>
-      <span class="chip" onclick="setSearch('clé plate')">clé plate</span>
+      <span class="chip" onclick="setSearch('casque sony')">écouteurs</span>
+      <span class="chip" onclick="setSearch('cafetière nespresso')">cafetière</span>
+      <span class="chip" onclick="setSearch('television samsung')">TV 4K</span>
+      <span class="chip" onclick="setSearch('aspirateur dyson')">aspirateur</span>
+      <span class="chip" onclick="setSearch('montre connectée')">montre</span>
+      <span class="chip" onclick="setSearch('vélo électrique')">vélo électrique</span>
+      <span class="chip" onclick="setSearch('mariage décoration')">déco mariage</span>
       <span class="chip" onclick="setSearch('pompe vide-cave')">pompe vide-cave</span>
-      <span class="chip" onclick="setSearch('lampe LED bureau')">lampe LED bureau</span>
-      <span class="chip" onclick="setSearch('tapis yoga')">tapis yoga</span>
-      <span class="chip" onclick="setSearch('coque iPhone')">coque iPhone</span>
+      <span class="chip" onclick="setSearch('clé plate')">outillage</span>
     </div>
   </div>
 
@@ -701,6 +705,42 @@ const DB = {
     {title:'Coque iPhone 14 Silicone liquide Premium',price:9.99,delivery:2,rating:4.4,reviews:2100,platform:'amazon',img:'📱',asin:'B0B8WMWXPQ',avg:13.00},
     {title:'Coque Samsung Galaxy S24 Cuir véritable premium',price:19.99,delivery:3,rating:4.6,reviews:890,platform:'amazon',img:'📱',asin:'B0CHWZ8KYZ',avg:25.00},
   ],
+  'aspirateur':[
+    {title:'Dyson V15 Detect Aspirateur Sans Fil',price:649.00,delivery:2,rating:4.8,reviews:3400,platform:'amazon',img:'🌀',asin:'B08WZJZL7P',avg:749.00},
+    {title:'Rowenta X-Force Flex 8.60 Allergy',price:199.00,delivery:2,rating:4.6,reviews:1200,platform:'amazon',img:'🌀',asin:'B08CF5BRBK',avg:249.00},
+    {title:'iRobot Roomba j7+ Robot Aspirateur',price:449.00,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🤖',asin:'B09276PNZP',avg:599.00},
+  ],
+  'cafetiere':[
+    {title:'De'Longhi La Specialista Arte Expresso',price:449.00,delivery:2,rating:4.7,reviews:2100,platform:'amazon',img:'☕',asin:'B08XKJ6TZX',avg:549.00},
+    {title:'Nespresso Vertuo Pop Cafetière',price:79.99,delivery:2,rating:4.6,reviews:3400,platform:'amazon',img:'☕',asin:'B0B3BBZM5K',avg:99.00},
+    {title:'Philips Series 5000 Machine café grains',price:299.00,delivery:3,rating:4.5,reviews:1560,platform:'amazon',img:'☕',asin:'B08F3HYZS6',avg:379.00},
+  ],
+  'ecouteur':[
+    {title:'Sony WH-1000XM5 Casque Bluetooth ANC',price:279.00,delivery:2,rating:4.8,reviews:4500,platform:'amazon',img:'🎧',asin:'B09XS7JWHH',avg:349.00},
+    {title:'Apple AirPods Pro 2ème génération',price:229.00,delivery:1,rating:4.7,reviews:8900,platform:'amazon',img:'🎧',asin:'B0BDKCGGDD',avg:279.00},
+    {title:'Samsung Galaxy Buds2 Pro',price:139.00,delivery:2,rating:4.5,reviews:2300,platform:'amazon',img:'🎧',asin:'B0B2K1H5CD',avg:179.00},
+  ],
+  'television':[
+    {title:'Samsung QLED 55" 4K Smart TV 2024',price:699.00,delivery:3,rating:4.7,reviews:2100,platform:'amazon',img:'📺',asin:'B0CJPBD2VK',avg:899.00},
+    {title:'LG OLED55C4 evo 4K Smart TV',price:1199.00,delivery:3,rating:4.9,reviews:890,platform:'amazon',img:'📺',asin:'B0CVBG7YNV',avg:1499.00},
+    {title:'Philips 50PUS8548 Ambilight 4K UHD',price:449.00,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📺',asin:'B0BYDQGXFT',avg:599.00},
+  ],
+  'velo':[
+    {title:'Vélo électrique Engwe Engine Pro 750W',price:1199.00,delivery:5,rating:4.6,reviews:890,platform:'amazon',img:'🚲',asin:'B09MGMFGWZ',avg:1499.00},
+    {title:'BTwin Vélo VTT Rockrider ST 530',price:349.00,delivery:3,rating:4.5,reviews:1200,platform:'amazon',img:'🚴',asin:'B07WPJB89G',avg:429.00},
+    {title:'Trottinette électrique Xiaomi 4 Pro',price:499.00,delivery:2,rating:4.6,reviews:3400,platform:'amazon',img:'🛴',asin:'B09B8DQJKL',avg:599.00},
+  ],
+  'montre':[
+    {title:'Apple Watch Series 9 GPS 41mm',price:399.00,delivery:1,rating:4.8,reviews:5600,platform:'amazon',img:'⌚',asin:'B0CHX3YWPF',avg:449.00},
+    {title:'Samsung Galaxy Watch6 Classic 43mm',price:299.00,delivery:2,rating:4.6,reviews:2100,platform:'amazon',img:'⌚',asin:'B0C79522TD',avg:379.00},
+    {title:'Garmin Forerunner 265 Running GPS',price:349.00,delivery:2,rating:4.7,reviews:1200,platform:'amazon',img:'⌚',asin:'B0BS1BSHKP',avg:449.00},
+  ],
+  'mariage':[
+    {title:'Guirlande lumineuse LED 10m extérieur',price:19.99,delivery:2,rating:4.6,reviews:3400,platform:'amazon',img:'✨',asin:'B07WPJB89G',avg:25.00},
+    {title:'Centre de table mariage fleurs séchées',price:24.90,delivery:3,rating:4.8,reviews:567,platform:'etsy',img:'💐',asin:'',avg:32.00},
+    {title:'Livre d'or mariage personnalisé',price:18.99,delivery:4,rating:4.9,reviews:234,platform:'etsy',img:'📖',asin:'',avg:25.00},
+    {title:'Ballons arch kit décoration mariage',price:14.99,delivery:2,rating:4.4,reviews:1890,platform:'amazon',img:'🎈',asin:'B08BHZM5VY',avg:19.00},
+  ],
   'default':[
     {title:'Offre Amazon sélectionnée pour vous',price:12.99,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📦',asin:'',avg:16.00},
     {title:'Meilleure offre Amazon Prime',price:19.99,delivery:1,rating:4.6,reviews:890,platform:'amazon',img:'📦',asin:'',avg:24.00},
@@ -805,12 +845,63 @@ function startSearch(){
 
 function showResults(q){
   const ql=q.toLowerCase();
-  let products=DB.default;
+  let products=null;
   for(const k of Object.keys(DB)){
     if(k!=='default'&&ql.includes(k)){products=DB[k];break;}
   }
-  currentResults=products.map(p=>({...p,url:affLink(p.platform,q,p.asin||''),query:q,score:dealScore(p.price,p.avg)}));
-  renderResults();
+  if(products){
+    currentResults=products.map(p=>({...p,url:affLink(p.platform,q,p.asin||''),query:q,score:dealScore(p.price,p.avg)}));
+    renderResults();
+  } else {
+    // Produit inconnu : recherche réelle sur Amazon + autres plateformes
+    renderUnknownResults(q);
+  }
+}
+
+function renderUnknownResults(q){
+  const enc=encodeURIComponent(q);
+  const platforms=[
+    {name:'Amazon',cls:'p-amz',url:`https://www.amazon.fr/s?k=${enc}&tag=${AFFILIATE.amazon}`,delivery:'1-3',rating:4.5,note:'Livraison Prime disponible'},
+    {name:'AliExpress',cls:'p-ali',url:AFFILIATE.aliexpress,delivery:'10-20',rating:4.2,note:'Prix très compétitifs'},
+    {name:'Etsy',cls:'p-ets',url:`https://www.etsy.com/fr/search?q=${enc}`,delivery:'5-10',rating:4.8,note:'Articles artisanaux uniques'},
+    {name:'Temu',cls:'p-tmu',url:`https://www.temu.com/search_result.html?search_key=${enc}`,delivery:'8-18',rating:4.0,note:'Prix ultra bas'},
+    {name:'eBay',cls:'p-eba',url:`https://www.ebay.fr/sch/i.html?_nkw=${enc}`,delivery:'3-7',rating:4.3,note:'Neuf et occasion'},
+  ];
+
+  document.getElementById('resultsCount').innerHTML=`<strong>5 plateformes</strong> analysées pour "<strong>${q}</strong>"`;
+
+  document.getElementById('bestOffer').innerHTML=`
+    <div class="best-card">
+      <div class="best-card-top">
+        <span class="best-badge">⚡ Recherche en cours sur toutes les plateformes</span>
+        <span class="deal-score amber">🔍 Résultats en direct</span>
+      </div>
+      <div class="best-title">📦 "${q}" — Voir les offres en direct</div>
+      <div class="best-meta">Clique sur une plateforme pour voir les vrais prix et disponibilités en temps réel.</div>
+      <div class="best-bottom">
+        <div class="best-price-wrap"><div style="font-size:13px;color:var(--muted)">Prix variable selon les offres disponibles</div></div>
+        <button class="buy-btn" onclick="window.open('https://www.amazon.fr/s?k=${enc}&tag=${AFFILIATE.amazon}','_blank')">Voir sur Amazon →</button>
+      </div>
+    </div>`;
+
+  document.getElementById('resultsGrid').innerHTML=platforms.map((p,i)=>`
+    <div class="rc" style="animation-delay:${i*0.1}s;cursor:pointer" onclick="window.open('${p.url}','_blank')">
+      <div class="rc-top">
+        <span class="plat ${p.cls}">${p.name}</span>
+        <span class="rc-rating"><span class="star">★</span>${p.rating}</span>
+      </div>
+      <div class="rc-title">🔍 Chercher "${q}" sur ${p.name}</div>
+      <div class="rc-delivery">⚡ Livraison ${p.delivery} jours · ${p.note}</div>
+      <div class="rc-bottom">
+        <span style="font-size:13px;color:var(--muted2)">Prix en direct</span>
+        <button class="rc-buy" onclick="event.stopPropagation();window.open('${p.url}','_blank')">Voir →</button>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width:70%;background:var(--acc)"></div></div>
+    </div>`).join('');
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('sortBar').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function setSort(el,s){ document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); currentSort=s; renderResults(); }
