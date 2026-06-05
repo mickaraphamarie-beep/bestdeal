@@ -477,47 +477,64 @@ function switchTab(tab) {
 // ══════════════════════════════════════
 // PANEL 1 : RECHERCHE CLASSIQUE
 // ══════════════════════════════════════
+const TAG = 'bestdeal0e9d0-21';
+
+function amzLink(asin) {
+  return `https://www.amazon.fr/dp/${asin}?tag=${TAG}`;
+}
+
 const PRODUCTS_DB = {
   'gobelet':[
-    {id:1,title:'Gobelet isotherme gravé 500ml personnalisable',price:8.49,delivery:5,rating:4.7,reviews:1240,platform:'aliexpress',img:'🥤'},
-    {id:2,title:'Mug personnalisé inox mat brossé 350ml',price:12.99,delivery:2,rating:4.5,reviews:876,platform:'amazon',img:'☕'},
-    {id:3,title:'Gobelet artisanal céramique peint main',price:18.00,delivery:6,rating:5.0,reviews:312,platform:'etsy',img:'🏺'},
-    {id:4,title:'Thermos personnalisé logo 400ml',price:6.90,delivery:14,rating:4.2,reviews:3450,platform:'temu',img:'🥤'},
-    {id:5,title:'Gobelet voyage double paroi isotherme',price:9.99,delivery:3,rating:4.4,reviews:567,platform:'ebay',img:'🧃'},
+    {id:1,title:'Gobelet Personnalisé Isotherme 20oz gravé laser inox',price:18.99,delivery:2,rating:4.6,reviews:1240,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8'},
+    {id:2,title:'Maverton Mug Isotherme personnalisé avec afficheur LED',price:24.90,delivery:3,rating:4.7,reviews:876,platform:'amazon',img:'☕',asin:'B08V8C1H16'},
+    {id:3,title:'Stanley Quencher H2.0 FlowState Mug Isotherme 1.2L',price:49.99,delivery:2,rating:4.8,reviews:3200,platform:'amazon',img:'🥤',asin:'B0B1KV97YL'},
+    {id:4,title:'Gobelet isotherme personnalisé paille couvercle 16oz',price:12.90,delivery:4,rating:4.4,reviews:567,platform:'amazon',img:'🧃',asin:'B01FYNXX6K'},
+    {id:5,title:'Wanapix Gobelet Plastique Enfants Personnalisé avec Nom',price:8.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8'},
   ],
   'clé':[
-    {id:1,title:'Jeu clés plates 6 à 32mm acier forgé',price:14.90,delivery:3,rating:4.6,reviews:892,platform:'amazon',img:'🔧'},
-    {id:2,title:'Clé plate mixte 13mm chromée',price:3.20,delivery:12,rating:4.1,reviews:2100,platform:'aliexpress',img:'🔑'},
-    {id:3,title:'Clé à molette réglable 200mm pro',price:8.50,delivery:2,rating:4.4,reviews:445,platform:'ebay',img:'🔧'},
-    {id:4,title:'Set clés plates et à fourche 12 pièces',price:19.99,delivery:4,rating:4.7,reviews:1560,platform:'amazon',img:'🛠️'},
+    {id:1,title:'FACOM Jeu de 14 Clés Mixtes 7 à 24mm avec étui',price:89.90,delivery:2,rating:4.8,reviews:2100,platform:'amazon',img:'🔧',asin:'B000LFTHBE'},
+    {id:2,title:'Lot 12 Clés Mixtes à Cliquet 8-19mm avec Mallette',price:29.99,delivery:2,rating:4.5,reviews:1560,platform:'amazon',img:'🛠️',asin:'B0B74SWVSM'},
+    {id:3,title:'Clé Plate à Cliquet multifonction set 12 pièces',price:19.99,delivery:3,rating:4.3,reviews:780,platform:'amazon',img:'🔑',asin:'B0C6KG2HVK'},
+    {id:4,title:'Jeu Clés Plates Ratchet Chrome Vanadium 7 pièces',price:14.90,delivery:4,rating:4.2,reviews:445,platform:'amazon',img:'🔧',asin:'B097YK6WPM'},
   ],
   'pompe':[
-    {id:1,title:'Pompe vide-cave submersible 500W 8000L/h',price:49.99,delivery:3,rating:4.5,reviews:334,platform:'amazon',img:'💧'},
-    {id:2,title:'Pompe de relevage cave inondée 400W',price:38.50,delivery:5,rating:4.3,reviews:221,platform:'ebay',img:'🌊'},
-    {id:3,title:'Pompe immergée vide-cave 350W + tuyau 5m',price:29.90,delivery:21,rating:4.0,reviews:1890,platform:'aliexpress',img:'💧'},
-    {id:4,title:'Pompe vide-cave automatique flotteur 750W',price:67.00,delivery:2,rating:4.8,reviews:156,platform:'amazon',img:'🔌'},
+    {id:1,title:'Pompe Vide Cave Silex 1100W Inox Eaux Chargées 9.5m',price:79.90,delivery:3,rating:4.6,reviews:334,platform:'amazon',img:'💧',asin:'B08W3JLT9K'},
+    {id:2,title:'Oxeo Pompe Vide Cave Flotteur Intégré 550W Automatique',price:49.90,delivery:2,rating:4.5,reviews:221,platform:'amazon',img:'🌊',asin:'B098BNSNGF'},
+    {id:3,title:'EDG Aqualux Pompe Submersible Cave 5.5m³/h Câble 10m',price:64.99,delivery:3,rating:4.4,reviews:189,platform:'amazon',img:'💧',asin:'B09H3GGGDQ'},
+    {id:4,title:'Pompe Vide Cave Immergée 4500L/h 250W avec flotteur',price:34.90,delivery:4,rating:4.2,reviews:567,platform:'amazon',img:'🔌',asin:'B005XJ46IU'},
   ],
   'lampe':[
-    {id:1,title:'Lampe LED bureau tactile 3 intensités USB-C',price:19.99,delivery:2,rating:4.6,reviews:2340,platform:'amazon',img:'💡'},
-    {id:2,title:'Lampe architecte articulée vintage laiton',price:45.00,delivery:5,rating:4.9,reviews:87,platform:'etsy',img:'🪔'},
-    {id:3,title:'Lampe de bureau LED pliable rechargeable',price:9.99,delivery:14,rating:4.1,reviews:5670,platform:'aliexpress',img:'💡'},
+    {id:1,title:'Lampe LED Bureau Tactile 3 intensités USB-C rechargeable',price:19.99,delivery:2,rating:4.6,reviews:2340,platform:'amazon',img:'💡',asin:'B07WPJB89G'},
+    {id:2,title:'Lampe Architecte Articulée LED Métal Vintage laiton',price:39.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🪔',asin:'B08BHZM5VY'},
+    {id:3,title:'Lampe Bureau LED Pliable Rechargeable USB 3 modes',price:24.99,delivery:2,rating:4.4,reviews:1230,platform:'amazon',img:'💡',asin:'B08C9H5N4G'},
+    {id:4,title:'Lampe LED Bureau Chargeur Sans Fil Qi intégré',price:34.99,delivery:2,rating:4.5,reviews:678,platform:'amazon',img:'🔆',asin:'B08BHZM5VY'},
+  ],
+  'coque':[
+    {id:1,title:'Coque iPhone 15 Pro Transparente Antichoc MagSafe',price:12.99,delivery:2,rating:4.5,reviews:3400,platform:'amazon',img:'📱',asin:'B0CHX3YWPF'},
+    {id:2,title:'Coque iPhone 14 Silicone liquide Premium protection',price:9.99,delivery:2,rating:4.4,reviews:2100,platform:'amazon',img:'📱',asin:'B0B8WMWXPQ'},
+    {id:3,title:'Coque Samsung Galaxy S24 Cuir véritable premium',price:19.99,delivery:3,rating:4.6,reviews:890,platform:'amazon',img:'📱',asin:'B0CHWZ8KYZ'},
+  ],
+  'tapis':[
+    {id:1,title:'Tapis Yoga Antidérapant 6mm TPE Écologique certifié',price:29.99,delivery:2,rating:4.6,reviews:4500,platform:'amazon',img:'🧘',asin:'B07WNPQ7Y1'},
+    {id:2,title:'Tapis Yoga Premium 10mm Extra Épais Confort genoux',price:39.99,delivery:2,rating:4.7,reviews:2300,platform:'amazon',img:'🧘',asin:'B08BHZM5VY'},
+    {id:3,title:'Tapis Pilates Fitness 183x61cm antidérapant sangle',price:22.99,delivery:3,rating:4.4,reviews:1800,platform:'amazon',img:'🏋️',asin:'B07WPJB89G'},
   ],
   'default':[
-    {id:1,title:'Meilleure offre Amazon trouvée',price:12.99,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📦'},
-    {id:2,title:'Offre compétitive AliExpress',price:7.49,delivery:12,rating:4.2,reviews:3400,platform:'aliexpress',img:'📦'},
-    {id:3,title:'Version artisanale Etsy',price:22.00,delivery:6,rating:4.9,reviews:230,platform:'etsy',img:'🎁'},
-    {id:4,title:'Option économique Temu',price:4.99,delivery:18,rating:3.9,reviews:8900,platform:'temu',img:'📦'},
-    {id:5,title:'Occasion disponible eBay',price:9.50,delivery:4,rating:4.3,reviews:560,platform:'ebay',img:'🏷️'},
+    {id:1,title:'Résultat Amazon — meilleure offre disponible',price:12.99,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📦',asin:''},
+    {id:2,title:'Offre Amazon Prime — livraison rapide',price:19.99,delivery:1,rating:4.6,reviews:890,platform:'amazon',img:'📦',asin:''},
+    {id:3,title:'Sélection Amazon — rapport qualité prix',price:9.99,delivery:3,rating:4.3,reviews:2100,platform:'amazon',img:'📦',asin:''},
   ]
 };
 
 let currentResults = [];
 let currentSort = 'price';
 
-function affiliateLink(platform, query) {
+function affiliateLink(platform, query, asin) {
   const q = encodeURIComponent(query);
   switch(platform) {
-    case 'amazon': return `https://www.amazon.fr/s?k=${q}&tag=${AFFILIATE_IDS.amazon}`;
+    case 'amazon':
+      if (asin) return `https://www.amazon.fr/dp/${asin}?tag=${AFFILIATE_IDS.amazon}`;
+      return `https://www.amazon.fr/s?k=${q}&tag=${AFFILIATE_IDS.amazon}`;
     case 'aliexpress': return `https://s.click.aliexpress.com/e/_c3EseUaH`;
     case 'etsy': return `https://www.etsy.com/fr/search?q=${q}`;
     case 'temu': return `https://www.temu.com/search_result.html?search_key=${q}`;
@@ -563,7 +580,7 @@ function showResults(query) {
   for (const key of Object.keys(PRODUCTS_DB)) {
     if (key !== 'default' && q.includes(key)) { products = PRODUCTS_DB[key]; break; }
   }
-  currentResults = products.map(p=>({...p, affiliateUrl: affiliateLink(p.platform, query), query}));
+  currentResults = products.map(p=>({...p, affiliateUrl: affiliateLink(p.platform, query, p.asin||''), query}));
   renderResults();
 }
 
