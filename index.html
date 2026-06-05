@@ -21,18 +21,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 #slider{display:flex;height:100%;width:400%;transition:transform .75s cubic-bezier(.86,0,.07,1);}
 .universe{width:25%;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
 .universe canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
-.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 22px 88px;background:linear-gradient(to top,rgba(0,0,0,.84) 0%,rgba(0,0,0,.16) 55%,transparent 100%);}
+.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 20px 80px;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.20) 55%,transparent 100%);}
 .chip{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:5px 12px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px;width:fit-content;}
 .big-t{font-family:'Syne',sans-serif;font-size:clamp(26px,6.5vw,46px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-1.2px;margin-bottom:7px;}
 .tagline{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:14px;}
 .cards-row{display:flex;gap:8px;margin-bottom:14px;}
-.deal{flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:14px;padding:11px 12px;backdrop-filter:blur(12px);}
+.deal{flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:14px;padding:10px 10px;backdrop-filter:blur(12px);min-width:0;overflow:hidden;}
 .deal-site{font-size:10px;color:var(--t3);margin-bottom:2px;}
 .deal-name{font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;line-height:1.3;}
 .deal-old{font-size:10px;color:rgba(255,255,255,.27);text-decoration:line-through;}
 .deal-new{font-size:18px;font-weight:700;font-family:'Syne',sans-serif;margin:1px 0;}
 .deal-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;display:inline-block;margin-top:1px;}
-.enter-btn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:22px;padding:11px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s;}
+.enter-btn{display:flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:22px;padding:13px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s;width:100%;}
 .enter-btn:hover{transform:translateY(-2px);}
 
 #hnav{position:fixed;top:0;left:0;right:0;z-index:80;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,transparent 100%);}
@@ -255,7 +255,7 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
     <a class="app-logo" href="#">Best<em>Deal</em></a>
     <div class="app-search" style="margin-bottom:0;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="msearch" type="text" placeholder="iPhone 15, robot, vol Paris...">
+      <input id="msearch" type="text" placeholder="iPhone 15, robot, vol Paris..." onkeydown="if(event.key==='Enter')doSearch(this.value)" oninput="if(this.value.length>1)showTab('recherche')">
     </div>
   </div>
   <div id="tabs-bar">
@@ -271,7 +271,7 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
 
     <!-- RECHERCHE -->
     <div id="p-recherche" class="panel on">
-      <div class="res-list">
+      <div class="res-list" id="res-grid">
         <div class="res-card"><div><div class="rc-name">Écouteurs Sony WF-1000XM5</div><div class="rc-sites">AliExpress · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">289€</div><div class="rc-new" style="color:var(--or);">149€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-48%</div></div></div>
         <div class="res-card"><div><div class="rc-name">Robot aspirateur Roborock S7</div><div class="rc-sites">Temu · Amazon · Cdiscount</div></div><div class="rc-p"><div class="rc-old">399€</div><div class="rc-new" style="color:var(--or);">219€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-45%</div></div></div>
         <div class="res-card"><div><div class="rc-name">Galaxy Watch 6 Classic</div><div class="rc-sites">Samsung · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">299€</div><div class="rc-new" style="color:var(--or);">189€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-37%</div></div></div>
@@ -439,11 +439,23 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
 <div id="prem" onclick="document.getElementById('pmoda').classList.add('open')"><span class="pt">Premium</span><span class="pp2">9€/mois</span></div>
 
 <!-- SEARCH OVERLAY -->
-<div id="sovl"><button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button><input type="text" placeholder="iPhone 15, vol Paris Ibiza, Peugeot 308..."><div class="stags"><div class="stag">🔥 Meilleures offres</div><div class="stag">📱 Smartphones</div><div class="stag">✈️ Vols pas chers</div><div class="stag">🎮 Gaming</div><div class="stag">👟 Mode & Chaussures</div><div class="stag">🛋 Maison & Déco</div><div class="stag">💄 Beauté</div><div class="stag">🚗 Voitures occasion</div><div class="stag">📺 TV & Audio</div><div class="stag">🏠 Électroménager</div></div></div>
+<div id="sovl"><button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button><input type="text" id="sovl-input" placeholder="iPhone 15, vol Paris Ibiza, Peugeot 308..." onkeydown="if(event.key==='Enter')doSearch(this.value)">
+  <button onclick="doSearch(document.getElementById('sovl-input').value)" style="background:var(--or);border:none;border-radius:12px;padding:11px 22px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;font-family:DM Sans,sans-serif;max-width:460px;width:100%;margin-bottom:10px;">Rechercher</button><div class="stags">
+  <div class="stag" onclick="doSearch('Meilleures offres')">🔥 Meilleures offres</div>
+  <div class="stag" onclick="doSearch('Smartphones')">📱 Smartphones</div>
+  <div class="stag" onclick="doSearch('Vols pas chers')">✈️ Vols pas chers</div>
+  <div class="stag" onclick="doSearch('Gaming')">🎮 Gaming</div>
+  <div class="stag" onclick="doSearch('Mode Chaussures')">👟 Mode & Chaussures</div>
+  <div class="stag" onclick="doSearch('Maison Déco')">🛋 Maison & Déco</div>
+  <div class="stag" onclick="doSearch('Beauté')">💄 Beauté</div>
+  <div class="stag" onclick="doSearch('Voitures occasion')">🚗 Voitures occasion</div>
+  <div class="stag" onclick="doSearch('TV Audio')">📺 TV & Audio</div>
+  <div class="stag" onclick="doSearch('Électroménager')">🏠 Électroménager</div>
+</div></div>
 
 <!-- PREMIUM MODAL -->
 <div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button>
-<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;"><span style="font-size:10px;color:rgba(255,255,255,.3);">Paiement accepté :</span><span style="font-size:11px;color:rgba(255,255,255,.4);">💳 Carte</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🅿️ PayPal</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🏦 Virement</span><span style="font-size:11px;color:rgba(255,255,255,.4);">📱 Klarna</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🟣 Wero</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🅿️ Apple Pay</span></div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;"><span style="font-size:10px;color:rgba(255,255,255,.3);">Paiement sécurisé :</span><span style="font-size:11px;color:rgba(255,255,255,.4);">💳 Carte</span><span style="font-size:11px;color:rgba(255,255,255,.4);">📱 Klarna</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🔗 Amazon Pay</span></div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
 
 <script>
 /* HOME SLIDER */
@@ -460,6 +472,16 @@ homeEl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;drag=true;},{pa
 homeEl.addEventListener('touchend',e=>{if(!drag)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(dx<0?1:-1);drag=false;},{passive:true});
 homeEl.addEventListener('mousedown',e=>{sx=e.clientX;drag=true;});
 homeEl.addEventListener('mouseup',e=>{if(!drag)return;const dx=e.clientX-sx;if(Math.abs(dx)>40)go(dx<0?1:-1);drag=false;});
+/* trackpad swipe support */
+let wt=0;
+homeEl.addEventListener('wheel',e=>{
+  const now=Date.now();
+  if(now-wt<600)return;
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>30){
+    wt=now;
+    go(e.deltaX>0?1:-1);
+  }
+},{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
 
 /* SCREEN NAV */
@@ -501,7 +523,54 @@ function updBudget(v){
 }
 
 /* SEARCH */
-document.getElementById('openS').addEventListener('click',()=>document.getElementById('sovl').classList.add('open'));
+document.getElementById('openS').addEventListener('click',()=>{
+  document.getElementById('sovl').classList.add('open');
+  setTimeout(()=>document.getElementById('sovl-input').focus(),100);
+});
+
+/* Search products database */
+const PRODUCTS = [
+  {name:'iPhone 15 Pro 256GB', sites:'Amazon · Fnac · Cdiscount', old:'1 229€', price:'949€', save:'-23%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'MacBook Air M3 13"', sites:'Cdiscount · Amazon · Fnac', old:'1 499€', price:'1 099€', save:'-27%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Samsung Galaxy S24', sites:'Amazon · Samsung · Fnac', old:'899€', price:'649€', save:'-28%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Écouteurs Sony WF-1000XM5', sites:'AliExpress · Amazon · Fnac', old:'289€', price:'149€', save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Robot aspirateur Roborock S7', sites:'Temu · Amazon · Cdiscount', old:'399€', price:'219€', save:'-45%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'AirPods Pro 2', sites:'Amazon · Fnac · Apple', old:'279€', price:'189€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'PS5 Slim + manette', sites:'Amazon · Cdiscount · Fnac', old:'449€', price:'379€', save:'-16%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'TV Samsung 55" QLED', sites:'Cdiscount · Amazon · Fnac', old:'899€', price:'549€', save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Dyson V15 Detect', sites:'Dyson · Amazon · Fnac', old:'749€', price:'499€', save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Air Fryer Ninja DualZone', sites:'Amazon · ManoMano · Fnac', old:'179€', price:'99€', save:'-45%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
+  {name:'Chaussures Nike Air Max', sites:'AliExpress · Temu · Zalando', old:'129€', price:'67€', save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Gaming PC RTX 4070', sites:'Amazon · Cdiscount · Fnac', old:'1 899€', price:'1 299€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Bose QuietComfort 45', sites:'Amazon · Fnac', old:'329€', price:'199€', save:'-40%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'iPad Pro 11" M4', sites:'Apple · Amazon · Fnac', old:'1 099€', price:'899€', save:'-18%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Montre Galaxy Watch 7', sites:'Samsung · Amazon', old:'299€', price:'199€', save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+];
+
+function doSearch(q){
+  if(!q||!q.trim())return;
+  document.getElementById('sovl').classList.remove('open');
+  openApp();
+  showTab('recherche');
+  const ql=q.toLowerCase();
+  const matches = PRODUCTS.filter(p=>
+    p.name.toLowerCase().includes(ql)||
+    p.sites.toLowerCase().includes(ql)||
+    ql.split(' ').some(w=>p.name.toLowerCase().includes(w))
+  );
+  const results = matches.length>0 ? matches : PRODUCTS.slice(0,6);
+  const grid=document.getElementById('res-grid');
+  if(grid){
+    grid.innerHTML = results.map(p=>`
+      <div class="res-card">
+        <div><div class="rc-name">${p.name}</div><div class="rc-sites">${p.sites}</div></div>
+        <div class="rc-p"><div class="rc-old">${p.old}</div><div class="rc-new" style="color:${p.color};">${p.price}</div><div class="rc-save" style="background:${p.bg};color:${p.savec};">${p.save}</div></div>
+      </div>`).join('');
+  }
+  // Also update msearch
+  const ms=document.getElementById('msearch');
+  if(ms)ms.value=q;
+}
 
 /* PREMIUM */
 function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
