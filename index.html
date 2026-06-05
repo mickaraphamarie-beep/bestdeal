@@ -379,6 +379,7 @@ header{position:sticky;top:0;z-index:200;height:56px;padding:0 20px;display:flex
     <button class="nav-tab" onclick="switchTab('favs')">❤️ <span>Favoris</span></button>
     <button class="nav-tab" onclick="switchTab('budget')">✨ <span>Budget IA</span></button>
     <button class="nav-tab" onclick="switchTab('photo')">📷 <span>Photo</span></button>
+    <button class="nav-tab" onclick="switchTab('boutiques')">🏪 <span>Boutiques</span></button>
   </div>
 </div>
 
@@ -602,6 +603,29 @@ header{position:sticky;top:0;z-index:200;height:56px;padding:0 20px;display:flex
   </div>
 </div>
 
+<!-- ════════════════ PANEL BOUTIQUES ════════════════ -->
+<div id="panel-boutiques" class="panel">
+  <div style="padding:24px 0 16px">
+    <div class="section-title">🏪 Toutes les boutiques</div>
+    <div class="section-sub">Accédez directement à vos sites préférés via nos liens partenaires.</div>
+  </div>
+
+  <div style="position:relative;max-width:500px;margin-bottom:24px">
+    <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--muted);pointer-events:none">🔍</span>
+    <input
+      id="boutiquesSearch"
+      type="text"
+      placeholder="Chercher une boutique..."
+      oninput="filterBoutiques(this.value)"
+      style="width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:12px;padding:12px 14px 12px 42px;font-size:14px;font-family:'DM Sans';color:var(--tx);outline:none"
+    >
+  </div>
+
+  <div style="font-size:12px;color:var(--muted);margin-bottom:12px" id="boutiquesCount">14 boutiques disponibles</div>
+
+  <div id="boutiquesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
+</div>
+
 <!-- PREMIUM MODAL -->
 <div class="modal-overlay" id="premiumModal">
   <div class="modal">
@@ -797,7 +821,7 @@ function showToast(msg){
 // ══════════════════════════════════════
 function switchTab(tab){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  const tabs=['search','radar','alerts','favs','budget','photo'];
+  const tabs=['search','radar','alerts','favs','budget','photo','boutiques'];
   const idx=tabs.indexOf(tab);
   if(idx>=0) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -805,6 +829,7 @@ function switchTab(tab){
   if(tab==='radar') renderRadar();
   if(tab==='alerts') renderAlerts();
   if(tab==='favs') renderFavs();
+  if(tab==='boutiques') renderBoutiques();
 }
 
 // ══════════════════════════════════════
@@ -1354,6 +1379,55 @@ function applyGift(){
   const c=document.getElementById('giftInput').value.trim();
   if(c===GIFT_CODE){ activatePremium(); }
   else{ const e=document.getElementById('giftErr'); e.style.display='block'; setTimeout(()=>e.style.display='none',3000); }
+}
+
+// ══════════════════════════════════════
+// BOUTIQUES
+// ══════════════════════════════════════
+const BOUTIQUES = [
+  // Marketplaces internationales
+  {name:'Amazon',emoji:'📦',color:'#FF9900',bg:'rgba(255,153,0,0.08)',url:`https://www.amazon.fr/?tag=${AFFILIATE.amazon}`,cat:'Marketplace',tag:'Affilié ✓'},
+  {name:'AliExpress',emoji:'🛍️',color:'#FF6A00',bg:'rgba(255,106,0,0.08)',url:AFFILIATE.aliexpress,cat:'Marketplace',tag:'Affilié ✓'},
+  {name:'Etsy',emoji:'🎨',color:'#F1641E',bg:'rgba(241,100,30,0.08)',url:'https://www.etsy.com/fr/',cat:'Artisanat',tag:'Via Awin'},
+  {name:'eBay',emoji:'🏷️',color:'#0064C8',bg:'rgba(0,100,200,0.08)',url:'https://www.ebay.fr/',cat:'Marketplace',tag:'Via Awin'},
+  {name:'Temu',emoji:'🎁',color:'#7C6FFF',bg:'rgba(124,111,255,0.08)',url:'https://www.temu.com/',cat:'Marketplace',tag:'Bientôt'},
+  // Françaises
+  {name:'Fnac',emoji:'📚',color:'#F7A600',bg:'rgba(247,166,0,0.08)',url:'https://www.fnac.com/',cat:'High-tech',tag:'Via Awin'},
+  {name:'Cdiscount',emoji:'💻',color:'#E30613',bg:'rgba(227,6,19,0.08)',url:'https://www.cdiscount.com/',cat:'Marketplace',tag:'Via Awin'},
+  {name:'Rakuten',emoji:'🛒',color:'#BF0000',bg:'rgba(191,0,0,0.08)',url:'https://fr.shopping.rakuten.com/',cat:'Marketplace',tag:'Bientôt'},
+  {name:'ManoMano',emoji:'🔨',color:'#00B67A',bg:'rgba(0,182,122,0.08)',url:'https://www.manomano.fr/',cat:'Bricolage',tag:'Bientôt'},
+  {name:'Vinted',emoji:'👗',color:'#09B1BA',bg:'rgba(9,177,186,0.08)',url:'https://www.vinted.fr/',cat:'Mode occasion',tag:'Bientôt'},
+  {name:'LeBoncoin',emoji:'🏠',color:'#FF6E14',bg:'rgba(255,110,20,0.08)',url:'https://www.leboncoin.fr/',cat:'Occasion',tag:'Bientôt'},
+  // Spécialisées
+  {name:'Decathlon',emoji:'⚽',color:'#0082C3',bg:'rgba(0,130,195,0.08)',url:'https://www.decathlon.fr/',cat:'Sport',tag:'Bientôt'},
+  {name:'Shein',emoji:'👘',color:'#E91E8C',bg:'rgba(233,30,140,0.08)',url:'https://fr.shein.com/',cat:'Mode',tag:'Bientôt'},
+  {name:'Wish',emoji:'✨',color:'#2FB7EC',bg:'rgba(47,183,236,0.08)',url:'https://www.wish.com/fr/',cat:'Marketplace',tag:'Bientôt'},
+];
+
+let filteredBoutiques = [...BOUTIQUES];
+
+function filterBoutiques(q) {
+  const ql = q.toLowerCase();
+  filteredBoutiques = BOUTIQUES.filter(b =>
+    b.name.toLowerCase().includes(ql) ||
+    b.cat.toLowerCase().includes(ql)
+  );
+  document.getElementById('boutiquesCount').textContent =
+    `${filteredBoutiques.length} boutique${filteredBoutiques.length>1?'s':''} trouvée${filteredBoutiques.length>1?'s':''}`;
+  renderBoutiques();
+}
+
+function renderBoutiques() {
+  document.getElementById('boutiquesGrid').innerHTML = filteredBoutiques.map(b => `
+    <div onclick="window.open('${b.url}','_blank')"
+      style="background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative"
+      onmouseover="this.style.borderColor='var(--b2)';this.style.transform='translateY(-2px)'"
+      onmouseout="this.style.borderColor='var(--b1)';this.style.transform='translateY(0)'">
+      <div style="width:48px;height:48px;border-radius:12px;background:${b.bg};display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:24px">${b.emoji}</div>
+      <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px;color:var(--tx)">${b.name}</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:6px">${b.cat}</div>
+      <div style="font-size:9px;padding:2px 7px;border-radius:20px;display:inline-block;font-weight:600;${b.tag.includes('✓')?'background:rgba(34,197,94,0.1);color:var(--green)':b.tag.includes('Awin')?'background:rgba(108,99,255,0.1);color:var(--acc)':'background:rgba(107,107,130,0.1);color:var(--muted)'}">${b.tag}</div>
+    </div>`).join('');
 }
 
 // ══════════════════════════════════════
