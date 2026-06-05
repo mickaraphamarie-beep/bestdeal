@@ -17,8 +17,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 #home.hide{opacity:0;pointer-events:none;}
 
 /* ── HOME ── */
-#slider{display:flex;height:100%;width:400%;transition:transform .7s cubic-bezier(.86,0,.07,1);}
-.uni{width:25%;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
+#slider{display:flex;height:100%;transition:transform .7s cubic-bezier(.86,0,.07,1);}
+.uni{width:100vw;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
 .uni canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px 68px;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.2) 52%,transparent 100%);}
 .chip{display:inline-flex;align-items:center;gap:5px;border-radius:16px;padding:4px 10px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;width:fit-content;}
@@ -465,7 +465,7 @@ const bl=document.getElementById('bl'),br=document.getElementById('br');
 
 function goTo(n){
   cur=Math.max(0,Math.min(N-1,n));
-  sl.style.transform='translateX(-'+cur*25+'%)';
+  sl.style.transform='translateX(-'+(cur*100)+'vw)';
   dotsEl.forEach((d,i)=>d.classList.toggle('on',i===cur));
   ctabs.forEach((t,i)=>t.classList.toggle('on',i===cur));
   bl.classList.toggle('gone',cur===0);
@@ -599,13 +599,21 @@ function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_b
 
 /* ══ CANVAS ANIMATIONS ══ */
 function initCanvases(){
-  const W=(cv)=>cv.offsetWidth||window.innerWidth/4;
-  const H=(cv)=>cv.offsetHeight||window.innerHeight;
+  // Force slider width so canvases have proper parent dimensions
+  const totalW = window.innerWidth;
+  const totalH = window.innerHeight;
+  document.getElementById('slider').style.width = (totalW*4)+'px';
+  ['u0','u1','u2','u3'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.style.width=totalW+'px';el.style.height=totalH+'px';}
+  });
+  const W=(cv)=>totalW;
+  const H=(cv)=>totalH;
 
   /* C0 SHOPPING */
   (function(){
     const cv=document.getElementById('c0');
-    cv.width=W(cv);cv.height=H(cv);
+    cv.width=totalW;cv.height=totalH;
     const ctx=cv.getContext('2d');
     const IC=['🛍','📦','💳','🏷️','🎁','🛒','📱','👟'];
     const orbs=IC.map((ic,i)=>({ic,angle:(i/IC.length)*Math.PI*2,r:.17+(i%3)*.07,spd:.005+(i%4)*.002,sz:22+(i%3)*5}));
@@ -624,7 +632,7 @@ function initCanvases(){
 
   /* C1 VOYAGE */
   (function(){
-    const cv=document.getElementById('c1');cv.width=W(cv);cv.height=H(cv);
+    const cv=document.getElementById('c1');cv.width=totalW;cv.height=totalH;
     const ctx=cv.getContext('2d');
     const stars=Array.from({length:100},()=>({x:Math.random(),y:Math.random()*.65,r:Math.random()*1.5+.3,tw:Math.random()*6}));
     const planes=[{x:-.1,y:.18,vx:.0014,sz:24,tr:[]},{x:.6,y:.30,vx:.001,sz:17,tr:[]},{x:.25,y:.42,vx:.0018,sz:13,tr:[]}];
@@ -641,7 +649,7 @@ function initCanvases(){
 
   /* C2 VEHICULES */
   (function(){
-    const cv=document.getElementById('c2');cv.width=W(cv);cv.height=H(cv);
+    const cv=document.getElementById('c2');cv.width=totalW;cv.height=totalH;
     const ctx=cv.getContext('2d');
     const da=Array.from({length:18},(_,i)=>({y:i/18,spd:.004+Math.random()*.006}));
     const li=Array.from({length:8},()=>({y:Math.random(),vy:.005+Math.random()*.007,side:Math.random()<.5?-.04:.04}));
@@ -661,7 +669,7 @@ function initCanvases(){
 
   /* C3 HIGH-TECH */
   (function(){
-    const cv=document.getElementById('c3');cv.width=W(cv);cv.height=H(cv);
+    const cv=document.getElementById('c3');cv.width=totalW;cv.height=totalH;
     const ctx=cv.getContext('2d');
     const GX=7,GY=12;const nd=[];
     for(let i=0;i<=GX;i++)for(let j=0;j<=GY;j++)nd.push({x:i/GX,y:j/GY,tw:Math.random()*6,hot:Math.random()<.22});
@@ -684,7 +692,7 @@ function initCanvases(){
 
 /* Init after page fully rendered */
 window.addEventListener('load',()=>{
-  setTimeout(initCanvases, 100);
+  setTimeout(initCanvases, 50);
 });
 window.addEventListener('resize',()=>{
   ['c0','c1','c2','c3'].forEach(id=>{
