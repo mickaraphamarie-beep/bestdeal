@@ -105,14 +105,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 
 /* Radar */
 .radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.radar-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:12px;}
+.radar-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:12px;transition:background .2s,transform .15s;}.radar-card:hover{background:rgba(255,255,255,.10);transform:translateY(-2px);}
 .ri{font-size:24px;margin-bottom:6px;}
 .rn{font-size:11px;color:#fff;font-weight:500;margin-bottom:2px;}
 .rd{font-size:10px;color:var(--t3);}
 .rp{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-top:3px;}
 
 /* Alertes */
-.al-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.al-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:9px;margin-bottom:7px;transition:background .2s;}.al-item:hover{background:rgba(255,255,255,.09);}
 .al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .al-name{font-size:13px;color:#fff;font-weight:500;}
 .al-tgt{font-size:10px;color:var(--t2);margin-top:2px;}
@@ -120,7 +120,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 .add-al{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.28);border-radius:12px;padding:11px;font-size:13px;color:var(--or);font-weight:500;cursor:pointer;margin-top:6px;}
 
 /* Favoris */
-.fav-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.fav-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:9px;margin-bottom:7px;transition:background .2s;}.fav-item:hover{background:rgba(255,255,255,.09);}
 .fav-e{font-size:22px;width:32px;text-align:center;}
 .fav-n{font-size:13px;color:#fff;font-weight:500;}
 .fav-s{font-size:10px;color:var(--t2);margin-top:2px;}
@@ -141,6 +141,20 @@ input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
 .ai-box{background:rgba(168,85,247,.07);border:.5px solid rgba(168,85,247,.16);border-radius:10px;padding:10px 12px;margin-top:11px;}
 .ai-lbl{font-size:10px;color:rgba(168,85,247,.7);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
 .ai-txt{font-size:12px;color:var(--t2);line-height:1.6;}
+.evt-card{background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.10);border-radius:13px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .22s;}
+.evt-card:hover{background:rgba(255,255,255,.12);transform:scale(1.04);}
+.evt-card.on{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4);}
+.evt-icon{font-size:26px;margin-bottom:4px;}
+.evt-name{font-size:11px;color:#fff;font-weight:500;}
+.style-tag{padding:6px 12px;border-radius:16px;font-size:11px;font-weight:500;cursor:pointer;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.10);color:var(--t2);transition:all .22s;}
+.style-tag:hover{background:rgba(255,255,255,.12);color:#fff;}
+.style-tag.on{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4);color:#C080FF;}
+.pack-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:13px 14px;margin-bottom:9px;cursor:pointer;transition:background .2s;}
+.pack-item:hover{background:rgba(255,255,255,.09);}
+.pack-item-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;}
+.pack-item-name{font-size:13px;font-weight:600;color:#fff;}
+.pack-item-price{font-family:Syne,sans-serif;font-size:16px;font-weight:800;}
+.pack-item-sites{font-size:10px;color:var(--t3);}
 
 /* Photo */
 .photo-drop{border:1.5px dashed rgba(255,255,255,.16);border-radius:14px;padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;margin-bottom:12px;}
@@ -341,28 +355,78 @@ input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
       <div class="sec-h">❤️ Mes favoris</div>
       <div style="margin-bottom:12px;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 12px;font-size:12px;color:rgba(255,255,255,.35);">💡 Appuyez sur ❤️ sur n'importe quelle offre pour l'ajouter ici</div>
       <div id="fav-list">
-        <div class="fav-item"><div class="fav-e">🎧</div><div><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item"><div class="fav-e">💻</div><div><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item"><div class="fav-e">🎮</div><div><div class="fav-n">PS5 Slim Digital</div><div class="fav-s">Cdiscount · hier</div></div><div class="fav-p" style="color:var(--gr);">399€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item" style="cursor:pointer;" onclick="showCompare('Sony WH-1000XM5')"><div class="fav-e">🎧</div><div><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item" style="cursor:pointer;" onclick="showCompare('MacBook Air M2')"><div class="fav-e">💻</div><div><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item" style="cursor:pointer;" onclick="showCompare('PS5 Slim Digital')"><div class="fav-e">🎮</div><div><div class="fav-n">PS5 Slim Digital</div><div class="fav-s">Cdiscount · hier</div></div><div class="fav-p" style="color:var(--gr);">399€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
       </div>
     </div>
 
     <!-- BUDGET IA -->
     <div id="p-budget" class="panel">
       <div class="sec-h">🤖 Budget IA</div>
-      <div class="sec-s">Définissez votre budget, l'IA optimise vos achats</div>
-      <div class="bud-box">
-        <div class="bud-lbl">Budget mensuel</div>
-        <div class="bud-val" id="bval">300€</div>
-        <input type="range" min="50" max="2000" value="300" step="10" oninput="updBudget(this.value)">
-        <div class="bud-cats">
-          <div class="bcat"><div class="bcn">High-Tech</div><div class="bcbar"><div class="bcfill" id="bc0" style="width:60%;background:var(--vi);"></div></div><div class="bcv" id="bv0">180€</div></div>
-          <div class="bcat"><div class="bcn">Mode</div><div class="bcbar"><div class="bcfill" id="bc1" style="width:20%;background:var(--or);"></div></div><div class="bcv" id="bv1">60€</div></div>
-          <div class="bcat"><div class="bcn">Maison</div><div class="bcbar"><div class="bcfill" id="bc2" style="width:13%;background:var(--gr);"></div></div><div class="bcv" id="bv2">40€</div></div>
-          <div class="bcat"><div class="bcn">Voyage</div><div class="bcbar"><div class="bcfill" id="bc3" style="width:7%;background:var(--am);"></div></div><div class="bcv" id="bv3">20€</div></div>
+      <div class="sec-s">Décrivez votre projet ou choisissez un événement — l'IA compose votre pack idéal</div>
+
+      <!-- Event type selector -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;" id="evt-grid">
+        <div class="evt-card on" onclick="selectEvt(this,'mariage')" data-evt="mariage">
+          <div class="evt-icon">💒</div><div class="evt-name">Mariage</div>
+        </div>
+        <div class="evt-card" onclick="selectEvt(this,'anniversaire')" data-evt="anniversaire">
+          <div class="evt-icon">🎂</div><div class="evt-name">Anniversaire</div>
+        </div>
+        <div class="evt-card" onclick="selectEvt(this,'voyage')" data-evt="voyage">
+          <div class="evt-icon">✈️</div><div class="evt-name">Voyage</div>
+        </div>
+        <div class="evt-card" onclick="selectEvt(this,'maison')" data-evt="maison">
+          <div class="evt-icon">🏠</div><div class="evt-name">Maison</div>
+        </div>
+        <div class="evt-card" onclick="selectEvt(this,'gaming')" data-evt="gaming">
+          <div class="evt-icon">🎮</div><div class="evt-name">Gaming</div>
+        </div>
+        <div class="evt-card" onclick="selectEvt(this,'custom')" data-evt="custom">
+          <div class="evt-icon">✏️</div><div class="evt-name">Personnalisé</div>
         </div>
       </div>
-      <div class="ai-box"><div class="ai-lbl">💡 Recommandation IA</div><div class="ai-txt" id="aitxt">Avec 300€ ce mois-ci, les meilleures opportunités sont sur les écouteurs Sony (-48%) et la TV Samsung (-40%). Évitez l'iPhone — les prix baisseront avec la sortie de l'iPhone 16.</div></div>
+
+      <!-- Custom input -->
+      <div id="custom-input" style="display:none;margin-bottom:12px;">
+        <input id="custom-desc" type="text" placeholder="Ex: équiper ma cuisine, préparer une randonnée..." style="width:100%;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.15);border-radius:12px;padding:11px 14px;font-size:13px;color:#fff;font-family:DM Sans,sans-serif;outline:none;">
+      </div>
+
+      <!-- Budget + persons -->
+      <div style="display:flex;gap:10px;margin-bottom:14px;">
+        <div style="flex:2;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em;">Budget total</div>
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:11px;padding:8px 12px;">
+            <input id="bud-amount" type="number" value="500" min="50" max="50000" step="50" style="background:none;border:none;color:#fff;font-family:Syne,sans-serif;font-size:20px;font-weight:800;width:80px;outline:none;">
+            <span style="font-size:16px;color:var(--t2);">€</span>
+          </div>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:10px;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em;">Personnes</div>
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:11px;padding:8px 12px;">
+            <input id="bud-persons" type="number" value="2" min="1" max="500" style="background:none;border:none;color:#fff;font-family:Syne,sans-serif;font-size:20px;font-weight:800;width:40px;outline:none;">
+            <span style="font-size:14px;">👤</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Style selector -->
+      <div style="margin-bottom:14px;">
+        <div style="font-size:10px;color:var(--t3);margin-bottom:7px;text-transform:uppercase;letter-spacing:.08em;">Style / Ambiance</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;" id="style-grid">
+          <div class="style-tag on" onclick="selectStyle(this,'luxe')">✨ Luxe</div>
+          <div class="style-tag" onclick="selectStyle(this,'eco')">🌿 Eco</div>
+          <div class="style-tag" onclick="selectStyle(this,'fun')">🎉 Fun</div>
+          <div class="style-tag" onclick="selectStyle(this,'minimaliste')">⬜ Minimaliste</div>
+          <div class="style-tag" onclick="selectStyle(this,'aventure')">🏕️ Aventure</div>
+          <div class="style-tag" onclick="selectStyle(this,'romantique')">💕 Romantique</div>
+        </div>
+      </div>
+
+      <button onclick="genBudget()" style="width:100%;background:var(--vi);border:none;border-radius:13px;padding:13px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;font-family:Syne,sans-serif;margin-bottom:14px;">🤖 Composer mon pack IA →</button>
+
+      <div id="pack-result" style="display:none;"></div>
     </div>
 
     <!-- PHOTO -->
@@ -388,12 +452,12 @@ input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
       <div class="sec-h">📡 Radar des prix</div>
       <div class="sec-s">Produits dont le prix a le plus baissé ces 24h</div>
       <div class="radar-grid">
-        <div class="radar-card"><div class="ri">🎧</div><div class="rn">AirPods Pro 2</div><div class="rd">Amazon · il y a 2h</div><div class="rp" style="color:var(--gr);">-31%</div></div>
-        <div class="radar-card"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">Fnac · il y a 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
-        <div class="radar-card"><div class="ri">📺</div><div class="rn">TV Samsung 55" QLED</div><div class="rd">Cdiscount · 8h</div><div class="rp" style="color:var(--gr);">-40%</div></div>
-        <div class="radar-card"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">Amazon · 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
-        <div class="radar-card"><div class="ri">📱</div><div class="rn">Samsung Galaxy S24</div><div class="rd">Fnac · 3h</div><div class="rp" style="color:var(--gr);">-25%</div></div>
-        <div class="radar-card"><div class="ri">🖨️</div><div class="rn">HP LaserJet Pro</div><div class="rd">Amazon · 6h</div><div class="rp" style="color:var(--gr);">-35%</div></div>
+        <div class="radar-card" onclick="showCompare('AirPods Pro 2')" style="cursor:pointer;"><div class="ri">🎧</div><div class="rn">AirPods Pro 2</div><div class="rd">Amazon · il y a 2h</div><div class="rp" style="color:var(--gr);">-31%</div></div>
+        <div class="radar-card" onclick="showCompare('Dell XPS 15')" style="cursor:pointer;"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">Fnac · il y a 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
+        <div class="radar-card" onclick="showCompare('TV Samsung 55 QLED')" style="cursor:pointer;"><div class="ri">📺</div><div class="rn">TV Samsung 55" QLED</div><div class="rd">Cdiscount · 8h</div><div class="rp" style="color:var(--gr);">-40%</div></div>
+        <div class="radar-card" onclick="showCompare('PS5 Slim manette')" style="cursor:pointer;"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">Amazon · 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
+        <div class="radar-card" onclick="showCompare('Samsung Galaxy S24')" style="cursor:pointer;"><div class="ri">📱</div><div class="rn">Samsung Galaxy S24</div><div class="rd">Fnac · 3h</div><div class="rp" style="color:var(--gr);">-25%</div></div>
+        <div class="radar-card" onclick="showCompare('HP LaserJet Pro')" style="cursor:pointer;"><div class="ri">🖨️</div><div class="rn">HP LaserJet Pro</div><div class="rd">Amazon · 6h</div><div class="rp" style="color:var(--gr);">-35%</div></div>
       </div>
     </div>
 
@@ -402,9 +466,9 @@ input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
       <div class="sec-h">🔔 Mes alertes prix</div>
       <div class="sec-s">Notifié dès que le prix cible est atteint</div>
       <div id="al-list">
-        <div class="al-item"><div class="al-dot" style="background:var(--or);"></div><div><div class="al-name">iPhone 15 Pro 256GB</div><div class="al-tgt">Cible : sous 900€ · Actuel : 1 049€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
-        <div class="al-item"><div class="al-dot" style="background:var(--gr);"></div><div><div class="al-name">MacBook Air M3</div><div class="al-tgt">Cible : sous 1 100€ · Actuel : 1 229€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
-        <div class="al-item"><div class="al-dot" style="background:var(--am);"></div><div><div class="al-name">PS5 Slim Digital</div><div class="al-tgt">Cible : sous 350€ · Actuel : 399€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
+        <div class="al-item" style="cursor:pointer;" onclick="showCompare('iPhone 15 Pro 256GB')"><div class="al-dot" style="background:var(--or);"></div><div><div class="al-name">iPhone 15 Pro 256GB</div><div class="al-tgt">Cible : sous 900€ · Actuel : 1 049€</div></div><button class="al-del" onclick="event.stopPropagation();this.closest('.al-item').remove()">×</button></div>
+        <div class="al-item" style="cursor:pointer;" onclick="showCompare('MacBook Air M3')"><div class="al-dot" style="background:var(--gr);"></div><div><div class="al-name">MacBook Air M3</div><div class="al-tgt">Cible : sous 1 100€ · Actuel : 1 229€</div></div><button class="al-del" onclick="event.stopPropagation();this.closest('.al-item').remove()">×</button></div>
+        <div class="al-item" style="cursor:pointer;" onclick="showCompare('PS5 Slim Digital')"><div class="al-dot" style="background:var(--am);"></div><div><div class="al-name">PS5 Slim Digital</div><div class="al-tgt">Cible : sous 350€ · Actuel : 399€</div></div><button class="al-del" onclick="event.stopPropagation();this.closest('.al-item').remove()">×</button></div>
       </div>
       <div class="add-al" onclick="addAl()">+ Créer une nouvelle alerte</div>
     </div>
@@ -561,6 +625,8 @@ function doSearch(q){
     :'<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">Aucun résultat exact — meilleures offres du moment</div>';
   grid.innerHTML=title+res.map(p=>'<div class="res-card" style="cursor:pointer;" onclick="searchAmazon(this)"><div><div class="rc-name">'+p.n+'</div><div class="rc-sites">'+p.s+'</div></div><div class="rc-p"><div class="rc-old">'+p.o+'</div><div class="rc-new" style="color:'+p.c+';">'+p.p+'</div><div class="rc-save" style="background:'+p.b+';color:'+p.sc+';">'+p.sv+'</div></div></div>').join('');
   const ms=document.getElementById('msearch');if(ms)ms.value=q;
+  // Store original query for Amazon search
+  window._lastQuery=q;
 }
 
 document.getElementById('openS').addEventListener('click',()=>{
@@ -713,9 +779,58 @@ window.addEventListener('resize',()=>{
 });
 
 function searchAmazon(el){
-  var nm=el.querySelector('.rc-name');
-  if(nm)window.open('https://www.amazon.fr/s?k='+encodeURIComponent(nm.textContent)+'&tag=bestdeal0e9d0-21','_blank');
+  var q=window._lastQuery||'';
+  var nm=el.querySelector&&el.querySelector('.rc-name');
+  showCompare(q||(nm?nm.textContent:''));
 }
+
+function showCompare(q){
+  if(!q)return;
+  var old=document.getElementById('cmp-modal');
+  if(old)old.remove();
+  var enc=encodeURIComponent(q);
+  var sites=[
+    {n:'Amazon',   i:'📦',u:'https://www.amazon.fr/s?k='+enc+'&tag=bestdeal0e9d0-21'},
+    {n:'AliExpress',i:'🛒',u:'https://fr.aliexpress.com/wholesale?SearchText='+enc},
+    {n:'Temu',     i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+enc},
+    {n:'eBay',     i:'🔵',u:'https://www.ebay.fr/sch/i.html?_nkw='+enc},
+    {n:'Cdiscount',i:'🏬',u:'https://www.cdiscount.com/search/10/'+enc+'.html'},
+    {n:'Fnac',     i:'📚',u:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+enc}
+  ];
+  var m=document.createElement('div');
+  m.id='cmp-modal';
+  m.style.cssText='position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.93);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
+  var wrap=document.createElement('div');
+  wrap.style.cssText='width:100%;max-width:460px;';
+  var hd=document.createElement('div');
+  hd.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;';
+  var title=document.createElement('div');
+  title.style.cssText='font-family:Syne,sans-serif;font-size:17px;font-weight:800;color:#fff;';
+  title.textContent='Comparer : '+q;
+  var x=document.createElement('button');
+  x.textContent='×';x.style.cssText='background:none;border:none;color:rgba(255,255,255,.4);font-size:28px;cursor:pointer;line-height:1;';
+  x.onclick=function(){m.remove();};
+  hd.appendChild(title);hd.appendChild(x);wrap.appendChild(hd);
+  sites.forEach(function(s){
+    var r=document.createElement('div');
+    r.style.cssText='display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.11);border-radius:13px;padding:12px 15px;margin-bottom:8px;cursor:pointer;';
+    var ic=document.createElement('span');ic.style.fontSize='24px';ic.textContent=s.i;
+    var inf=document.createElement('div');inf.style.flex='1';
+    var nm=document.createElement('div');nm.style.cssText='font-size:14px;font-weight:600;color:#fff;';nm.textContent=s.n;
+    var sub=document.createElement('div');sub.style.cssText='font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;';sub.textContent='Chercher sur '+s.n;
+    inf.appendChild(nm);inf.appendChild(sub);
+    var ar=document.createElement('span');ar.style.cssText='font-size:20px;color:rgba(255,255,255,.25);';ar.textContent='›';
+    r.appendChild(ic);r.appendChild(inf);r.appendChild(ar);
+    r.onmouseover=function(){this.style.background='rgba(255,255,255,.11)';this.style.transform='translateX(2px)';};
+    r.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';this.style.transform='none';};
+    (function(url){r.onclick=function(){window.open(url,'_blank');};})(s.u);
+    wrap.appendChild(r);
+  });
+  m.appendChild(wrap);
+  m.addEventListener('click',function(e){if(e.target===m)m.remove();});
+  document.body.appendChild(m);
+}
+
 </script>
 </body>
 </html>
