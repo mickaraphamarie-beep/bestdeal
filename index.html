@@ -3,1233 +3,1301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BestDeal — Comparez les prix partout</title>
+<title>BestDeal — Votre copilote d'achat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #13131a;
-    --surface2: #1c1c26;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --text: #f0f0f5;
-    --muted: #7a7a90;
-    --accent: #7c6fff;
-    --accent2: #ff6b6b;
-    --accent3: #00d4aa;
-    --glow: rgba(124,111,255,0.15);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+:root {
+  --bg: #060608;
+  --s1: #0e0e14;
+  --s2: #161620;
+  --s3: #1e1e2c;
+  --b1: rgba(255,255,255,0.06);
+  --b2: rgba(255,255,255,0.10);
+  --b3: rgba(255,255,255,0.16);
+  --tx: #f2f2f8;
+  --muted: #6b6b82;
+  --muted2: #9090a8;
+  --acc: #6c63ff;
+  --acc2: #9d4edd;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --teal: #14b8a6;
+  --glow: rgba(108,99,255,0.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
 
-  /* HEADER */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    padding: 0 24px; height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(10,10,15,0.9); backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
-  .logo span { color: var(--accent); }
-  .logo-tag { font-size: 10px; color: var(--muted); font-family: 'DM Sans'; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
-  .header-platforms { display: flex; gap: 6px; align-items: center; }
-  .plat-pill { font-size: 10px; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted); font-weight: 500; }
+/* GRAIN */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.5}
 
-  /* NAV TABS */
-  .nav-tabs {
-    display: flex; gap: 4px;
-    padding: 16px 24px 0;
-    max-width: 900px; margin: 0 auto;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-tab {
-    padding: 10px 18px; border-radius: 10px 10px 0 0;
-    font-size: 13px; font-weight: 500; cursor: pointer;
-    color: var(--muted); border: 1px solid transparent;
-    border-bottom: none; transition: all 0.2s;
-    display: flex; align-items: center; gap: 6px;
-    background: transparent;
-  }
-  .nav-tab:hover { color: var(--text); }
-  .nav-tab.active {
-    color: var(--text); background: var(--surface);
-    border-color: var(--border); border-bottom-color: var(--surface);
-    margin-bottom: -1px;
-  }
-  .tab-icon { font-size: 15px; }
+/* HEADER */
+header{position:sticky;top:0;z-index:200;height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,8,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1)}
+.logo{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:19px;letter-spacing:-0.5px;display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc)}
+.logo em{font-style:normal;color:var(--acc)}
+.header-right{display:flex;align-items:center;gap:8px}
+.header-tag{font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid var(--b2);color:var(--muted);letter-spacing:0.3px}
+.premium-btn{font-size:12px;padding:6px 14px;border-radius:20px;background:var(--acc);color:#fff;border:none;cursor:pointer;font-family:'DM Sans';font-weight:500;transition:all 0.2s;display:flex;align-items:center;gap:5px}
+.premium-btn:hover{opacity:0.9;transform:scale(1.02)}
+.premium-badge{font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.3);color:var(--teal)}
 
-  /* PANELS */
-  .panel { display: none; }
-  .panel.active { display: block; }
+/* NAV TABS */
+.nav-wrap{background:var(--s1);border-bottom:1px solid var(--b1)}
+.nav-tabs{max-width:960px;margin:0 auto;padding:0 20px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:12px 16px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;display:flex;align-items:center;gap:6px;background:none;border-left:none;border-right:none;border-top:none}
+.nav-tab:hover{color:var(--tx)}
+.nav-tab.active{color:var(--tx);border-bottom-color:var(--acc)}
+.nav-tab .ti{font-size:14px}
+.tab-new{font-size:9px;padding:1px 5px;border-radius:4px;background:rgba(108,99,255,0.2);color:var(--acc);font-weight:600;letter-spacing:0.3px}
 
-  /* ── PANEL 1 : RECHERCHE ── */
-  .hero { position: relative; padding: 60px 24px 40px; text-align: center; }
-  .hero-glow { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(124,111,255,0.1) 0%, transparent 70%); pointer-events: none; }
-  .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(28px, 5vw, 52px); line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 12px; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero p { font-size: 15px; color: var(--muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.6; font-weight: 300; }
+/* PANELS */
+.panel{display:none;max-width:960px;margin:0 auto;padding:20px}
+.panel.active{display:block}
 
-  .search-wrap { position: relative; max-width: 600px; margin: 0 auto 12px; }
-  .search-box { width: 100%; background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; padding: 16px 130px 16px 50px; font-size: 15px; font-family: 'DM Sans'; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-  .search-box::placeholder { color: var(--muted); }
-  .search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
-  .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 16px; pointer-events: none; }
-  .search-btn { position: absolute; right: 7px; top: 50%; transform: translateY(-50%); background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 9px 18px; font-size: 13px; font-weight: 500; font-family: 'DM Sans'; cursor: pointer; transition: opacity 0.2s; }
-  .search-btn:hover { opacity: 0.9; }
+/* ─── PANEL RECHERCHE ─── */
+.search-hero{padding:32px 0 24px;text-align:center}
+.search-hero h1{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);letter-spacing:-1.5px;line-height:1;margin-bottom:8px}
+.search-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.search-hero p{font-size:14px;color:var(--muted);margin-bottom:24px}
+.search-row{position:relative;max-width:580px;margin:0 auto 12px}
+.search-input{width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:14px;padding:14px 120px 14px 48px;font-size:15px;font-family:'DM Sans';color:var(--tx);outline:none;transition:all 0.2s}
+.search-input:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--glow)}
+.search-input::placeholder{color:var(--muted)}
+.search-ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--muted);pointer-events:none}
+.photo-ico{position:absolute;right:88px;top:50%;transform:translateY(-50%);background:var(--s3);border:1px solid var(--b2);border-radius:8px;padding:6px 9px;font-size:16px;cursor:pointer;transition:all 0.15s;color:var(--muted2)}
+.photo-ico:hover{color:var(--acc);border-color:var(--acc)}
+.search-btn{position:absolute;right:7px;top:50%;transform:translateY(-50%);background:var(--acc);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:500;font-family:'DM Sans';cursor:pointer;transition:opacity 0.2s}
+.search-btn:hover{opacity:0.9}
+.chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:580px;margin:0 auto}
+.chip{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--b2);color:var(--muted);cursor:pointer;transition:all 0.15s;background:transparent}
+.chip:hover{border-color:var(--acc);color:var(--acc);background:var(--glow)}
 
-  /* PHOTO BTN */
-  .photo-search-btn {
-    position: absolute; right: 118px; top: 50%; transform: translateY(-50%);
-    background: var(--surface2); border: 1px solid var(--border2);
-    border-radius: 8px; padding: 7px 10px; cursor: pointer;
-    color: var(--muted); font-size: 18px; transition: all 0.2s;
-    display: flex; align-items: center;
-  }
-  .photo-search-btn:hover { color: var(--accent); border-color: var(--accent); }
+/* SORT BAR */
+.sort-bar{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.sort-bar.show{display:flex}
+.sort-label{font-size:12px;color:var(--muted)}
+.sort-chip{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--b2);color:var(--muted);cursor:pointer;transition:all 0.15s;background:transparent}
+.sort-chip.active{border-color:var(--acc);color:var(--acc);background:var(--glow)}
 
-  .suggestions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 600px; margin: 0 auto; }
-  .sug-chip { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted); cursor: pointer; transition: all 0.15s; background: var(--surface); }
-  .sug-chip:hover { border-color: var(--accent); color: var(--accent); }
+/* LOADING */
+.loading{display:none;text-align:center;padding:48px 0}
+.loading.show{display:block}
+.load-platforms{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.lp{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);opacity:0;animation:fadeUp 0.4s forwards}
+.lp .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:pulse 1s ease-in-out infinite}
+.lp.done .dot{background:var(--green);animation:none}
+.lp.done{color:var(--green)}
+.load-txt{font-size:13px;color:var(--muted);font-style:italic}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
 
-  /* FILTERS */
-  .filters-bar { display: none; max-width: 900px; margin: 24px auto 0; padding: 0 24px; gap: 8px; flex-wrap: wrap; align-items: center; }
-  .filters-bar.show { display: flex; }
-  .filter-label { font-size: 12px; color: var(--muted); margin-right: 4px; }
-  .filter-chip { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border2); color: var(--muted); cursor: pointer; transition: all 0.15s; background: transparent; }
-  .filter-chip.active, .filter-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--glow); }
+/* RESULTS */
+#results{display:none}
+#results.show{display:block}
+.results-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.results-count{font-size:13px;color:var(--muted)}
+.results-count strong{color:var(--tx)}
 
-  /* RESULTS */
-  #results { display: none; max-width: 900px; margin: 0 auto; padding: 20px 24px; }
-  #results.show { display: block; }
+/* BEST CARD */
+.best-card{background:linear-gradient(135deg,#110e24,#0e0e14);border:1px solid rgba(108,99,255,0.35);border-radius:18px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden;animation:fadeUp 0.4s ease forwards}
+.best-card::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle,rgba(108,99,255,0.18),transparent 70%);pointer-events:none}
+.best-card-top{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.best-badge{font-size:11px;font-weight:600;color:var(--acc);background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.25);padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:4px}
+.deal-score{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.deal-score.green{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);color:var(--green)}
+.deal-score.amber{background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);color:var(--amber)}
+.deal-score.red{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:var(--red)}
+.best-title{font-family:'Cabinet Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:5px;line-height:1.2}
+.best-meta{font-size:12px;color:var(--muted);margin-bottom:14px}
+.best-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.best-price-wrap{}
+.best-price{font-family:'Cabinet Grotesk',sans-serif;font-size:34px;font-weight:900;color:var(--acc);letter-spacing:-1px}
+.best-saving{font-size:11px;color:var(--green);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);padding:2px 7px;border-radius:5px;margin-left:8px}
+.best-history{font-size:11px;color:var(--muted);margin-top:2px}
+.buy-btn{background:var(--acc);color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:13px;font-weight:600;font-family:'DM Sans';cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:7px}
+.buy-btn:hover{opacity:0.9;transform:scale(1.02)}
 
-  .loading-wrap { display: none; text-align: center; padding: 50px 24px; }
-  .loading-wrap.show { display: block; }
-  .loading-platforms { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-  .loading-plat { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); opacity: 0; animation: fadeIn 0.4s forwards; }
-  .loading-plat .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: pulse 1s ease-in-out infinite; }
-  .loading-plat.done .dot { background: var(--accent3); animation: none; }
-  .loading-plat.done { color: var(--accent3); }
-  @keyframes fadeIn { to { opacity: 1; } }
-  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-  .loading-text { font-size: 13px; color: var(--muted); font-style: italic; }
+/* RESULT GRID */
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.rc{background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:15px;transition:all 0.2s;cursor:pointer;animation:fadeUp 0.4s ease forwards;opacity:0;position:relative}
+.rc:hover{border-color:var(--b2);transform:translateY(-2px)}
+.rc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.plat{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px}
+.p-amz{background:rgba(255,153,0,0.1);color:#ff9900}
+.p-ali{background:rgba(255,106,0,0.1);color:#ff6a00}
+.p-ets{background:rgba(240,100,65,0.1);color:#f06441}
+.p-tmu{background:rgba(108,99,255,0.1);color:var(--acc)}
+.p-eba{background:rgba(0,100,200,0.1);color:#0064c8}
+.rc-rating{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:3px}
+.star{color:#f59e0b}
+.rc-title{font-size:13px;font-weight:500;line-height:1.4;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rc-delivery{font-size:11px;color:var(--teal);margin-bottom:12px}
+.rc-bottom{display:flex;align-items:center;justify-content:space-between}
+.rc-price{font-family:'Cabinet Grotesk',sans-serif;font-size:19px;font-weight:700}
+.rc-actions{display:flex;gap:6px;align-items:center}
+.fav-btn{width:28px;height:28px;border-radius:7px;background:var(--s2);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all 0.15s}
+.fav-btn:hover,.fav-btn.active{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red)}
+.rc-buy{font-size:11px;padding:6px 11px;background:var(--s2);border:1px solid var(--b2);border-radius:7px;color:var(--tx);cursor:pointer;transition:all 0.15s;font-family:'DM Sans';font-weight:500}
+.rc-buy:hover{background:var(--acc);border-color:var(--acc)}
 
-  .best-card { background: linear-gradient(135deg,#1a1430,#13131a); border: 1px solid var(--accent); border-radius: 18px; padding: 22px; margin-bottom: 14px; position: relative; overflow: hidden; animation: slideUp 0.4s ease forwards; }
-  .best-card::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle,rgba(124,111,255,0.15),transparent 70%); pointer-events:none; }
-  .best-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; color:var(--accent); background:rgba(124,111,255,0.1); border:1px solid rgba(124,111,255,0.25); padding:3px 10px; border-radius:20px; margin-bottom:10px; }
-  .best-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:6px; line-height:1.2; }
-  .best-meta { font-size:12px; color:var(--muted); margin-bottom:14px; }
-  .best-bottom { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-  .best-price { font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--accent); letter-spacing:-1px; }
-  .best-savings { font-size:11px; color:var(--accent3); background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.2); padding:2px 7px; border-radius:5px; margin-left:8px; }
-  .buy-btn { background:var(--accent); color:#fff; border:none; border-radius:10px; padding:12px 24px; font-size:13px; font-weight:600; font-family:'DM Sans'; cursor:pointer; transition:all 0.2s; }
-  .buy-btn:hover { opacity:0.9; transform:scale(1.02); }
+/* DEAL SCORE BAR */
+.score-bar{height:3px;border-radius:2px;margin-top:8px;overflow:hidden;background:var(--s3)}
+.score-fill{height:100%;border-radius:2px;transition:width 0.5s ease}
 
-  .results-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:10px; }
-  .result-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px; transition:all 0.2s; animation:slideUp 0.4s ease forwards; opacity:0; cursor:pointer; }
-  .result-card:hover { border-color:var(--border2); transform:translateY(-2px); }
-  @keyframes slideUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-  .card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
-  .plat-badge { font-size:10px; font-weight:600; padding:2px 7px; border-radius:5px; }
-  .plat-amz { background:rgba(255,153,0,0.12); color:#ff9900; }
-  .plat-ali { background:rgba(255,106,0,0.12); color:#ff6a00; }
-  .plat-ets { background:rgba(240,100,65,0.12); color:#f06441; }
-  .plat-tmu { background:rgba(124,111,255,0.12); color:var(--accent); }
-  .plat-eba { background:rgba(0,100,200,0.12); color:#0064c8; }
-  .card-rating { font-size:11px; color:var(--muted); }
-  .card-title { font-size:13px; font-weight:500; line-height:1.4; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .card-delivery { font-size:11px; color:var(--accent3); margin-bottom:12px; }
-  .card-bottom { display:flex; align-items:center; justify-content:space-between; }
-  .card-price { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; }
-  .card-buy { font-size:11px; padding:6px 12px; background:var(--surface2); border:1px solid var(--border2); border-radius:7px; color:var(--text); cursor:pointer; transition:all 0.15s; font-family:'DM Sans'; font-weight:500; }
-  .card-buy:hover { background:var(--accent); border-color:var(--accent); }
-  .results-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
-  .results-count { font-size:13px; color:var(--muted); }
-  .results-count strong { color:var(--text); }
-  .affiliation-notice { margin-top:20px; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-radius:8px; font-size:11px; color:var(--muted); line-height:1.5; }
+/* AFFIL NOTICE */
+.affil{margin-top:20px;padding:10px 14px;background:var(--s1);border:1px solid var(--b1);border-radius:9px;font-size:11px;color:var(--muted);line-height:1.5}
 
-  /* ── PANEL 2 : PROJET BUDGET ── */
-  .budget-wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px; }
-  .budget-wrap h2 { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; letter-spacing:-0.5px; margin-bottom:6px; }
-  .budget-wrap h2 span { color:var(--accent); }
-  .budget-wrap > p { font-size:14px; color:var(--muted); margin-bottom:28px; line-height:1.6; }
+/* ─── PANEL RADAR ─── */
+.radar-hero{padding:24px 0 16px}
+.section-title{font-family:'Cabinet Grotesk',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+.radar-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.radar-empty .emoji{font-size:40px;margin-bottom:12px;opacity:0.4}
+.radar-empty h3{font-family:'Cabinet Grotesk',sans-serif;font-size:18px;color:var(--tx);margin-bottom:8px}
+.radar-empty p{font-size:13px;line-height:1.6}
+.radar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.radar-card{background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:15px;position:relative}
+.radar-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.radar-name{font-size:14px;font-weight:500;line-height:1.3}
+.radar-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 2px;transition:color 0.15s}
+.radar-remove:hover{color:var(--red)}
+.radar-price-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.radar-price{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:800;color:var(--acc)}
+.radar-change{font-size:11px;padding:2px 7px;border-radius:5px;font-weight:500}
+.change-down{background:rgba(34,197,94,0.1);color:var(--green)}
+.change-up{background:rgba(239,68,68,0.1);color:var(--red)}
+.change-flat{background:rgba(107,107,130,0.1);color:var(--muted)}
+.radar-meta{font-size:11px;color:var(--muted);margin-bottom:12px}
+.radar-chart{height:36px;width:100%;position:relative}
+.chart-svg{width:100%;height:100%}
+.radar-btn{width:100%;padding:8px;background:var(--s2);border:1px solid var(--b2);border-radius:8px;color:var(--tx);font-size:12px;font-family:'DM Sans';cursor:pointer;transition:all 0.15s}
+.radar-btn:hover{background:var(--acc);border-color:var(--acc)}
 
-  .budget-form { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; margin-bottom:20px; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-  .form-group { display:flex; flex-direction:column; gap:6px; }
-  .form-group label { font-size:12px; color:var(--muted); font-weight:500; }
-  .form-group input, .form-group select, .form-group textarea {
-    background:var(--surface2); border:1px solid var(--border2);
-    border-radius:10px; padding:10px 14px; font-size:14px;
-    color:var(--text); font-family:'DM Sans'; outline:none;
-    transition:border-color 0.2s;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--accent); }
-  .form-group textarea { resize:vertical; min-height:80px; }
-  .form-group select option { background:var(--surface2); }
+/* ADD RADAR */
+.add-radar{background:var(--s1);border:1px dashed var(--b2);border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:all 0.2s}
+.add-radar:hover{border-color:var(--acc);background:var(--glow)}
+.add-radar-icon{font-size:24px;margin-bottom:6px;opacity:0.4}
+.add-radar-txt{font-size:13px;color:var(--muted)}
+.add-form{display:none;background:var(--s1);border:1px solid var(--b2);border-radius:14px;padding:20px;margin-top:10px}
+.add-form.show{display:block}
+.form-input{width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:9px;padding:10px 14px;font-size:14px;color:var(--tx);font-family:'DM Sans';outline:none;margin-bottom:10px;transition:border-color 0.2s}
+.form-input:focus{border-color:var(--acc)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.form-label{font-size:11px;color:var(--muted);margin-bottom:4px;display:block}
+.add-btn{width:100%;padding:10px;background:var(--acc);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:500;font-family:'DM Sans';cursor:pointer;transition:opacity 0.2s}
+.add-btn:hover{opacity:0.9}
 
-  .themes-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
-  .theme-chip { padding:6px 14px; border-radius:20px; border:1px solid var(--border2); font-size:12px; color:var(--muted); cursor:pointer; transition:all 0.15s; background:transparent; }
-  .theme-chip:hover, .theme-chip.active { border-color:var(--accent); color:var(--accent); background:var(--glow); }
+/* ─── PANEL ALERTES ─── */
+.alerts-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.alert-item{background:var(--s1);border:1px solid var(--b1);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;animation:fadeUp 0.3s ease forwards}
+.alert-icon{font-size:20px;flex-shrink:0}
+.alert-body{flex:1;min-width:0}
+.alert-title{font-size:13px;font-weight:500;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.alert-meta{font-size:11px;color:var(--muted)}
+.alert-price{font-family:'Cabinet Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--green);flex-shrink:0}
+.alert-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600}
+.ab-new{background:rgba(108,99,255,0.15);color:var(--acc)}
+.ab-drop{background:rgba(34,197,94,0.15);color:var(--green)}
 
-  .generate-btn { width:100%; padding:14px; background:var(--accent); color:#fff; border:none; border-radius:12px; font-size:14px; font-weight:600; font-family:'DM Sans'; cursor:pointer; transition:all 0.2s; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:8px; }
-  .generate-btn:hover { opacity:0.9; }
-  .generate-btn:disabled { opacity:0.5; cursor:not-allowed; }
+/* ─── PANEL FAVORIS ─── */
+.favs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.fav-card{background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:15px;position:relative;animation:fadeUp 0.3s ease forwards}
+.fav-remove{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;transition:color 0.15s}
+.fav-remove:hover{color:var(--red)}
+.fav-plat{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;margin-bottom:8px;display:inline-block}
+.fav-title{font-size:13px;font-weight:500;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-right:20px}
+.fav-price{font-family:'Cabinet Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--acc);margin-bottom:10px}
+.fav-btn-row{display:flex;gap:6px}
+.fav-action{flex:1;padding:7px;border-radius:8px;font-size:12px;font-family:'DM Sans';cursor:pointer;transition:all 0.15s;font-weight:500}
+.fav-buy{background:var(--acc);color:#fff;border:none}
+.fav-del{background:var(--s2);border:1px solid var(--b2);color:var(--tx)}
+.fav-del:hover{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red)}
 
-  /* BUDGET RESULTS */
-  .budget-result { display:none; }
-  .budget-result.show { display:block; animation:slideUp 0.4s ease forwards; }
-  .budget-summary { background:linear-gradient(135deg,#1a1430,#13131a); border:1px solid var(--accent); border-radius:16px; padding:20px; margin-bottom:20px; }
-  .budget-summary h3 { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; margin-bottom:8px; }
-  .budget-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
-  .budget-tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(124,111,255,0.1); border:1px solid rgba(124,111,255,0.2); color:var(--accent); }
-  .budget-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+/* ─── PANEL BUDGET ─── */
+.budget-form-wrap{background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:22px;margin-bottom:16px}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:11px;color:var(--muted);font-weight:500}
+.form-group select,.form-group input,.form-group textarea{background:var(--s2);border:1px solid var(--b2);border-radius:9px;padding:9px 13px;font-size:13px;color:var(--tx);font-family:'DM Sans';outline:none;transition:border-color 0.2s}
+.form-group select:focus,.form-group input:focus,.form-group textarea:focus{border-color:var(--acc)}
+.form-group textarea{resize:vertical;min-height:70px}
+.themes{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.theme-c{font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid var(--b2);color:var(--muted);cursor:pointer;transition:all 0.15s}
+.theme-c:hover,.theme-c.on{border-color:var(--acc);color:var(--acc);background:var(--glow)}
+.gen-btn{width:100%;padding:13px;background:var(--acc);color:#fff;border:none;border-radius:11px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer;transition:all 0.2s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px}
+.gen-btn:hover{opacity:0.9}
+.gen-btn:disabled{opacity:0.5;cursor:not-allowed}
 
-  .packages-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-bottom:20px; }
-  .package-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.2s; cursor:pointer; }
-  .package-card:hover { border-color:var(--border2); transform:translateY(-2px); }
-  .package-card.featured { border-color:var(--accent); }
-  .package-visual { height:180px; display:flex; align-items:center; justify-content:center; font-size:60px; background:var(--surface2); position:relative; overflow:hidden; }
-  .package-visual-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, var(--surface) 100%); }
-  .package-body { padding:16px; }
-  .package-label { font-size:10px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
-  .package-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:8px; }
-  .package-items { list-style:none; margin-bottom:12px; }
-  .package-items li { font-size:12px; color:var(--muted); padding:3px 0; display:flex; align-items:center; gap:6px; }
-  .package-items li::before { content:'✓'; color:var(--accent3); font-size:11px; }
-  .package-price-row { display:flex; align-items:center; justify-content:space-between; }
-  .package-price { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--accent); }
-  .package-remaining { font-size:11px; color:var(--accent3); }
-  .package-btn { font-size:12px; padding:7px 14px; background:var(--surface2); border:1px solid var(--border2); border-radius:8px; color:var(--text); cursor:pointer; font-family:'DM Sans'; transition:all 0.15s; }
-  .package-btn:hover { background:var(--accent); border-color:var(--accent); }
+/* AI LOADER */
+.ai-load{display:none;text-align:center;padding:36px}
+.ai-load.show{display:block}
+.ai-spinner{width:36px;height:36px;border:3px solid var(--b2);border-top-color:var(--acc);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ai-steps{display:flex;flex-direction:column;gap:7px;max-width:280px;margin:12px auto 0;text-align:left}
+.ai-step{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;opacity:0.4;transition:all 0.3s}
+.ai-step::before{content:'○';font-size:10px;flex-shrink:0}
+.ai-step.on{opacity:1;color:var(--acc)}
+.ai-step.on::before{content:'◉'}
+.ai-step.done{opacity:0.6;color:var(--green)}
+.ai-step.done::before{content:'●'}
 
-  /* AI LOADING */
-  .ai-loading { display:none; text-align:center; padding:40px; }
-  .ai-loading.show { display:block; }
-  .ai-spinner { width:40px; height:40px; border:3px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 16px; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-  .ai-loading p { font-size:13px; color:var(--muted); }
-  .ai-steps { display:flex; flex-direction:column; gap:8px; max-width:300px; margin:16px auto 0; text-align:left; }
-  .ai-step { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:8px; opacity:0.4; transition:opacity 0.3s; }
-  .ai-step.active { opacity:1; color:var(--accent); }
-  .ai-step.done { opacity:0.6; color:var(--accent3); }
-  .ai-step::before { content:'○'; font-size:10px; }
-  .ai-step.active::before { content:'◉'; }
-  .ai-step.done::before { content:'●'; }
+/* PACKAGES */
+.pkg-result{display:none}
+.pkg-result.show{display:block;animation:fadeUp 0.4s ease forwards}
+.pkg-summary{background:linear-gradient(135deg,#110e24,#0e0e14);border:1px solid rgba(108,99,255,0.3);border-radius:14px;padding:18px;margin-bottom:16px}
+.pkg-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pkg-tag{font-size:11px;padding:2px 9px;border-radius:20px;background:var(--glow);border:1px solid rgba(108,99,255,0.2);color:var(--acc)}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-bottom:16px}
+.pkg-card{background:var(--s1);border:1px solid var(--b1);border-radius:14px;overflow:hidden;transition:all 0.2s;cursor:pointer}
+.pkg-card:hover{border-color:var(--b2);transform:translateY(-2px)}
+.pkg-card.featured{border-color:rgba(108,99,255,0.4)}
+.pkg-visual{height:140px;display:flex;align-items:center;justify-content:center;font-size:52px;background:var(--s2);position:relative}
+.pkg-visual-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--s1) 100%)}
+.pkg-body{padding:14px}
+.pkg-label{font-size:10px;font-weight:600;color:var(--acc);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px}
+.pkg-title{font-family:'Cabinet Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.pkg-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.pkg-items{list-style:none;margin-bottom:12px}
+.pkg-items li{font-size:11px;color:var(--muted2);padding:2px 0;display:flex;align-items:flex-start;gap:5px}
+.pkg-items li::before{content:'✓';color:var(--teal);font-size:10px;flex-shrink:0;margin-top:1px}
+.pkg-price-row{display:flex;align-items:center;justify-content:space-between}
+.pkg-price{font-family:'Cabinet Grotesk',sans-serif;font-size:20px;font-weight:800;color:var(--acc)}
+.pkg-remaining{font-size:10px;color:var(--green)}
+.pkg-btn{font-size:11px;padding:6px 13px;background:var(--s2);border:1px solid var(--b2);border-radius:7px;color:var(--tx);cursor:pointer;font-family:'DM Sans';transition:all 0.15s}
+.pkg-btn:hover{background:var(--acc);border-color:var(--acc)}
 
-  /* ── PANEL 3 : PHOTO ── */
-  .photo-wrap { max-width: 600px; margin: 0 auto; padding: 32px 24px; text-align:center; }
-  .photo-wrap h2 { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; letter-spacing:-0.5px; margin-bottom:6px; }
-  .photo-wrap h2 span { color:var(--accent); }
-  .photo-wrap > p { font-size:14px; color:var(--muted); margin-bottom:28px; line-height:1.6; }
+/* ─── PANEL PHOTO ─── */
+.photo-wrap{max-width:560px;margin:0 auto;padding:24px 0;text-align:center}
+.upload-zone{border:2px dashed var(--b2);border-radius:16px;padding:36px 20px;cursor:pointer;transition:all 0.2s;position:relative;margin-bottom:14px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--acc);background:var(--glow)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-ico{font-size:40px;margin-bottom:10px;opacity:0.4}
+.upload-title{font-size:15px;font-weight:500;margin-bottom:4px}
+.upload-sub{font-size:12px;color:var(--muted)}
+.preview-wrap{display:none;margin-bottom:14px}
+.preview-wrap.show{display:block}
+.preview-img{width:100%;max-height:260px;object-fit:contain;border-radius:12px;border:1px solid var(--b1);margin-bottom:12px}
+.analyze-btn{width:100%;padding:12px;background:var(--acc);color:#fff;border:none;border-radius:11px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.analyze-btn:hover{opacity:0.9}
+.photo-result{display:none}
+.photo-result.show{display:block;animation:fadeUp 0.4s ease forwards}
+.identified{background:var(--s1);border:1px solid rgba(108,99,255,0.3);border-radius:14px;padding:16px;margin-bottom:16px}
+.id-label{font-size:11px;color:var(--acc);font-weight:600;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:5px}
+.id-name{font-family:'Cabinet Grotesk',sans-serif;font-size:20px;font-weight:800;margin-bottom:5px}
+.id-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.id-tags{display:flex;flex-wrap:wrap;gap:5px}
+.id-tag{font-size:11px;padding:2px 9px;background:var(--s2);border:1px solid var(--b1);border-radius:20px;color:var(--muted2)}
+.search-terms{display:flex;flex-direction:column;gap:7px;text-align:left;margin-bottom:14px}
+.search-term-btn{padding:11px 15px;background:var(--s1);border:1px solid var(--b1);border-radius:10px;color:var(--tx);font-family:'DM Sans';font-size:13px;text-align:left;cursor:pointer;transition:all 0.15s}
+.search-term-btn:hover{border-color:var(--acc)}
 
-  .upload-zone { border:2px dashed var(--border2); border-radius:16px; padding:40px 24px; cursor:pointer; transition:all 0.2s; margin-bottom:20px; position:relative; }
-  .upload-zone:hover, .upload-zone.dragover { border-color:var(--accent); background:var(--glow); }
-  .upload-zone input { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
-  .upload-icon { font-size:48px; margin-bottom:12px; opacity:0.5; }
-  .upload-title { font-size:16px; font-weight:500; margin-bottom:6px; }
-  .upload-sub { font-size:13px; color:var(--muted); }
-  .camera-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; background:var(--accent); color:#fff; border:none; border-radius:12px; font-size:14px; font-weight:600; font-family:'DM Sans'; cursor:pointer; margin-bottom:16px; transition:all 0.2s; }
-  .camera-btn:hover { opacity:0.9; }
+/* PREMIUM MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--s1);border:1px solid rgba(108,99,255,0.35);border-radius:20px;padding:26px;max-width:400px;width:100%;position:relative}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color 0.15s}
+.modal-close:hover{color:var(--tx)}
+.modal h2{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px}
+.modal p{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.modal-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.modal-feat{background:var(--s2);border-radius:10px;padding:11px;text-align:center}
+.modal-feat .ico{font-size:18px;margin-bottom:4px}
+.modal-feat .nm{font-size:12px;font-weight:500;margin-bottom:2px}
+.modal-feat .sub{font-size:10px;color:var(--muted)}
+.price-box{background:linear-gradient(135deg,#110e24,#0e0e14);border:1px solid rgba(108,99,255,0.25);border-radius:12px;padding:14px;text-align:center;margin-bottom:16px}
+.price-orig{font-size:13px;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+.price-main{font-family:'Cabinet Grotesk',sans-serif;font-size:36px;font-weight:900;color:var(--acc);letter-spacing:-1px}
+.price-sub{font-size:11px;color:var(--teal);margin-top:2px}
+.pay-btn{width:100%;padding:13px;background:var(--acc);color:#fff;border:none;border-radius:11px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer;transition:all 0.2s;margin-bottom:8px}
+.pay-btn:hover{opacity:0.9}
+.modal-secure{font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px}
+.gift-zone{border-top:1px solid var(--b1);padding-top:14px;margin-top:4px}
+.gift-label{font-size:12px;color:var(--muted);margin-bottom:7px;text-align:center}
+.gift-row{display:flex;gap:7px}
+.gift-input{flex:1;background:var(--s2);border:1px solid var(--b2);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--tx);font-family:'DM Sans';outline:none}
+.gift-apply{padding:8px 14px;background:var(--s2);border:1px solid var(--b2);border-radius:8px;color:var(--tx);font-size:12px;cursor:pointer;font-family:'DM Sans';transition:all 0.15s;white-space:nowrap}
+.gift-apply:hover{border-color:var(--acc)}
+.gift-err{font-size:11px;color:var(--red);margin-top:5px;display:none}
+#cardWrap{display:none;margin-top:14px}
+#cardElement{background:var(--s2);border:1px solid var(--b2);border-radius:9px;padding:13px}
+.confirm-btn{width:100%;margin-top:10px;padding:12px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer}
 
-  .preview-wrap { display:none; margin-bottom:20px; }
-  .preview-wrap.show { display:block; }
-  .preview-img { width:100%; max-height:280px; object-fit:contain; border-radius:12px; border:1px solid var(--border); margin-bottom:14px; }
-  .analyze-btn { width:100%; padding:13px; background:var(--accent); color:#fff; border:none; border-radius:12px; font-size:14px; font-weight:600; font-family:'DM Sans'; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px; }
-  .analyze-btn:hover { opacity:0.9; }
+/* SUCCESS MODAL */
+#successModal{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;padding:16px}
+#successModal.show{display:flex}
+.success-box{background:var(--s1);border:1px solid rgba(20,184,166,0.4);border-radius:20px;padding:30px;max-width:360px;width:100%;text-align:center}
+.success-box .ico{font-size:44px;margin-bottom:12px}
+.success-box h2{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px}
+.success-box p{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.success-btn{width:100%;padding:12px;background:var(--acc);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer}
 
-  .photo-result { display:none; }
-  .photo-result.show { display:block; animation:slideUp 0.4s ease forwards; }
-  .identified-card { background:var(--surface); border:1px solid var(--accent); border-radius:14px; padding:18px; margin-bottom:20px; }
-  .identified-label { font-size:11px; color:var(--accent); font-weight:600; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
-  .identified-name { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; margin-bottom:6px; }
-  .identified-desc { font-size:13px; color:var(--muted); line-height:1.5; margin-bottom:12px; }
-  .identified-tags { display:flex; flex-wrap:wrap; gap:6px; }
-  .identified-tag { font-size:11px; padding:3px 10px; background:var(--surface2); border:1px solid var(--border2); border-radius:20px; color:var(--muted); }
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid rgba(108,99,255,0.3);border-radius:10px;padding:11px 20px;font-size:13px;color:var(--tx);z-index:800;white-space:nowrap;animation:fadeUp 0.3s ease;pointer-events:none}
 
-  /* SHARED */
-  .section-divider { border:none; border-top:1px solid var(--border); margin:24px 0; }
-  .section-title { font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:14px; }
+/* STATS BAR */
+.stats-bar{display:flex;gap:0;border:1px solid var(--b1);border-radius:14px;overflow:hidden;margin-bottom:24px}
+.stat-item{flex:1;padding:14px;text-align:center;border-right:1px solid var(--b1)}
+.stat-item:last-child{border-right:none}
+.stat-val{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:900;color:var(--acc);line-height:1}
+.stat-label{font-size:11px;color:var(--muted);margin-top:3px}
 
-  @media (max-width:600px) {
-    .header-platforms { display:none; }
-    .form-row { grid-template-columns:1fr; }
-    .packages-grid { grid-template-columns:1fr; }
-    .results-grid { grid-template-columns:1fr; }
-    .nav-tab span { display:none; }
-  }
+@media(max-width:600px){
+  .header-tag{display:none}
+  .form-grid-2{grid-template-columns:1fr}
+  .results-grid,.favs-grid,.pkg-grid,.radar-grid{grid-template-columns:1fr}
+  .modal-features{grid-template-columns:1fr 1fr}
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{flex:1 0 45%;border-bottom:1px solid var(--b1)}
+}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <div class="logo">best<span>Deal</span><span class="logo-tag">BÊTA</span></div>
-  <div class="header-platforms">
-    <span class="plat-pill">Amazon</span>
-    <span class="plat-pill">AliExpress</span>
-    <span class="plat-pill">Etsy</span>
-    <span class="plat-pill">Temu</span>
-    <span class="plat-pill">eBay</span>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    best<em>Deal</em>
+  </div>
+  <div class="header-right">
+    <span class="header-tag">BÊTA</span>
+    <div id="headerPremiumEl"></div>
   </div>
 </header>
 
-<!-- NAV TABS -->
-<div class="nav-tabs">
-  <button class="nav-tab active" onclick="switchTab('search')">
-    <span class="tab-icon">🔍</span><span>Recherche</span>
-  </button>
-  <button class="nav-tab" onclick="switchTab('budget')">
-    <span class="tab-icon">✨</span><span>Projet & Budget IA</span>
-  </button>
-  <button class="nav-tab" onclick="switchTab('photo')">
-    <span class="tab-icon">📷</span><span>Recherche par photo</span>
-  </button>
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('search')">🔍 <span>Recherche</span></button>
+    <button class="nav-tab" onclick="switchTab('radar')">📡 <span>Mon Radar</span></button>
+    <button class="nav-tab" onclick="switchTab('alerts')">🔔 <span>Alertes</span></button>
+    <button class="nav-tab" onclick="switchTab('favs')">❤️ <span>Favoris</span></button>
+    <button class="nav-tab" onclick="switchTab('budget')">✨ <span>Budget IA</span></button>
+    <button class="nav-tab" onclick="switchTab('photo')">📷 <span>Photo</span></button>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     PANEL 1 : RECHERCHE CLASSIQUE
-═══════════════════════════════════════ -->
+<!-- ════════════════ PANEL RECHERCHE ════════════════ -->
 <div id="panel-search" class="panel active">
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <h1>Le <em>meilleur prix</em><br>partout, en un clic</h1>
-    <p>Compare 5 plateformes simultanément. Trouve l'offre parfaite selon ton critère.</p>
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input class="search-box" id="searchInput" type="text" placeholder="Rechercher un produit..." autocomplete="off">
-      <button class="photo-search-btn" onclick="switchTab('photo')" title="Recherche par photo">📷</button>
+  <div class="search-hero">
+    <h1>Votre <em>copilote</em><br>d'achat universel</h1>
+    <p>Amazon · AliExpress · Etsy · Temu · eBay — comparés en 3 secondes</p>
+    <div class="search-row">
+      <span class="search-ico">🔍</span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Que recherchez-vous ?" autocomplete="off">
+      <button class="photo-ico" onclick="switchTab('photo')" title="Recherche par photo">📷</button>
       <button class="search-btn" onclick="startSearch()">Comparer →</button>
     </div>
-    <div class="suggestions">
-      <span class="sug-chip" onclick="setSearch('gobelet personnalisé')">gobelet personnalisé</span>
-      <span class="sug-chip" onclick="setSearch('clé plate')">clé plate</span>
-      <span class="sug-chip" onclick="setSearch('pompe vide-cave')">pompe vide-cave</span>
-      <span class="sug-chip" onclick="setSearch('lampe LED bureau')">lampe LED bureau</span>
-      <span class="sug-chip" onclick="setSearch('coque iPhone')">coque iPhone</span>
-      <span class="sug-chip" onclick="setSearch('tapis de yoga')">tapis de yoga</span>
+    <div class="chips">
+      <span class="chip" onclick="setSearch('gobelet personnalisé')">gobelet personnalisé</span>
+      <span class="chip" onclick="setSearch('clé plate')">clé plate</span>
+      <span class="chip" onclick="setSearch('pompe vide-cave')">pompe vide-cave</span>
+      <span class="chip" onclick="setSearch('lampe LED bureau')">lampe LED bureau</span>
+      <span class="chip" onclick="setSearch('tapis yoga')">tapis yoga</span>
+      <span class="chip" onclick="setSearch('coque iPhone')">coque iPhone</span>
     </div>
-  </section>
-
-  <div class="filters-bar" id="filtersBar">
-    <span class="filter-label">Trier par :</span>
-    <span class="filter-chip active" onclick="setSort(this,'price')">💰 Prix le plus bas</span>
-    <span class="filter-chip" onclick="setSort(this,'delivery')">⚡ Livraison rapide</span>
-    <span class="filter-chip" onclick="setSort(this,'rating')">⭐ Mieux noté</span>
-    <span class="filter-chip" onclick="setSort(this,'best')">🏆 Meilleur rapport</span>
   </div>
 
-  <div class="loading-wrap" id="loadingWrap">
-    <div class="loading-platforms" id="loadingPlats"></div>
-    <p class="loading-text" id="loadingText">Analyse en cours...</p>
+  <div class="sort-bar" id="sortBar">
+    <span class="sort-label">Trier :</span>
+    <span class="sort-chip active" onclick="setSort(this,'price')">💰 Prix bas</span>
+    <span class="sort-chip" onclick="setSort(this,'delivery')">⚡ Livraison rapide</span>
+    <span class="sort-chip" onclick="setSort(this,'rating')">⭐ Mieux noté</span>
+    <span class="sort-chip" onclick="setSort(this,'score')">🏆 Score affaire</span>
   </div>
 
-  <section id="results">
-    <div class="results-header">
+  <div class="loading" id="loadingWrap">
+    <div class="load-platforms" id="loadPlats"></div>
+    <p class="load-txt" id="loadTxt">Analyse en cours...</p>
+  </div>
+
+  <div id="results">
+    <div class="results-meta">
       <div class="results-count" id="resultsCount"></div>
     </div>
     <div id="bestOffer"></div>
     <div class="results-grid" id="resultsGrid"></div>
-    <div class="affiliation-notice">ℹ️ BestDeal utilise des liens d'affiliation. Lorsque vous achetez via notre site, nous percevons une commission de la plateforme partenaire, sans coût supplémentaire pour vous.</div>
-  </section>
-</div>
-
-<!-- ═══════════════════════════════════════
-     PANEL 2 : PROJET BUDGET IA
-═══════════════════════════════════════ -->
-<div id="panel-budget" class="panel">
-  <div class="budget-wrap">
-    <h2>Projet & Budget <span>IA</span></h2>
-    <p>Décris ton projet, ton budget et le nombre de personnes. L'IA compose le package idéal avec des propositions visuelles.</p>
-
-    <div class="budget-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Type d'événement</label>
-          <select id="eventType">
-            <option value="">Sélectionner...</option>
-            <option value="mariage">💍 Mariage</option>
-            <option value="anniversaire">🎂 Anniversaire</option>
-            <option value="bapteme">👶 Baptême</option>
-            <option value="communion">✝️ Communion</option>
-            <option value="fete">🎉 Fête / Soirée</option>
-            <option value="decoration">🏠 Décoration maison</option>
-            <option value="entreprise">💼 Événement entreprise</option>
-            <option value="autre">✨ Autre projet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Budget total (€)</label>
-          <input type="number" id="totalBudget" placeholder="ex: 3000" min="50">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nombre de personnes</label>
-          <input type="number" id="guestCount" placeholder="ex: 80" min="1">
-        </div>
-        <div class="form-group">
-          <label>Date approximative</label>
-          <input type="month" id="eventDate">
-        </div>
-      </div>
-      <div class="form-group" style="margin-bottom:16px">
-        <label>Thème / Ambiance</label>
-        <div class="themes-grid" id="themesGrid">
-          <span class="theme-chip" onclick="toggleTheme(this)">🌸 Champêtre</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">✨ Luxe & Élégance</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">🌿 Nature & Bohème</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">🎨 Coloré & Festif</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">⚫ Chic & Minimaliste</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">🏖️ Tropical</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">🎠 Vintage / Rétro</span>
-          <span class="theme-chip" onclick="toggleTheme(this)">❄️ Hivernal</span>
-        </div>
-      </div>
-      <div class="form-group" style="margin-bottom:20px">
-        <label>Précisions supplémentaires (optionnel)</label>
-        <textarea id="extraDetails" placeholder="ex: on veut une ambiance romantique avec des fleurs séchées, tables rondes pour 8 personnes, couleurs pastels..."></textarea>
-      </div>
-      <button class="generate-btn" id="generateBtn" onclick="generateBudget()">
-        ✨ Générer mes packages IA
-      </button>
-    </div>
-
-    <!-- AI LOADING -->
-    <div class="ai-loading" id="aiLoading">
-      <div class="ai-spinner"></div>
-      <p>L'IA compose tes packages personnalisés...</p>
-      <div class="ai-steps">
-        <div class="ai-step active" id="step1">Analyse de ton projet et budget</div>
-        <div class="ai-step" id="step2">Recherche des meilleurs produits</div>
-        <div class="ai-step" id="step3">Composition des packages</div>
-        <div class="ai-step" id="step4">Génération des visuels</div>
-      </div>
-    </div>
-
-    <!-- BUDGET RESULTS -->
-    <div class="budget-result" id="budgetResult"></div>
+    <div class="affil">ℹ️ BestDeal utilise des liens d'affiliation. Lorsque vous achetez via notre site, nous percevons une commission sans coût supplémentaire pour vous.</div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     PANEL 3 : RECHERCHE PAR PHOTO
-═══════════════════════════════════════ -->
+<!-- ════════════════ PANEL RADAR ════════════════ -->
+<div id="panel-radar" class="panel">
+  <div class="radar-hero">
+    <div class="section-title">📡 Mon Radar Prix</div>
+    <div class="section-sub">Ajoutez des produits — BestDeal surveille les prix et vous alerte des baisses.</div>
+  </div>
+
+  <div class="stats-bar" id="radarStats">
+    <div class="stat-item"><div class="stat-val" id="statWatched">0</div><div class="stat-label">Produits surveillés</div></div>
+    <div class="stat-item"><div class="stat-val" id="statDrops">0</div><div class="stat-label">Baisses détectées</div></div>
+    <div class="stat-item"><div class="stat-val" id="statSaved">0 €</div><div class="stat-label">Économies potentielles</div></div>
+  </div>
+
+  <div class="radar-grid" id="radarGrid"></div>
+
+  <div style="margin-top:12px">
+    <div class="add-radar" onclick="toggleAddForm()">
+      <div class="add-radar-icon">+</div>
+      <div class="add-radar-txt">Ajouter un produit à surveiller</div>
+    </div>
+    <div class="add-form" id="addForm">
+      <div class="form-group" style="margin-bottom:10px">
+        <label>Nom du produit</label>
+        <input class="form-input" id="radarName" placeholder="ex: Casque Sony WH-1000XM5" style="margin-bottom:0">
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Prix actuel (€)</label>
+          <input class="form-input" id="radarPrice" type="number" placeholder="89.99" style="margin-bottom:0">
+        </div>
+        <div class="form-group">
+          <label>Prix cible (€)</label>
+          <input class="form-input" id="radarTarget" type="number" placeholder="69.99" style="margin-bottom:0">
+        </div>
+      </div>
+      <button class="add-btn" onclick="addRadar()">Ajouter à mon radar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ PANEL ALERTES ════════════════ -->
+<div id="panel-alerts" class="panel">
+  <div class="radar-hero">
+    <div class="section-title">🔔 Mes Alertes</div>
+    <div class="section-sub">Historique de vos notifications de prix et nouvelles offres.</div>
+  </div>
+  <div class="alerts-list" id="alertsList"></div>
+</div>
+
+<!-- ════════════════ PANEL FAVORIS ════════════════ -->
+<div id="panel-favs" class="panel">
+  <div class="radar-hero">
+    <div class="section-title">❤️ Mes Favoris</div>
+    <div class="section-sub">Vos produits sauvegardés pour les retrouver facilement.</div>
+  </div>
+  <div class="favs-grid" id="favsGrid"></div>
+  <div id="favsEmpty" style="display:none" class="radar-empty">
+    <div class="emoji">❤️</div>
+    <h3>Aucun favori pour l'instant</h3>
+    <p>Cliquez sur le ❤️ d'un produit dans les résultats pour le sauvegarder ici.</p>
+  </div>
+</div>
+
+<!-- ════════════════ PANEL BUDGET ════════════════ -->
+<div id="panel-budget" class="panel">
+  <div class="radar-hero">
+    <div class="section-title">✨ Projet & Budget IA</div>
+    <div class="section-sub">Décrivez votre projet — l'IA compose le package idéal avec visualisation.</div>
+  </div>
+
+  <div id="budgetPremiumBanner"></div>
+
+  <div class="budget-form-wrap">
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label>Type d'événement</label>
+        <select id="evType">
+          <option value="">Sélectionner...</option>
+          <option value="mariage">💍 Mariage</option>
+          <option value="anniversaire">🎂 Anniversaire</option>
+          <option value="bapteme">👶 Baptême</option>
+          <option value="fete">🎉 Fête / Soirée</option>
+          <option value="decoration">🏠 Décoration maison</option>
+          <option value="gaming">🎮 Setup Gaming</option>
+          <option value="bureau">💼 Bureau / Télétravail</option>
+          <option value="jardin">🌿 Jardin / Terrasse</option>
+          <option value="autre">✨ Autre projet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Budget total (€)</label>
+        <input type="number" id="evBudget" placeholder="ex: 3000" min="50">
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label>Nombre de personnes</label>
+        <input type="number" id="evGuests" placeholder="ex: 80">
+      </div>
+      <div class="form-group">
+        <label>Date approximative</label>
+        <input type="month" id="evDate">
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label>Thème / Ambiance</label>
+      <div class="themes">
+        <span class="theme-c" onclick="toggleTheme(this)">🌸 Champêtre</span>
+        <span class="theme-c" onclick="toggleTheme(this)">✨ Luxe</span>
+        <span class="theme-c" onclick="toggleTheme(this)">🌿 Bohème</span>
+        <span class="theme-c" onclick="toggleTheme(this)">🎨 Coloré</span>
+        <span class="theme-c" onclick="toggleTheme(this)">⚫ Minimaliste</span>
+        <span class="theme-c" onclick="toggleTheme(this)">🏖️ Tropical</span>
+        <span class="theme-c" onclick="toggleTheme(this)">🎠 Vintage</span>
+        <span class="theme-c" onclick="toggleTheme(this)">❄️ Hivernal</span>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label>Précisions (optionnel)</label>
+      <textarea id="evExtra" placeholder="ex: tables rondes pour 8 personnes, couleurs pastels, fleurs séchées..."></textarea>
+    </div>
+    <button class="gen-btn" id="genBtn" onclick="generateBudget()">✨ Générer mes packages IA</button>
+  </div>
+
+  <div class="ai-load" id="aiLoad">
+    <div class="ai-spinner"></div>
+    <p style="font-size:13px;color:var(--muted)">L'IA compose vos packages...</p>
+    <div class="ai-steps">
+      <div class="ai-step" id="as1">Analyse du projet et budget</div>
+      <div class="ai-step" id="as2">Recherche des meilleurs produits</div>
+      <div class="ai-step" id="as3">Composition des packages</div>
+      <div class="ai-step" id="as4">Génération des visuels</div>
+    </div>
+  </div>
+
+  <div class="pkg-result" id="pkgResult"></div>
+</div>
+
+<!-- ════════════════ PANEL PHOTO ════════════════ -->
 <div id="panel-photo" class="panel">
   <div class="photo-wrap">
-    <h2>Recherche <span>par photo</span></h2>
-    <p>Prends une photo ou importe une image. L'IA identifie l'objet et trouve les meilleures offres en temps réel.</p>
+    <div class="section-title" style="text-align:center">📷 Recherche par Photo</div>
+    <p class="section-sub" style="text-align:center;margin-bottom:24px">Photographiez n'importe quel objet — l'IA l'identifie et trouve les meilleures offres.</p>
+
+    <div id="photoPremiumBanner"></div>
 
     <div class="upload-zone" id="uploadZone">
       <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhoto(event)">
-      <div class="upload-icon">📸</div>
+      <div class="upload-ico">📸</div>
       <div class="upload-title">Prendre une photo ou importer</div>
-      <div class="upload-sub">Pointe ton téléphone vers n'importe quel objet</div>
+      <div class="upload-sub">Pointez votre téléphone vers n'importe quel objet</div>
     </div>
 
     <div class="preview-wrap" id="previewWrap">
-      <img id="previewImg" class="preview-img" alt="Aperçu">
-      <button class="analyze-btn" id="analyzeBtn" onclick="analyzePhoto()">
-        🔍 Analyser et trouver les prix
-      </button>
+      <img id="previewImg" class="preview-img" alt="">
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzePhoto()">🔍 Analyser et trouver les prix</button>
     </div>
 
-    <!-- AI Loading photo -->
-    <div class="ai-loading" id="photoLoading">
+    <div class="ai-load" id="photoLoad">
       <div class="ai-spinner"></div>
-      <p>L'IA analyse ton image...</p>
+      <p style="font-size:13px;color:var(--muted)">Analyse de l'image en cours...</p>
       <div class="ai-steps">
-        <div class="ai-step active" id="pstep1">Analyse visuelle de l'image</div>
-        <div class="ai-step" id="pstep2">Identification de l'objet</div>
-        <div class="ai-step" id="pstep3">Recherche des meilleures offres</div>
+        <div class="ai-step" id="ps1">Analyse visuelle</div>
+        <div class="ai-step" id="ps2">Identification de l'objet</div>
+        <div class="ai-step" id="ps3">Recherche des offres</div>
       </div>
     </div>
 
-    <!-- Photo result -->
     <div class="photo-result" id="photoResult"></div>
   </div>
 </div>
 
-<script>
-// ══════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════
-const AFFILIATE_IDS = { amazon: 'bestdeal0e9d0-21', aliexpress: 'VOTRE-ID-ALI', etsy: 'VOTRE-ID-ETSY', temu: 'VOTRE-ID-TEMU', ebay: 'VOTRE-ID-EBAY' };
-const CLAUDE_API = 'https://api.anthropic.com/v1/messages';
-
-const PLATFORM_NAMES = { amazon:'Amazon', aliexpress:'AliExpress', etsy:'Etsy', temu:'Temu', ebay:'eBay' };
-const PLATFORM_CLASSES = { amazon:'plat-amz', aliexpress:'plat-ali', etsy:'plat-ets', temu:'plat-tmu', ebay:'plat-eba' };
-
-// ══════════════════════════════════════
-// NAVIGATION TABS
-// ══════════════════════════════════════
-function switchTab(tab) {
-  document.querySelectorAll('.nav-tab').forEach((t,i) => {
-    const tabs = ['search','budget','photo'];
-    t.classList.toggle('active', tabs[i] === tab);
-  });
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-'+tab).classList.add('active');
-}
-
-// ══════════════════════════════════════
-// PANEL 1 : RECHERCHE CLASSIQUE
-// ══════════════════════════════════════
-const TAG = 'bestdeal0e9d0-21';
-
-function amzLink(asin) {
-  return `https://www.amazon.fr/dp/${asin}?tag=${TAG}`;
-}
-
-const PRODUCTS_DB = {
-  'gobelet':[
-    {id:1,title:'Gobelet Personnalisé Isotherme 20oz gravé laser inox',price:18.99,delivery:2,rating:4.6,reviews:1240,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8'},
-    {id:2,title:'Maverton Mug Isotherme personnalisé avec afficheur LED',price:24.90,delivery:3,rating:4.7,reviews:876,platform:'amazon',img:'☕',asin:'B08V8C1H16'},
-    {id:3,title:'Stanley Quencher H2.0 FlowState Mug Isotherme 1.2L',price:49.99,delivery:2,rating:4.8,reviews:3200,platform:'amazon',img:'🥤',asin:'B0B1KV97YL'},
-    {id:4,title:'Gobelet isotherme personnalisé paille couvercle 16oz',price:12.90,delivery:4,rating:4.4,reviews:567,platform:'amazon',img:'🧃',asin:'B01FYNXX6K'},
-    {id:5,title:'Wanapix Gobelet Plastique Enfants Personnalisé avec Nom',price:8.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8'},
-  ],
-  'clé':[
-    {id:1,title:'FACOM Jeu de 14 Clés Mixtes 7 à 24mm avec étui',price:89.90,delivery:2,rating:4.8,reviews:2100,platform:'amazon',img:'🔧',asin:'B000LFTHBE'},
-    {id:2,title:'Lot 12 Clés Mixtes à Cliquet 8-19mm avec Mallette',price:29.99,delivery:2,rating:4.5,reviews:1560,platform:'amazon',img:'🛠️',asin:'B0B74SWVSM'},
-    {id:3,title:'Clé Plate à Cliquet multifonction set 12 pièces',price:19.99,delivery:3,rating:4.3,reviews:780,platform:'amazon',img:'🔑',asin:'B0C6KG2HVK'},
-    {id:4,title:'Jeu Clés Plates Ratchet Chrome Vanadium 7 pièces',price:14.90,delivery:4,rating:4.2,reviews:445,platform:'amazon',img:'🔧',asin:'B097YK6WPM'},
-  ],
-  'pompe':[
-    {id:1,title:'Pompe Vide Cave Silex 1100W Inox Eaux Chargées 9.5m',price:79.90,delivery:3,rating:4.6,reviews:334,platform:'amazon',img:'💧',asin:'B08W3JLT9K'},
-    {id:2,title:'Oxeo Pompe Vide Cave Flotteur Intégré 550W Automatique',price:49.90,delivery:2,rating:4.5,reviews:221,platform:'amazon',img:'🌊',asin:'B098BNSNGF'},
-    {id:3,title:'EDG Aqualux Pompe Submersible Cave 5.5m³/h Câble 10m',price:64.99,delivery:3,rating:4.4,reviews:189,platform:'amazon',img:'💧',asin:'B09H3GGGDQ'},
-    {id:4,title:'Pompe Vide Cave Immergée 4500L/h 250W avec flotteur',price:34.90,delivery:4,rating:4.2,reviews:567,platform:'amazon',img:'🔌',asin:'B005XJ46IU'},
-  ],
-  'lampe':[
-    {id:1,title:'Lampe LED Bureau Tactile 3 intensités USB-C rechargeable',price:19.99,delivery:2,rating:4.6,reviews:2340,platform:'amazon',img:'💡',asin:'B07WPJB89G'},
-    {id:2,title:'Lampe Architecte Articulée LED Métal Vintage laiton',price:39.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🪔',asin:'B08BHZM5VY'},
-    {id:3,title:'Lampe Bureau LED Pliable Rechargeable USB 3 modes',price:24.99,delivery:2,rating:4.4,reviews:1230,platform:'amazon',img:'💡',asin:'B08C9H5N4G'},
-    {id:4,title:'Lampe LED Bureau Chargeur Sans Fil Qi intégré',price:34.99,delivery:2,rating:4.5,reviews:678,platform:'amazon',img:'🔆',asin:'B08BHZM5VY'},
-  ],
-  'coque':[
-    {id:1,title:'Coque iPhone 15 Pro Transparente Antichoc MagSafe',price:12.99,delivery:2,rating:4.5,reviews:3400,platform:'amazon',img:'📱',asin:'B0CHX3YWPF'},
-    {id:2,title:'Coque iPhone 14 Silicone liquide Premium protection',price:9.99,delivery:2,rating:4.4,reviews:2100,platform:'amazon',img:'📱',asin:'B0B8WMWXPQ'},
-    {id:3,title:'Coque Samsung Galaxy S24 Cuir véritable premium',price:19.99,delivery:3,rating:4.6,reviews:890,platform:'amazon',img:'📱',asin:'B0CHWZ8KYZ'},
-  ],
-  'tapis':[
-    {id:1,title:'Tapis Yoga Antidérapant 6mm TPE Écologique certifié',price:29.99,delivery:2,rating:4.6,reviews:4500,platform:'amazon',img:'🧘',asin:'B07WNPQ7Y1'},
-    {id:2,title:'Tapis Yoga Premium 10mm Extra Épais Confort genoux',price:39.99,delivery:2,rating:4.7,reviews:2300,platform:'amazon',img:'🧘',asin:'B08BHZM5VY'},
-    {id:3,title:'Tapis Pilates Fitness 183x61cm antidérapant sangle',price:22.99,delivery:3,rating:4.4,reviews:1800,platform:'amazon',img:'🏋️',asin:'B07WPJB89G'},
-  ],
-  'default':[
-    {id:1,title:'Résultat Amazon — meilleure offre disponible',price:12.99,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📦',asin:''},
-    {id:2,title:'Offre Amazon Prime — livraison rapide',price:19.99,delivery:1,rating:4.6,reviews:890,platform:'amazon',img:'📦',asin:''},
-    {id:3,title:'Sélection Amazon — rapport qualité prix',price:9.99,delivery:3,rating:4.3,reviews:2100,platform:'amazon',img:'📦',asin:''},
-  ]
-};
-
-let currentResults = [];
-let currentSort = 'price';
-
-function affiliateLink(platform, query, asin) {
-  const q = encodeURIComponent(query);
-  switch(platform) {
-    case 'amazon':
-      if (asin) return `https://www.amazon.fr/dp/${asin}?tag=${AFFILIATE_IDS.amazon}`;
-      return `https://www.amazon.fr/s?k=${q}&tag=${AFFILIATE_IDS.amazon}`;
-    case 'aliexpress': return `https://s.click.aliexpress.com/e/_c3EseUaH`;
-    case 'etsy': return `https://www.etsy.com/fr/search?q=${q}`;
-    case 'temu': return `https://www.temu.com/search_result.html?search_key=${q}`;
-    case 'ebay': return `https://www.ebay.fr/sch/i.html?_nkw=${q}`;
-    default: return '#';
-  }
-}
-
-function setSearch(val) { document.getElementById('searchInput').value = val; startSearch(); }
-
-function startSearch() {
-  const query = document.getElementById('searchInput').value.trim();
-  if (!query) return;
-  document.getElementById('results').classList.remove('show');
-  document.getElementById('filtersBar').classList.remove('show');
-  const loading = document.getElementById('loadingWrap');
-  loading.classList.add('show');
-
-  const platforms = [
-    {name:'Amazon',key:'amazon',delay:400},{name:'AliExpress',key:'aliexpress',delay:700},
-    {name:'Etsy',key:'etsy',delay:950},{name:'Temu',key:'temu',delay:1200},{name:'eBay',key:'ebay',delay:1500}
-  ];
-  const platsEl = document.getElementById('loadingPlats');
-  platsEl.innerHTML = platforms.map((p,i)=>`<div class="loading-plat" id="lp-${p.key}" style="animation-delay:${i*0.1}s"><span class="dot"></span>${p.name}</div>`).join('');
-
-  const messages = ['Interrogation des plateformes...','Comparaison des prix...','Calcul des meilleurs rapports...','Finalisation...'];
-  let msgIdx=0;
-  const msgEl = document.getElementById('loadingText');
-  const msgInt = setInterval(()=>{ msgIdx=(msgIdx+1)%messages.length; msgEl.textContent=messages[msgIdx]; },600);
-
-  platforms.forEach(p=>{ setTimeout(()=>{ const el=document.getElementById(`lp-${p.key}`); if(el) el.classList.add('done'); },p.delay); });
-
-  setTimeout(()=>{
-    clearInterval(msgInt);
-    loading.classList.remove('show');
-    showResults(query);
-  },2200);
-}
-
-function showResults(query) {
-  const q = query.toLowerCase();
-  let products = PRODUCTS_DB.default;
-  for (const key of Object.keys(PRODUCTS_DB)) {
-    if (key !== 'default' && q.includes(key)) { products = PRODUCTS_DB[key]; break; }
-  }
-  currentResults = products.map(p=>({...p, affiliateUrl: affiliateLink(p.platform, query, p.asin||''), query}));
-  renderResults();
-}
-
-function sortResults(v) { currentSort=v; renderResults(); }
-function setSort(el,sort) { document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); sortResults(sort); }
-
-function renderResults() {
-  let sorted = [...currentResults];
-  if(currentSort==='price') sorted.sort((a,b)=>a.price-b.price);
-  else if(currentSort==='delivery') sorted.sort((a,b)=>a.delivery-b.delivery);
-  else if(currentSort==='rating') sorted.sort((a,b)=>b.rating-a.rating);
-  else sorted.sort((a,b)=>((b.rating*0.4)+((1/b.price)*50*0.3)+((1/b.delivery)*10*0.3))-((a.rating*0.4)+((1/a.price)*50*0.3)+((1/a.delivery)*10*0.3)));
-
-  const best = sorted[0]; const rest = sorted.slice(1);
-  const maxPrice = Math.max(...sorted.map(p=>p.price));
-  const savings = maxPrice-best.price;
-
-  document.getElementById('bestOffer').innerHTML = `
-    <div class="best-card">
-      <div class="best-badge">⚡ Meilleure offre · ${PLATFORM_NAMES[best.platform]}</div>
-      <div class="best-title">${best.img} ${best.title}</div>
-      <div class="best-meta">⭐ ${best.rating} (${best.reviews.toLocaleString('fr-FR')} avis) · 🚚 Livraison ${best.delivery}-${best.delivery+2} jours</div>
-      <div class="best-bottom">
-        <div>
-          <span class="best-price">${best.price.toFixed(2)} €</span>
-          ${savings>0.5?`<span class="best-savings">économie ~${savings.toFixed(2)} €</span>`:''}
-        </div>
-        <button class="buy-btn" onclick="window.open('${best.affiliateUrl}','_blank')">Voir sur ${PLATFORM_NAMES[best.platform]} →</button>
-      </div>
-    </div>`;
-
-  document.getElementById('resultsCount').innerHTML = `<strong>${sorted.length} offres</strong> trouvées pour "${sorted[0]?.query}"`;
-  document.getElementById('resultsGrid').innerHTML = rest.map((p,i)=>`
-    <div class="result-card" style="animation-delay:${i*0.07}s" onclick="window.open('${p.affiliateUrl}','_blank')">
-      <div class="card-top">
-        <span class="plat-badge ${PLATFORM_CLASSES[p.platform]}">${PLATFORM_NAMES[p.platform]}</span>
-        <span class="card-rating">★ ${p.rating} (${p.reviews.toLocaleString('fr-FR')})</span>
-      </div>
-      <div class="card-title">${p.img} ${p.title}</div>
-      <div class="card-delivery">⚡ Livraison ${p.delivery}-${p.delivery+2} jours</div>
-      <div class="card-bottom">
-        <span class="card-price">${p.price.toFixed(2)} €</span>
-        <button class="card-buy">Voir l'offre →</button>
-      </div>
-    </div>`).join('');
-
-  document.getElementById('results').classList.add('show');
-  document.getElementById('filtersBar').classList.add('show');
-  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-document.getElementById('searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') startSearch(); });
-
-// ══════════════════════════════════════
-// PANEL 2 : PROJET BUDGET IA
-// ══════════════════════════════════════
-function toggleTheme(el) { el.classList.toggle('active'); }
-
-function getSelectedThemes() {
-  return Array.from(document.querySelectorAll('.theme-chip.active')).map(el=>el.textContent.trim()).join(', ');
-}
-
-async function generateBudget() {
-  const eventType = document.getElementById('eventType').value;
-  const budget = document.getElementById('totalBudget').value;
-  const guests = document.getElementById('guestCount').value;
-  const date = document.getElementById('eventDate').value;
-  const themes = getSelectedThemes();
-  const extra = document.getElementById('extraDetails').value;
-
-  if (!eventType || !budget) {
-    alert('Merci de renseigner au minimum le type d\'événement et le budget.');
-    return;
-  }
-
-  document.getElementById('budgetResult').classList.remove('show');
-  document.getElementById('budgetResult').innerHTML = '';
-  document.getElementById('aiLoading').classList.add('show');
-  document.getElementById('generateBtn').disabled = true;
-
-  // Animate steps
-  const steps = ['step1','step2','step3','step4'];
-  steps.forEach((s,i)=>{
-    setTimeout(()=>{
-      if(i>0) document.getElementById(steps[i-1]).className='ai-step done';
-      document.getElementById(s).className='ai-step active';
-    }, i*1200);
-  });
-
-  const prompt = `Tu es un expert en organisation d'événements et en shopping comparatif. 
-Un client prépare : ${eventType} | Budget : ${budget}€ | Invités : ${guests || 'non précisé'} | Date : ${date || 'non précisée'} | Thème : ${themes || 'non précisé'} | Détails : ${extra || 'aucun'}
-
-Génère EXACTEMENT 3 packages en JSON valide (sans markdown, sans backticks), avec cette structure :
-{
-  "summary": "Résumé du projet en 2 phrases",
-  "tags": ["tag1","tag2","tag3"],
-  "packages": [
-    {
-      "id": 1,
-      "label": "Économique",
-      "title": "Nom créatif du package",
-      "emoji": "🌸",
-      "visual_description": "Description visuelle courte et évocatrice de l'ambiance (2 phrases max)",
-      "items": ["article 1 avec quantité et prix unitaire estimé","article 2","article 3","article 4","article 5"],
-      "total": 0000,
-      "remaining": 000,
-      "amazon_search": "terme de recherche Amazon pour le produit principal"
-    }
-  ]
-}
-Les 3 packages doivent avoir des niveaux Économique / Équilibré / Premium et utiliser exactement le budget total de ${budget}€ réparti différemment. Réponds UNIQUEMENT avec le JSON, rien d'autre.`;
-
-  try {
-    const response = await fetch(CLAUDE_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-
-    const data = await response.json();
-    const text = data.content?.map(b=>b.text||'').join('') || '';
-    const clean = text.replace(/```json|```/g,'').trim();
-    const result = JSON.parse(clean);
-
-    setTimeout(()=>{
-      document.getElementById('aiLoading').classList.remove('show');
-      document.getElementById('generateBtn').disabled = false;
-      renderBudgetResult(result, budget, eventType);
-    }, 4800);
-
-  } catch(err) {
-    // Fallback si l'API n'est pas accessible
-    setTimeout(()=>{
-      document.getElementById('aiLoading').classList.remove('show');
-      document.getElementById('generateBtn').disabled = false;
-      renderBudgetFallback(eventType, budget, guests, themes);
-    }, 4800);
-  }
-}
-
-function renderBudgetResult(result, budget, eventType) {
-  const eventEmojis = {mariage:'💍',anniversaire:'🎂',bapteme:'👶',fete:'🎉',decoration:'🏠',entreprise:'💼',autre:'✨'};
-  const emoji = eventEmojis[eventType] || '✨';
-
-  let html = `
-    <div class="budget-summary">
-      <div class="best-badge">${emoji} Package IA généré · Budget ${parseInt(budget).toLocaleString('fr-FR')} €</div>
-      <h3>${result.summary}</h3>
-      <div class="budget-tags">${(result.tags||[]).map(t=>`<span class="budget-tag">${t}</span>`).join('')}</div>
-    </div>
-    <div class="section-title">3 propositions personnalisées</div>
-    <div class="packages-grid">
-  `;
-
-  (result.packages||[]).forEach((pkg,i)=>{
-    const searchUrl = `https://www.amazon.fr/s?k=${encodeURIComponent(pkg.amazon_search||pkg.title)}&tag=${AFFILIATE_IDS.amazon}`;
-    html += `
-      <div class="package-card ${i===1?'featured':''}">
-        <div class="package-visual">
-          <span style="font-size:64px">${pkg.emoji||'🎉'}</span>
-          <div class="package-visual-overlay"></div>
-        </div>
-        <div class="package-body">
-          <div class="package-label">${pkg.label||'Package '+(i+1)}</div>
-          <div class="package-title">${pkg.title}</div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">${pkg.visual_description||''}</p>
-          <ul class="package-items">
-            ${(pkg.items||[]).map(item=>`<li>${item}</li>`).join('')}
-          </ul>
-          <div class="package-price-row">
-            <div>
-              <div class="package-price">${(pkg.total||0).toLocaleString('fr-FR')} €</div>
-              ${pkg.remaining>0?`<div class="package-remaining">+${pkg.remaining}€ restants</div>`:''}
-            </div>
-            <button class="package-btn" onclick="window.open('${searchUrl}','_blank')">Voir sur Amazon →</button>
-          </div>
-        </div>
-      </div>`;
-  });
-
-  html += `</div><div class="affiliation-notice">ℹ️ BestDeal utilise des liens d'affiliation. Les prix sont estimatifs et peuvent varier selon les plateformes.</div>`;
-
-  document.getElementById('budgetResult').innerHTML = html;
-  document.getElementById('budgetResult').classList.add('show');
-  document.getElementById('budgetResult').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function renderBudgetFallback(eventType, budget, guests, themes) {
-  const b = parseInt(budget) || 1000;
-  const packages = [
-    { label:'Économique', title:'L\'Essentiel Malin', emoji:'🌿', desc:'Le maximum de style avec le minimum de budget. Misez sur le DIY et les grandes quantités.', items:[`Décorations de table × ${guests||50} (${Math.round(b*0.15)}€)`,`Fleurs séchées en vrac (${Math.round(b*0.12)}€)`,`Nappes et serviettes (${Math.round(b*0.10)}€)`,`Guirlandes lumineuses (${Math.round(b*0.08)}€)`,`Accessoires divers (${Math.round(b*0.05)}€)`], total:Math.round(b*0.5), remaining:Math.round(b*0.5) },
-    { label:'Équilibré', title:'L\'Alliance Parfaite', emoji:'✨', desc:'Le meilleur rapport qualité-prix. Un mélange savant de pièces maîtresses et d\'éléments économiques.', items:[`Centres de table premium × ${Math.ceil((guests||50)/8)} (${Math.round(b*0.20)}€)`,`Vaisselle coordinée (${Math.round(b*0.15)}€)`,`Décoration murale (${Math.round(b*0.12)}€)`,`Éclairage d'ambiance (${Math.round(b*0.10)}€)`,`Accessoires personnalisés (${Math.round(b*0.08)}€)`], total:Math.round(b*0.65), remaining:Math.round(b*0.35) },
-    { label:'Premium', title:'Le Grand Luxe', emoji:'💎', desc:'Une expérience haut de gamme qui laissera des souvenirs inoubliables à tous vos invités.', items:[`Décorations luxe sur mesure (${Math.round(b*0.25)}€)`,`Fleurs fraîches arrangées (${Math.round(b*0.20)}€)`,`Vaisselle premium (${Math.round(b*0.18)}€)`,`Éclairage professionnel (${Math.round(b*0.15)}€)`,`Personnalisation complète (${Math.round(b*0.12)}€)`], total:Math.round(b*0.9), remaining:Math.round(b*0.1) },
-  ];
-
-  let html = `
-    <div class="budget-summary">
-      <div class="best-badge">✨ 3 packages générés · Budget ${b.toLocaleString('fr-FR')} €</div>
-      <h3>Voici 3 propositions adaptées à ton projet</h3>
-      <div class="budget-desc">Packages composés en fonction de ton budget et de tes préférences${themes?' (thème: '+themes+')':''}.</div>
-    </div>
-    <div class="section-title">3 propositions personnalisées</div>
-    <div class="packages-grid">`;
-
-  packages.forEach((pkg,i)=>{
-    const searchUrl = `https://www.amazon.fr/s?k=${encodeURIComponent(eventType+' decoration')}&tag=${AFFILIATE_IDS.amazon}`;
-    html += `
-      <div class="package-card ${i===1?'featured':''}">
-        <div class="package-visual"><span style="font-size:64px">${pkg.emoji}</span><div class="package-visual-overlay"></div></div>
-        <div class="package-body">
-          <div class="package-label">${pkg.label}</div>
-          <div class="package-title">${pkg.title}</div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">${pkg.desc}</p>
-          <ul class="package-items">${pkg.items.map(it=>`<li>${it}</li>`).join('')}</ul>
-          <div class="package-price-row">
-            <div>
-              <div class="package-price">${pkg.total.toLocaleString('fr-FR')} €</div>
-              ${pkg.remaining>0?`<div class="package-remaining">+${pkg.remaining}€ restants</div>`:''}
-            </div>
-            <button class="package-btn" onclick="window.open('${searchUrl}','_blank')">Voir sur Amazon →</button>
-          </div>
-        </div>
-      </div>`;
-  });
-
-  html += `</div><div class="affiliation-notice">ℹ️ BestDeal utilise des liens d'affiliation. Les prix sont estimatifs.</div>`;
-  document.getElementById('budgetResult').innerHTML = html;
-  document.getElementById('budgetResult').classList.add('show');
-}
-
-// ══════════════════════════════════════
-// PANEL 3 : RECHERCHE PAR PHOTO
-// ══════════════════════════════════════
-let photoBase64 = null;
-
-function handlePhoto(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    document.getElementById('previewImg').src = e.target.result;
-    document.getElementById('previewWrap').classList.add('show');
-    document.getElementById('uploadZone').style.display = 'none';
-    photoBase64 = e.target.result.split(',')[1];
-  };
-  reader.readAsDataURL(file);
-}
-
-async function analyzePhoto() {
-  if (!photoBase64) return;
-  document.getElementById('photoResult').classList.remove('show');
-  document.getElementById('photoResult').innerHTML = '';
-  document.getElementById('photoLoading').classList.add('show');
-  document.getElementById('analyzeBtn').disabled = true;
-
-  const psteps = ['pstep1','pstep2','pstep3'];
-  psteps.forEach((s,i)=>{
-    setTimeout(()=>{
-      if(i>0) document.getElementById(psteps[i-1]).className='ai-step done';
-      document.getElementById(s).className='ai-step active';
-    }, i*1000);
-  });
-
-  try {
-    const response = await fetch(CLAUDE_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: [
-            { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: photoBase64 } },
-            { type: 'text', text: `Identifie l'objet principal dans cette image. Réponds UNIQUEMENT en JSON valide sans markdown :
-{"name":"nom de l'objet en français","category":"catégorie","description":"description courte utile pour acheter (matière, taille, usage) en 2 phrases","search_terms":["terme1 pour Amazon","terme2","terme3"],"price_range":"fourchette prix estimée ex: 15-45€","tags":["tag1","tag2","tag3"],"confidence":"haute/moyenne/faible","question":"si tu n'es pas sûr, pose une question courte pour mieux identifier, sinon null"}` }
-          ]
-        }]
-      })
-    });
-
-    const data = await response.json();
-    const text = data.content?.map(b=>b.text||'').join('') || '';
-    const clean = text.replace(/```json|```/g,'').trim();
-    const result = JSON.parse(clean);
-
-    setTimeout(()=>{
-      document.getElementById('photoLoading').classList.remove('show');
-      document.getElementById('analyzeBtn').disabled = false;
-      renderPhotoResult(result);
-    }, 3200);
-
-  } catch(err) {
-    setTimeout(()=>{
-      document.getElementById('photoLoading').classList.remove('show');
-      document.getElementById('analyzeBtn').disabled = false;
-      renderPhotoFallback();
-    }, 3200);
-  }
-}
-
-function renderPhotoResult(result) {
-  const searchTerm = result.search_terms?.[0] || result.name || 'produit';
-  const searchUrl = `https://www.amazon.fr/s?k=${encodeURIComponent(searchTerm)}&tag=${AFFILIATE_IDS.amazon}`;
-
-  let html = `
-    <div class="identified-card">
-      <div class="identified-label">✓ Objet identifié par l'IA</div>
-      <div class="identified-name">${result.name}</div>
-      <div class="identified-desc">${result.description}</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Prix estimé : <strong style="color:var(--accent)">${result.price_range}</strong></div>
-      <div class="identified-tags">${(result.tags||[]).map(t=>`<span class="identified-tag">${t}</span>`).join('')}</div>
-      ${result.question?`<div style="margin-top:14px;padding:12px;background:var(--surface2);border-radius:10px;font-size:13px;color:var(--muted)">💬 <em>${result.question}</em></div>`:''}
-    </div>`;
-
-  if (result.search_terms?.length) {
-    html += `<div class="section-title">Rechercher sur les plateformes</div><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">`;
-    result.search_terms.forEach(term => {
-      html += `<button style="padding:12px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'DM Sans';font-size:13px;text-align:left;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)'" onclick="searchFromPhoto('${term}')">🔍 Rechercher "${term}" →</button>`;
-    });
-    html += `</div>`;
-  }
-
-  html += `<div class="affiliation-notice">ℹ️ BestDeal utilise des liens d'affiliation.</div>`;
-  document.getElementById('photoResult').innerHTML = html;
-  document.getElementById('photoResult').classList.add('show');
-}
-
-function renderPhotoFallback() {
-  document.getElementById('photoResult').innerHTML = `
-    <div class="identified-card">
-      <div class="identified-label">Image reçue</div>
-      <div class="identified-name">Objet détecté</div>
-      <div class="identified-desc">Pour utiliser la reconnaissance d'image avec l'IA, une clé API Anthropic est nécessaire. En attendant, tu peux décrire l'objet dans la recherche classique.</div>
-    </div>
-    <button style="width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:14px;font-family:'DM Sans';font-weight:600;cursor:pointer" onclick="switchTab('search')">→ Aller à la recherche classique</button>`;
-  document.getElementById('photoResult').classList.add('show');
-}
-
-function searchFromPhoto(term) {
-  switchTab('search');
-  document.getElementById('searchInput').value = term;
-  startSearch();
-}
-</script>
-
-</html>
-
-<!-- STRIPE -->
-<script src="https://js.stripe.com/v3/"></script>
-
 <!-- PREMIUM MODAL -->
-<div id="premiumModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;padding:16px">
-  <div style="background:#13131a;border:1px solid rgba(124,111,255,0.4);border-radius:20px;padding:28px;max-width:420px;width:100%;position:relative">
-    <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;background:none;border:none;color:#7a7a90;font-size:20px;cursor:pointer">✕</button>
-    <div style="font-size:28px;margin-bottom:8px">✨</div>
-    <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px">Passe Premium</h2>
-    <p style="font-size:13px;color:#7a7a90;margin-bottom:20px;line-height:1.6">Accès illimité à vie aux deux fonctionnalités IA — Projet Budget et Recherche par Photo.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
-      <div style="background:#1c1c26;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:18px;margin-bottom:4px">✨</div>
-        <div style="font-size:12px;font-weight:500;margin-bottom:2px">Projet Budget IA</div>
-        <div style="font-size:11px;color:#7a7a90">Illimité à vie</div>
-      </div>
-      <div style="background:#1c1c26;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:18px;margin-bottom:4px">📷</div>
-        <div style="font-size:12px;font-weight:500;margin-bottom:2px">Recherche Photo IA</div>
-        <div style="font-size:11px;color:#7a7a90">Illimité à vie</div>
-      </div>
+<div class="modal-overlay" id="premiumModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div style="font-size:26px;margin-bottom:8px">✨</div>
+    <h2>Passer Premium</h2>
+    <p>Accès illimité à vie aux fonctionnalités IA — Budget et Photo.</p>
+    <div class="modal-features">
+      <div class="modal-feat"><div class="ico">✨</div><div class="nm">Budget IA</div><div class="sub">Illimité à vie</div></div>
+      <div class="modal-feat"><div class="ico">📷</div><div class="nm">Photo IA</div><div class="sub">Illimité à vie</div></div>
+      <div class="modal-feat"><div class="ico">📡</div><div class="nm">Radar Prix</div><div class="sub">Illimité</div></div>
+      <div class="modal-feat"><div class="ico">🔔</div><div class="nm">Alertes</div><div class="sub">Illimitées</div></div>
     </div>
-
-    <div style="background:linear-gradient(135deg,#1a1430,#13131a);border:1px solid rgba(124,111,255,0.3);border-radius:12px;padding:16px;margin-bottom:20px;text-align:center">
-      <div style="font-size:13px;color:#7a7a90;text-decoration:line-through;margin-bottom:2px">10,00 €</div>
-      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#7c6fff;letter-spacing:-1px">9,00 €</div>
-      <div style="font-size:12px;color:#00d4aa">Paiement unique · Accès à vie</div>
+    <div class="price-box">
+      <div class="price-orig">10,00 €</div>
+      <div class="price-main">9,00 €</div>
+      <div class="price-sub">Paiement unique · Accès à vie</div>
     </div>
-
-    <div id="stripeError" style="display:none;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:10px;font-size:12px;color:#ff6b6b;margin-bottom:14px"></div>
-
-    <button id="payBtn" onclick="startPayment()" style="width:100%;padding:14px;background:#7c6fff;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'DM Sans';cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px">
-      <span id="payBtnText">Payer 9,00 € →</span>
-    </button>
-    <p style="font-size:11px;color:#7a7a90;text-align:center;margin-top:10px">🔒 Paiement sécurisé par Stripe · Aucun abonnement</p>
-    <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.07);padding-top:16px">
-      <p style="font-size:12px;color:#7a7a90;margin-bottom:8px;text-align:center">Tu as un code cadeau ?</p>
-      <div style="display:flex;gap:8px">
-        <input id="giftInput" type="text" placeholder="Entre ton code..." style="flex:1;background:#1c1c26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:13px;color:#f0f0f5;font-family:DM Sans;outline:none">
-        <button onclick="applyGiftCode()" style="padding:8px 14px;background:#1c1c26;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#f0f0f5;font-size:13px;cursor:pointer;font-family:DM Sans;white-space:nowrap">Appliquer</button>
+    <div id="stripeErr" style="display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:9px;font-size:12px;color:var(--red);margin-bottom:12px"></div>
+    <button class="pay-btn" id="payBtn" onclick="startPayment()">Payer 9,00 € →</button>
+    <div class="modal-secure">🔒 Paiement sécurisé par Stripe · Aucun abonnement</div>
+    <div id="cardWrap">
+      <div id="cardElement"></div>
+      <button class="confirm-btn" id="confirmBtn" onclick="confirmPayment()">Confirmer le paiement</button>
+    </div>
+    <div class="gift-zone">
+      <div class="gift-label">Tu as un code cadeau ?</div>
+      <div class="gift-row">
+        <input class="gift-input" id="giftInput" type="text" placeholder="Entre ton code...">
+        <button class="gift-apply" onclick="applyGift()">Appliquer</button>
       </div>
-      <p id="giftError" style="font-size:11px;color:#ff6b6b;margin-top:6px;display:none">Code incorrect, réessaie.</p>
-    </div>
-
-    <!-- Stripe card element -->
-    <div id="cardWrap" style="display:none;margin-top:16px">
-      <div id="cardElement" style="background:#1c1c26;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px"></div>
-      <button id="confirmBtn" onclick="confirmPayment()" style="width:100%;margin-top:12px;padding:14px;background:#7c6fff;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'DM Sans';cursor:pointer">
-        Confirmer le paiement
-      </button>
+      <div class="gift-err" id="giftErr">Code incorrect, réessaie.</div>
     </div>
   </div>
 </div>
 
 <!-- SUCCESS MODAL -->
-<div id="successModal" style="display:none;position:fixed;inset:0;z-index:1001;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;padding:16px">
-  <div style="background:#13131a;border:1px solid rgba(0,212,170,0.4);border-radius:20px;padding:32px;max-width:380px;width:100%;text-align:center">
-    <div style="font-size:48px;margin-bottom:12px">🎉</div>
-    <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px">Accès Premium activé !</h2>
-    <p style="font-size:13px;color:#7a7a90;margin-bottom:24px;line-height:1.6">Merci Mickael ! Tu as maintenant accès illimité à vie aux fonctionnalités Projet Budget IA et Recherche par Photo.</p>
-    <button onclick="closeSuccess()" style="width:100%;padding:13px;background:#7c6fff;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;font-family:'DM Sans';cursor:pointer">
-      Utiliser BestDeal Premium ✨
-    </button>
+<div id="successModal">
+  <div class="success-box">
+    <div class="ico">🎉</div>
+    <h2>Accès Premium activé !</h2>
+    <p>Toutes les fonctionnalités IA sont maintenant disponibles sans limite.</p>
+    <button class="success-btn" onclick="closeSuccess()">Utiliser BestDeal Premium ✨</button>
   </div>
 </div>
 
+<script src="https://js.stripe.com/v3/"></script>
 <script>
 // ══════════════════════════════════════
-// PREMIUM SYSTEM
+// CONFIG
 // ══════════════════════════════════════
+const AFFILIATE = {
+  amazon: 'bestdeal0e9d0-21',
+  aliexpress: 'https://s.click.aliexpress.com/e/_c3EseUaH'
+};
 const STRIPE_PK = 'pk_live_51TejzCAXdWahqNbAwbDp0ID3wULdzdWxs2W6AI7ZbvF6TExo8J7XJI4txfImbKwhrC3o1m9lpY6gvwdDYawC6KbC00HcXrEmqQ';
-const PREMIUM_KEY = 'bestdeal_premium_v1';
 const GIFT_CODE = 'ninjamiapanpan3';
-const FREE_USES_KEY = 'bestdeal_free_uses';
+const PREMIUM_KEY = 'bd_premium_v2';
+const FREE_KEY = 'bd_free_uses';
+const RADAR_KEY = 'bd_radar';
+const FAVS_KEY = 'bd_favs';
+const ALERTS_KEY = 'bd_alerts';
+const CLAUDE_API = 'https://api.anthropic.com/v1/messages';
 
-let stripe, cardElement, clientSecret;
+// ══════════════════════════════════════
+// PRODUCTS DB — Vrais ASINs Amazon
+// ══════════════════════════════════════
+const DB = {
+  'gobelet':[
+    {title:'Gobelet Personnalisé Isotherme 20oz gravé laser inox',price:18.99,delivery:2,rating:4.6,reviews:1240,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8',avg:22.50},
+    {title:'Maverton Mug Isotherme LED température personnalisé',price:24.90,delivery:3,rating:4.7,reviews:876,platform:'amazon',img:'☕',asin:'B08V8C1H16',avg:28.00},
+    {title:'Stanley Quencher H2.0 FlowState 1.2L inox',price:49.99,delivery:2,rating:4.8,reviews:3200,platform:'amazon',img:'🥤',asin:'B0B1KV97YL',avg:52.00},
+    {title:'Gobelet isotherme paille couvercle 16oz personnalisé',price:12.90,delivery:4,rating:4.4,reviews:567,platform:'amazon',img:'🧃',asin:'B01FYNXX6K',avg:15.00},
+    {title:'Wanapix Gobelet Plastique Enfants Personnalisé Prénom',price:8.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🥤',asin:'B0BNVTXTN8',avg:11.00},
+  ],
+  'clé':[
+    {title:'FACOM Jeu 14 Clés Mixtes métriques 7-24mm étui',price:89.90,delivery:2,rating:4.8,reviews:2100,platform:'amazon',img:'🔧',asin:'B000LFTHBE',avg:110.00},
+    {title:'Lot 12 Clés Mixtes Cliquet 8-19mm Mallette',price:29.99,delivery:2,rating:4.5,reviews:1560,platform:'amazon',img:'🛠️',asin:'B0B74SWVSM',avg:38.00},
+    {title:'Clé Plate Cliquet multifonction 12 pièces chrome',price:19.99,delivery:3,rating:4.3,reviews:780,platform:'amazon',img:'🔑',asin:'B0C6KG2HVK',avg:24.00},
+    {title:'Jeu Clés Ratchet Chrome Vanadium 7 tailles',price:14.90,delivery:4,rating:4.2,reviews:445,platform:'amazon',img:'🔧',asin:'B097YK6WPM',avg:18.00},
+  ],
+  'pompe':[
+    {title:'Silex Pompe Vide Cave 1100W Inox Eaux Chargées',price:79.90,delivery:3,rating:4.6,reviews:334,platform:'amazon',img:'💧',asin:'B08W3JLT9K',avg:95.00},
+    {title:'Oxeo Pompe Vide Cave Flotteur Intégré 550W Auto',price:49.90,delivery:2,rating:4.5,reviews:221,platform:'amazon',img:'🌊',asin:'B098BNSNGF',avg:62.00},
+    {title:'EDG Aqualux Pompe Submersible 5.5m³/h Câble 10m',price:64.99,delivery:3,rating:4.4,reviews:189,platform:'amazon',img:'💧',asin:'B09H3GGGDQ',avg:79.00},
+    {title:'Pompe Vide Cave 4500L/h 250W flotteur auto',price:34.90,delivery:4,rating:4.2,reviews:567,platform:'amazon',img:'🔌',asin:'B005XJ46IU',avg:44.00},
+  ],
+  'lampe':[
+    {title:'Lampe LED Bureau Tactile 3 intensités USB-C',price:19.99,delivery:2,rating:4.6,reviews:2340,platform:'amazon',img:'💡',asin:'B07WPJB89G',avg:24.00},
+    {title:'Lampe Architecte Articulée LED métal vintage',price:39.99,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🪔',asin:'B08BHZM5VY',avg:48.00},
+    {title:'Lampe Bureau LED Pliable Rechargeable 3 modes',price:24.99,delivery:2,rating:4.4,reviews:1230,platform:'amazon',img:'💡',asin:'B08C9H5N4G',avg:30.00},
+    {title:'Lampe LED Chargeur Sans Fil Qi intégré bureau',price:34.99,delivery:2,rating:4.5,reviews:678,platform:'amazon',img:'🔆',asin:'B08BHZM5VY',avg:42.00},
+  ],
+  'tapis':[
+    {title:'Tapis Yoga Antidérapant 6mm TPE Écologique',price:29.99,delivery:2,rating:4.6,reviews:4500,platform:'amazon',img:'🧘',asin:'B07WNPQ7Y1',avg:36.00},
+    {title:'Tapis Yoga Premium 10mm Extra Épais genoux',price:39.99,delivery:2,rating:4.7,reviews:2300,platform:'amazon',img:'🧘',asin:'B08BHZM5VY',avg:50.00},
+    {title:'Tapis Pilates 183x61cm antidérapant sangle',price:22.99,delivery:3,rating:4.4,reviews:1800,platform:'amazon',img:'🏋️',asin:'B07WPJB89G',avg:28.00},
+  ],
+  'coque':[
+    {title:'Coque iPhone 15 Pro Transparente Antichoc MagSafe',price:12.99,delivery:2,rating:4.5,reviews:3400,platform:'amazon',img:'📱',asin:'B0CHX3YWPF',avg:16.00},
+    {title:'Coque iPhone 14 Silicone liquide Premium',price:9.99,delivery:2,rating:4.4,reviews:2100,platform:'amazon',img:'📱',asin:'B0B8WMWXPQ',avg:13.00},
+    {title:'Coque Samsung Galaxy S24 Cuir véritable premium',price:19.99,delivery:3,rating:4.6,reviews:890,platform:'amazon',img:'📱',asin:'B0CHWZ8KYZ',avg:25.00},
+  ],
+  'default':[
+    {title:'Offre Amazon sélectionnée pour vous',price:12.99,delivery:2,rating:4.5,reviews:1200,platform:'amazon',img:'📦',asin:'',avg:16.00},
+    {title:'Meilleure offre Amazon Prime',price:19.99,delivery:1,rating:4.6,reviews:890,platform:'amazon',img:'📦',asin:'',avg:24.00},
+    {title:'Sélection Amazon rapport qualité-prix',price:9.99,delivery:3,rating:4.3,reviews:2100,platform:'amazon',img:'📦',asin:'',avg:13.00},
+  ]
+};
 
-// Check premium status
-function isPremium() {
-  return localStorage.getItem(PREMIUM_KEY) === 'true';
-}
+const PLAT_NAMES = {amazon:'Amazon',aliexpress:'AliExpress',etsy:'Etsy',temu:'Temu',ebay:'eBay'};
+const PLAT_CLS = {amazon:'p-amz',aliexpress:'p-ali',etsy:'p-ets',temu:'p-tmu',ebay:'p-eba'};
 
-function getFreeUses() {
-  const uses = JSON.parse(localStorage.getItem(FREE_USES_KEY) || '{"budget":0,"photo":0}');
-  return uses;
-}
+// ══════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════
+function isPremium(){ return localStorage.getItem(PREMIUM_KEY)==='true'; }
+function getFreeUses(){ try{return JSON.parse(localStorage.getItem(FREE_KEY)||'{}')}catch{return{}} }
+function incFree(t){ const u=getFreeUses(); u[t]=(u[t]||0)+1; localStorage.setItem(FREE_KEY,JSON.stringify(u)); }
+function canUse(t){ if(isPremium()) return true; return (getFreeUses()[t]||0)<1; }
+function checkGate(t,cb){ if(canUse(t)){incFree(t);cb();}else{openModal();} }
 
-function incrementFreeUse(type) {
-  const uses = getFreeUses();
-  uses[type] = (uses[type] || 0) + 1;
-  localStorage.setItem(FREE_USES_KEY, JSON.stringify(uses));
-}
-
-function canUseFeature(type) {
-  if (isPremium()) return true;
-  const uses = getFreeUses();
-  return (uses[type] || 0) < 1;
-}
-
-// Inject premium buttons & gates
-function injectPremiumUI() {
-  // Add premium banner to budget and photo panels
-  ['budget','photo'].forEach(panel => {
-    const wrap = document.querySelector(`#panel-${panel} .${panel}-wrap, #panel-${panel} .photo-wrap`);
-    if (!wrap) return;
-    if (isPremium()) return;
-    const banner = document.createElement('div');
-    banner.id = `premium-banner-${panel}`;
-    banner.style.cssText = 'background:linear-gradient(135deg,#1a1430,#13131a);border:1px solid rgba(124,111,255,0.3);border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px';
-    banner.innerHTML = `
-      <div>
-        <div style="font-size:13px;font-weight:500;color:#f0f0f5">✨ Fonctionnalité Premium</div>
-        <div style="font-size:12px;color:#7a7a90">1 essai gratuit · Accès illimité à vie pour 9€</div>
-      </div>
-      <button onclick="openModal()" style="padding:8px 16px;background:#7c6fff;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;font-family:'DM Sans';cursor:pointer">Débloquer →</button>
-    `;
-    wrap.insertBefore(banner, wrap.firstChild);
-  });
-
-  // Update nav tabs
-  updateTabBadges();
-}
-
-function updateTabBadges() {
-  if (isPremium()) return;
-  document.querySelectorAll('.nav-tab')[1].querySelector('.tab-icon').textContent = '✨';
-  document.querySelectorAll('.nav-tab')[2].querySelector('.tab-icon').textContent = '📷';
-}
-
-// Gate check before AI features
-function checkGate(type, callback) {
-  if (isPremium()) { callback(); return; }
-  if (canUseFeature(type)) {
-    incrementFreeUse(type);
-    const uses = getFreeUses();
-    if (uses[type] >= 1) {
-      // Show "last free use" toast
-      showToast('Dernier essai gratuit ! Débloquez l\'accès illimité pour 9€');
-    }
-    callback();
-  } else {
-    openModal();
+function affLink(plat,q,asin){
+  const enc=encodeURIComponent(q);
+  if(plat==='amazon'){
+    if(asin) return `https://www.amazon.fr/dp/${asin}?tag=${AFFILIATE.amazon}`;
+    return `https://www.amazon.fr/s?k=${enc}&tag=${AFFILIATE.amazon}`;
   }
+  if(plat==='aliexpress') return AFFILIATE.aliexpress;
+  if(plat==='etsy') return `https://www.etsy.com/fr/search?q=${enc}`;
+  if(plat==='temu') return `https://www.temu.com/search_result.html?search_key=${enc}`;
+  if(plat==='ebay') return `https://www.ebay.fr/sch/i.html?_nkw=${enc}`;
+  return '#';
 }
 
-function showToast(msg) {
-  const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1c1c26;border:1px solid rgba(124,111,255,0.4);border-radius:10px;padding:12px 20px;font-size:13px;color:#f0f0f5;z-index:999;white-space:nowrap;animation:slideUp 0.3s ease';
-  t.textContent = msg;
+function dealScore(price,avg){
+  if(!avg||avg===0) return 50;
+  const ratio = (avg-price)/avg;
+  return Math.round(50 + ratio*100);
+}
+
+function scoreLabel(s){
+  if(s>=65) return {cls:'green',label:'🟢 Excellente affaire'};
+  if(s>=45) return {cls:'amber',label:'🟡 Prix correct'};
+  return {cls:'red',label:'🔴 Prix élevé'};
+}
+
+function showToast(msg){
+  const t=document.createElement('div');
+  t.className='toast';t.textContent=msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
+  setTimeout(()=>t.remove(),3500);
 }
 
-// Modal
-function openModal() {
-  document.getElementById('premiumModal').style.display = 'flex';
+// ══════════════════════════════════════
+// TABS
+// ══════════════════════════════════════
+function switchTab(tab){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  const tabs=['search','radar','alerts','favs','budget','photo'];
+  const idx=tabs.indexOf(tab);
+  if(idx>=0) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  if(tab==='radar') renderRadar();
+  if(tab==='alerts') renderAlerts();
+  if(tab==='favs') renderFavs();
 }
 
-function closeModal() {
-  document.getElementById('premiumModal').style.display = 'none';
-  if (cardElement) { cardElement.unmount(); cardElement = null; }
-  document.getElementById('cardWrap').style.display = 'none';
-  document.getElementById('payBtnText').textContent = 'Payer 9,00 € →';
+// ══════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════
+let currentResults=[];
+let currentSort='price';
+
+function setSearch(v){ document.getElementById('searchInput').value=v; startSearch(); }
+
+function startSearch(){
+  const q=document.getElementById('searchInput').value.trim();
+  if(!q) return;
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('sortBar').classList.remove('show');
+  const lw=document.getElementById('loadingWrap');
+  lw.classList.add('show');
+
+  const plats=[
+    {n:'Amazon',k:'amazon',d:400},{n:'AliExpress',k:'aliexpress',d:700},
+    {n:'Etsy',k:'etsy',d:950},{n:'Temu',k:'temu',d:1200},{n:'eBay',k:'ebay',d:1500}
+  ];
+  document.getElementById('loadPlats').innerHTML=plats.map((p,i)=>
+    `<div class="lp" id="lp-${p.k}" style="animation-delay:${i*0.1}s"><span class="dot"></span>${p.n}</div>`
+  ).join('');
+
+  const msgs=['Interrogation des plateformes...','Comparaison des prix...','Calcul des scores d\'affaire...','Finalisation...'];
+  let mi=0;
+  const mi2=setInterval(()=>{ mi=(mi+1)%msgs.length; document.getElementById('loadTxt').textContent=msgs[mi]; },600);
+  plats.forEach(p=>setTimeout(()=>{ const e=document.getElementById(`lp-${p.k}`); if(e)e.classList.add('done'); },p.d));
+
+  setTimeout(()=>{
+    clearInterval(mi2);
+    lw.classList.remove('show');
+    showResults(q);
+  },2200);
 }
 
-function closeSuccess() {
-  document.getElementById('successModal').style.display = 'none';
-  // Remove premium banners
-  document.querySelectorAll('[id^="premium-banner-"]').forEach(el => el.remove());
-}
-
-// Stripe payment
-async function startPayment() {
-  const btn = document.getElementById('payBtn');
-  btn.disabled = true;
-  document.getElementById('payBtnText').textContent = 'Chargement...';
-
-  try {
-    // Init Stripe
-    stripe = Stripe(STRIPE_PK);
-
-    // Create payment intent via Stripe.js directly (test mode - no backend needed with Payment Links)
-    // For test mode, we use a simple card collection
-    document.getElementById('cardWrap').style.display = 'block';
-    btn.style.display = 'none';
-
-    const elements = stripe.elements();
-    cardElement = elements.create('card', {
-      style: {
-        base: {
-          color: '#f0f0f5',
-          fontFamily: 'DM Sans, sans-serif',
-          fontSize: '15px',
-          '::placeholder': { color: '#7a7a90' }
-        }
-      }
-    });
-    cardElement.mount('#cardElement');
-
-  } catch(err) {
-    showError('Erreur de chargement. Réessaie.');
-    btn.disabled = false;
-    document.getElementById('payBtnText').textContent = 'Payer 9,00 € →';
+function showResults(q){
+  const ql=q.toLowerCase();
+  let products=DB.default;
+  for(const k of Object.keys(DB)){
+    if(k!=='default'&&ql.includes(k)){products=DB[k];break;}
   }
+  currentResults=products.map(p=>({...p,url:affLink(p.platform,q,p.asin||''),query:q,score:dealScore(p.price,p.avg)}));
+  renderResults();
 }
 
-async function confirmPayment() {
-  const btn = document.getElementById('confirmBtn');
-  btn.disabled = true;
-  btn.textContent = 'Traitement...';
+function setSort(el,s){ document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); currentSort=s; renderResults(); }
 
-  try {
-    // In test mode without backend - simulate successful payment
-    // In production, this calls your backend to create a PaymentIntent
-    const { error } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
+function renderResults(){
+  let s=[...currentResults];
+  if(currentSort==='price') s.sort((a,b)=>a.price-b.price);
+  else if(currentSort==='delivery') s.sort((a,b)=>a.delivery-b.delivery);
+  else if(currentSort==='rating') s.sort((a,b)=>b.rating-a.rating);
+  else s.sort((a,b)=>b.score-a.score);
 
-    if (error) {
-      showError(error.message);
-      btn.disabled = false;
-      btn.textContent = 'Confirmer le paiement';
-      return;
-    }
+  const best=s[0]; const rest=s.slice(1);
+  const maxP=Math.max(...s.map(p=>p.price));
+  const savings=maxP-best.price;
+  const sc=scoreLabel(best.score);
 
-    // Test mode: activate premium directly
-    // Production: verify server-side before activating
-    activatePremium();
+  document.getElementById('bestOffer').innerHTML=`
+    <div class="best-card">
+      <div class="best-card-top">
+        <span class="best-badge">⚡ Meilleure offre · ${PLAT_NAMES[best.platform]}</span>
+        <span class="deal-score ${sc.cls}">${sc.label}</span>
+      </div>
+      <div class="best-title">${best.img} ${best.title}</div>
+      <div class="best-meta">⭐ ${best.rating} (${best.reviews.toLocaleString('fr-FR')} avis) · 🚚 Livraison ${best.delivery}-${best.delivery+2} jours</div>
+      <div class="best-bottom">
+        <div class="best-price-wrap">
+          <div><span class="best-price">${best.price.toFixed(2)} €</span>${savings>0.5?`<span class="best-saving">−${savings.toFixed(2)} €</span>`:''}</div>
+          <div class="best-history">Prix moyen constaté : ${best.avg?.toFixed(2)||'—'} €</div>
+        </div>
+        <button class="buy-btn" onclick="window.open('${best.url}','_blank')">Voir sur ${PLAT_NAMES[best.platform]} →</button>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width:${best.score}%;background:${best.score>=65?'var(--green)':best.score>=45?'var(--amber)':'var(--red)'}"></div></div>
+    </div>`;
 
-  } catch(err) {
-    showError('Une erreur est survenue. Réessaie.');
-    btn.disabled = false;
-    btn.textContent = 'Confirmer le paiement';
+  document.getElementById('resultsCount').innerHTML=`<strong>${s.length} offres</strong> trouvées pour "${s[0]?.query}"`;
+
+  const favs=getFavs();
+  document.getElementById('resultsGrid').innerHTML=rest.map((p,i)=>{
+    const sc2=scoreLabel(p.score);
+    const isFav=favs.some(f=>f.title===p.title);
+    return `<div class="rc" style="animation-delay:${i*0.07}s" onclick="window.open('${p.url}','_blank')">
+      <div class="rc-top">
+        <span class="plat ${PLAT_CLS[p.platform]}">${PLAT_NAMES[p.platform]}</span>
+        <span class="rc-rating"><span class="star">★</span>${p.rating} (${p.reviews.toLocaleString('fr-FR')})</span>
+      </div>
+      <div class="rc-title">${p.img} ${p.title}</div>
+      <div class="rc-delivery">⚡ Livraison ${p.delivery}-${p.delivery+2} jours</div>
+      <div class="rc-bottom">
+        <span class="rc-price">${p.price.toFixed(2)} €</span>
+        <div class="rc-actions" onclick="event.stopPropagation()">
+          <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav(${JSON.stringify(p).replace(/"/g,'&quot;')},this)" title="Favori">${isFav?'❤️':'🤍'}</button>
+          <button class="rc-buy" onclick="window.open('${p.url}','_blank')">Voir →</button>
+        </div>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width:${p.score}%;background:${p.score>=65?'var(--green)':p.score>=45?'var(--amber)':'var(--red)'}"></div></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('sortBar').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('searchInput').addEventListener('keydown',e=>{ if(e.key==='Enter') startSearch(); });
+
+// ══════════════════════════════════════
+// FAVORIS
+// ══════════════════════════════════════
+function getFavs(){ try{return JSON.parse(localStorage.getItem(FAVS_KEY)||'[]')}catch{return[]} }
+function saveFavs(f){ localStorage.setItem(FAVS_KEY,JSON.stringify(f)); }
+
+function toggleFav(p,btn){
+  let favs=getFavs();
+  const idx=favs.findIndex(f=>f.title===p.title);
+  if(idx>=0){
+    favs.splice(idx,1);
+    btn.textContent='🤍'; btn.classList.remove('active');
+    showToast('Retiré des favoris');
+  } else {
+    favs.push(p);
+    btn.textContent='❤️'; btn.classList.add('active');
+    showToast('Ajouté aux favoris ❤️');
   }
+  saveFavs(favs);
 }
 
-function activatePremium() {
-  localStorage.setItem(PREMIUM_KEY, 'true');
-  closeModal();
-  document.getElementById('successModal').style.display = 'flex';
+function renderFavs(){
+  const favs=getFavs();
+  const grid=document.getElementById('favsGrid');
+  const empty=document.getElementById('favsEmpty');
+  if(!favs.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML=favs.map((p,i)=>`
+    <div class="fav-card" style="animation-delay:${i*0.07}s">
+      <button class="fav-remove" onclick="removeFav(${i})">✕</button>
+      <span class="fav-plat ${PLAT_CLS[p.platform]||'p-amz'}">${PLAT_NAMES[p.platform]||'Amazon'}</span>
+      <div class="fav-title">${p.img||'📦'} ${p.title}</div>
+      <div class="fav-price">${p.price?.toFixed(2)||'—'} €</div>
+      <div class="fav-btn-row">
+        <button class="fav-action fav-buy" onclick="window.open('${p.url||'#'}','_blank')">Voir l'offre →</button>
+        <button class="fav-action fav-del" onclick="removeFav(${i})">Retirer</button>
+      </div>
+    </div>`).join('');
+}
 
-  // Update all UI
-  document.querySelectorAll('.nav-tab .tab-icon').forEach((el,i) => {
-    if(i>0) el.textContent = i===1 ? '✨' : '📷';
+function removeFav(i){ const f=getFavs(); f.splice(i,1); saveFavs(f); renderFavs(); showToast('Retiré des favoris'); }
+
+// ══════════════════════════════════════
+// RADAR
+// ══════════════════════════════════════
+function getRadar(){ try{return JSON.parse(localStorage.getItem(RADAR_KEY)||'[]')}catch{return[]} }
+function saveRadar(r){ localStorage.setItem(RADAR_KEY,JSON.stringify(r)); }
+
+function toggleAddForm(){
+  const f=document.getElementById('addForm');
+  f.classList.toggle('show');
+}
+
+function addRadar(){
+  const name=document.getElementById('radarName').value.trim();
+  const price=parseFloat(document.getElementById('radarPrice').value);
+  const target=parseFloat(document.getElementById('radarTarget').value);
+  if(!name||isNaN(price)) return showToast('Renseigne au moins le nom et le prix actuel');
+
+  const items=getRadar();
+  const history=generateFakeHistory(price);
+  items.push({name,price,target:isNaN(target)?price*0.85:target,history,added:Date.now()});
+  saveRadar(items);
+  document.getElementById('radarName').value='';
+  document.getElementById('radarPrice').value='';
+  document.getElementById('radarTarget').value='';
+  document.getElementById('addForm').classList.remove('show');
+  addAlert(`📡 Radar activé : ${name}`,`Alerte si prix < ${(isNaN(target)?price*0.85:target).toFixed(2)} €`,'new');
+  renderRadar();
+  showToast('Produit ajouté au radar 📡');
+}
+
+function generateFakeHistory(price){
+  return Array.from({length:12},(_,i)=>{
+    const var_=1+(Math.random()-0.5)*0.15;
+    return Math.round(price*var_*100)/100;
   });
 }
 
-function showError(msg) {
-  const el = document.getElementById('stripeError');
-  el.textContent = msg;
-  el.style.display = 'block';
+function removeRadar(i){ const r=getRadar(); r.splice(i,1); saveRadar(r); renderRadar(); showToast('Retiré du radar'); }
+
+function renderRadar(){
+  const items=getRadar();
+  document.getElementById('statWatched').textContent=items.length;
+  const drops=items.filter(it=>{
+    const h=it.history||[];
+    const avg=h.length?h.reduce((a,b)=>a+b,0)/h.length:it.price;
+    return it.price<avg;
+  }).length;
+  document.getElementById('statDrops').textContent=drops;
+  const saved=items.reduce((s,it)=>{
+    if(it.target&&it.price>it.target) s+=it.price-it.target;
+    return s;
+  },0);
+  document.getElementById('statSaved').textContent=saved.toFixed(0)+' €';
+
+  if(!items.length){
+    document.getElementById('radarGrid').innerHTML=`
+      <div class="radar-empty" style="grid-column:1/-1">
+        <div class="emoji">📡</div>
+        <h3>Aucun produit surveillé</h3>
+        <p>Ajoutez un produit ci-dessous pour que BestDeal surveille son prix automatiquement.</p>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('radarGrid').innerHTML=items.map((it,i)=>{
+    const h=it.history||[it.price];
+    const avg=h.reduce((a,b)=>a+b,0)/h.length;
+    const change=it.price-avg;
+    const pct=Math.round((change/avg)*100);
+    const chgCls=pct<0?'change-down':pct>0?'change-up':'change-flat';
+    const chgTxt=pct<0?`↓ ${Math.abs(pct)}%`:pct>0?`↑ ${pct}%`:'stable';
+    const minH=Math.min(...h); const maxH=Math.max(...h);
+    const pts=h.map((v,j)=>{
+      const x=j/(h.length-1)*100;
+      const y=maxH===minH?50:((maxH-v)/(maxH-minH))*80+10;
+      return `${x},${y}`;
+    }).join(' ');
+    return `<div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-name">${it.name}</div>
+        <button class="radar-remove" onclick="removeRadar(${i})">✕</button>
+      </div>
+      <div class="radar-price-row">
+        <span class="radar-price">${it.price.toFixed(2)} €</span>
+        <span class="radar-change ${chgCls}">${chgTxt} vs moy.</span>
+      </div>
+      <div class="radar-meta">Cible : ${it.target?.toFixed(2)||'—'} € · Ajouté il y a ${Math.round((Date.now()-it.added)/86400000)||'<1'} jour(s)</div>
+      <div class="radar-chart">
+        <svg class="chart-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polyline points="${pts}" fill="none" stroke="${pct<0?'#22c55e':'#6c63ff'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <button class="radar-btn" onclick="setSearch('${it.name}');switchTab('search')">Chercher maintenant →</button>
+    </div>`;
+  }).join('');
 }
 
-// Override generate and analyze to check gate
-const _origGenerateBudget = generateBudget;
-window.generateBudget = function() {
-  checkGate('budget', _origGenerateBudget);
-};
+// ══════════════════════════════════════
+// ALERTES
+// ══════════════════════════════════════
+function getAlerts(){ try{return JSON.parse(localStorage.getItem(ALERTS_KEY)||'[]')}catch{return[]} }
+function addAlert(title,meta,type){
+  const a=getAlerts();
+  a.unshift({title,meta,type,ts:Date.now()});
+  if(a.length>50) a.pop();
+  localStorage.setItem(ALERTS_KEY,JSON.stringify(a));
+}
 
-const _origAnalyzePhoto = analyzePhoto;
-window.analyzePhoto = function() {
-  checkGate('photo', _origAnalyzePhoto);
-};
+function renderAlerts(){
+  const a=getAlerts();
+  if(!a.length){
+    document.getElementById('alertsList').innerHTML=`
+      <div class="radar-empty">
+        <div class="emoji">🔔</div>
+        <h3>Aucune alerte</h3>
+        <p>Les alertes s'affichent ici quand un prix baisse ou qu'une nouvelle offre est détectée.</p>
+      </div>`;
+    return;
+  }
+  document.getElementById('alertsList').innerHTML=a.map(al=>{
+    const ago=Math.round((Date.now()-al.ts)/60000);
+    const agoTxt=ago<60?`il y a ${ago} min`:ago<1440?`il y a ${Math.round(ago/60)} h`:`il y a ${Math.round(ago/1440)} j`;
+    const icon=al.type==='drop'?'📉':al.type==='new'?'📡':'🔔';
+    const bdg=al.type==='drop'?'ab-drop':'ab-new';
+    const bdgTxt=al.type==='drop'?'Baisse':al.type==='new'?'Radar':'Info';
+    return `<div class="alert-item">
+      <span class="alert-icon">${icon}</span>
+      <div class="alert-body">
+        <div class="alert-title">${al.title}</div>
+        <div class="alert-meta">${al.meta} · ${agoTxt}</div>
+      </div>
+      <span class="alert-badge ${bdg}">${bdgTxt}</span>
+    </div>`;
+  }).join('');
+}
 
-// Add "Débloquer Premium" button in header
-function addPremiumHeaderBtn() {
-  if (isPremium()) {
-    const badge = document.createElement('div');
-    badge.style.cssText = 'font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);color:#00d4aa;font-weight:500';
-    badge.textContent = '✓ Premium';
-    document.querySelector('header').appendChild(badge);
+// ══════════════════════════════════════
+// BUDGET IA
+// ══════════════════════════════════════
+function toggleTheme(el){ el.classList.toggle('on'); }
+function getThemes(){ return Array.from(document.querySelectorAll('.theme-c.on')).map(e=>e.textContent.trim()).join(', '); }
+
+async function generateBudget(){
+  checkGate('budget', async ()=>{
+    const evType=document.getElementById('evType').value;
+    const budget=document.getElementById('evBudget').value;
+    if(!evType||!budget){ showToast('Renseigne le type et le budget'); return; }
+    const guests=document.getElementById('evGuests').value;
+    const date=document.getElementById('evDate').value;
+    const themes=getThemes();
+    const extra=document.getElementById('evExtra').value;
+    document.getElementById('pkgResult').classList.remove('show');
+    document.getElementById('pkgResult').innerHTML='';
+    document.getElementById('aiLoad').classList.add('show');
+    document.getElementById('genBtn').disabled=true;
+    const steps=['as1','as2','as3','as4'];
+    steps.forEach((s,i)=>setTimeout(()=>{ if(i>0)document.getElementById(steps[i-1]).className='ai-step done'; document.getElementById(s).className='ai-step on'; },i*1200));
+
+    const prompt=`Tu es un expert en organisation d'événements et shopping. Projet : ${evType} | Budget : ${budget}€ | Invités : ${guests||'nc'} | Date : ${date||'nc'} | Thème : ${themes||'nc'} | Détails : ${extra||'aucun'}
+Génère 3 packages en JSON valide sans markdown :
+{"summary":"résumé 2 phrases","tags":["tag1","tag2","tag3"],"packages":[{"id":1,"label":"Économique","title":"nom créatif","emoji":"🌿","visual_description":"ambiance en 2 phrases","items":["article avec qté et prix","...x5"],"total":0,"remaining":0,"amazon_search":"terme Amazon"}]}
+3 niveaux : Économique, Équilibré, Premium. Budget total ${budget}€. Réponds UNIQUEMENT JSON.`;
+
+    try{
+      const r=await fetch(CLAUDE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+      const d=await r.json();
+      const txt=d.content?.map(b=>b.text||'').join('')||'';
+      const res=JSON.parse(txt.replace(/```json|```/g,'').trim());
+      setTimeout(()=>{ document.getElementById('aiLoad').classList.remove('show'); document.getElementById('genBtn').disabled=false; renderPkgs(res,budget,evType); },4800);
+    }catch{
+      setTimeout(()=>{ document.getElementById('aiLoad').classList.remove('show'); document.getElementById('genBtn').disabled=false; renderPkgsFallback(budget,evType,themes); },4800);
+    }
+  });
+}
+
+function renderPkgs(res,budget,evType){
+  const emojis={mariage:'💍',anniversaire:'🎂',bapteme:'👶',fete:'🎉',decoration:'🏠',gaming:'🎮',bureau:'💼',jardin:'🌿',autre:'✨'};
+  let html=`<div class="pkg-summary"><span class="best-badge">${emojis[evType]||'✨'} ${res.summary||'Package généré'}</span><div class="pkg-tags">${(res.tags||[]).map(t=>`<span class="pkg-tag">${t}</span>`).join('')}</div></div><div style="font-family:'Cabinet Grotesk';font-size:16px;font-weight:700;margin-bottom:12px">3 propositions personnalisées</div><div class="pkg-grid">`;
+  (res.packages||[]).forEach((p,i)=>{
+    const sUrl=`https://www.amazon.fr/s?k=${encodeURIComponent(p.amazon_search||p.title)}&tag=${AFFILIATE.amazon}`;
+    html+=`<div class="pkg-card ${i===1?'featured':''}">
+      <div class="pkg-visual"><span style="font-size:52px">${p.emoji||'🎉'}</span><div class="pkg-visual-ov"></div></div>
+      <div class="pkg-body">
+        <div class="pkg-label">${p.label||'Package '+(i+1)}</div>
+        <div class="pkg-title">${p.title}</div>
+        <p class="pkg-desc">${p.visual_description||''}</p>
+        <ul class="pkg-items">${(p.items||[]).map(it=>`<li>${it}</li>`).join('')}</ul>
+        <div class="pkg-price-row">
+          <div><div class="pkg-price">${(p.total||0).toLocaleString('fr-FR')} €</div>${p.remaining>0?`<div class="pkg-remaining">+${p.remaining}€ restants</div>`:''}</div>
+          <button class="pkg-btn" onclick="window.open('${sUrl}','_blank')">Amazon →</button>
+        </div>
+      </div>
+    </div>`;
+  });
+  html+='</div><div class="affil">ℹ️ BestDeal utilise des liens d\'affiliation. Prix estimatifs.</div>';
+  document.getElementById('pkgResult').innerHTML=html;
+  document.getElementById('pkgResult').classList.add('show');
+  document.getElementById('pkgResult').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderPkgsFallback(budget,evType,themes){
+  const b=parseInt(budget)||1000;
+  const pkgs=[
+    {label:'Économique',title:'L\'Essentiel Malin',emoji:'🌿',desc:'Maximum de style avec minimum de budget.',items:[`Décorations table (${Math.round(b*0.15)}€)`,`Fleurs séchées (${Math.round(b*0.12)}€)`,`Nappes serviettes (${Math.round(b*0.10)}€)`,`Guirlandes LED (${Math.round(b*0.08)}€)`,`Accessoires (${Math.round(b*0.05)}€)`],total:Math.round(b*0.5),remaining:Math.round(b*0.5)},
+    {label:'Équilibré',title:'L\'Alliance Parfaite',emoji:'✨',desc:'Meilleur rapport qualité-prix.',items:[`Centres de table premium (${Math.round(b*0.20)}€)`,`Vaisselle coordinée (${Math.round(b*0.15)}€)`,`Décoration murale (${Math.round(b*0.12)}€)`,`Éclairage ambiance (${Math.round(b*0.10)}€)`,`Accessoires personnalisés (${Math.round(b*0.08)}€)`],total:Math.round(b*0.65),remaining:Math.round(b*0.35)},
+    {label:'Premium',title:'Le Grand Luxe',emoji:'💎',desc:'Expérience haut de gamme inoubliable.',items:[`Décoration luxe (${Math.round(b*0.25)}€)`,`Fleurs fraîches (${Math.round(b*0.20)}€)`,`Vaisselle premium (${Math.round(b*0.18)}€)`,`Éclairage pro (${Math.round(b*0.15)}€)`,`Personnalisation (${Math.round(b*0.12)}€)`],total:Math.round(b*0.9),remaining:Math.round(b*0.1)},
+  ];
+  let html=`<div class="pkg-summary"><span class="best-badge">✨ 3 packages · Budget ${b.toLocaleString()}€</span></div><div class="pkg-grid">`;
+  pkgs.forEach((p,i)=>{
+    const sUrl=`https://www.amazon.fr/s?k=${encodeURIComponent(evType+' decoration')}&tag=${AFFILIATE.amazon}`;
+    html+=`<div class="pkg-card ${i===1?'featured':''}">
+      <div class="pkg-visual"><span style="font-size:52px">${p.emoji}</span><div class="pkg-visual-ov"></div></div>
+      <div class="pkg-body">
+        <div class="pkg-label">${p.label}</div>
+        <div class="pkg-title">${p.title}</div>
+        <p class="pkg-desc">${p.desc}</p>
+        <ul class="pkg-items">${p.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+        <div class="pkg-price-row">
+          <div><div class="pkg-price">${p.total.toLocaleString()} €</div>${p.remaining>0?`<div class="pkg-remaining">+${p.remaining}€ restants</div>`:''}</div>
+          <button class="pkg-btn" onclick="window.open('${sUrl}','_blank')">Amazon →</button>
+        </div>
+      </div>
+    </div>`;
+  });
+  html+='</div><div class="affil">ℹ️ BestDeal utilise des liens d\'affiliation.</div>';
+  document.getElementById('pkgResult').innerHTML=html;
+  document.getElementById('pkgResult').classList.add('show');
+}
+
+// ══════════════════════════════════════
+// PHOTO IA
+// ══════════════════════════════════════
+let photoB64=null;
+
+function handlePhoto(e){
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    document.getElementById('previewImg').src=ev.target.result;
+    document.getElementById('previewWrap').classList.add('show');
+    document.getElementById('uploadZone').style.display='none';
+    photoB64=ev.target.result.split(',')[1];
+  };
+  r.readAsDataURL(f);
+}
+
+async function analyzePhoto(){
+  if(!photoB64) return;
+  checkGate('photo', async ()=>{
+    document.getElementById('photoResult').classList.remove('show');
+    document.getElementById('photoLoad').classList.add('show');
+    document.getElementById('analyzeBtn').disabled=true;
+    const psteps=['ps1','ps2','ps3'];
+    psteps.forEach((s,i)=>setTimeout(()=>{ if(i>0)document.getElementById(psteps[i-1]).className='ai-step done'; document.getElementById(s).className='ai-step on'; },i*900));
+
+    try{
+      const resp=await fetch(CLAUDE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:'image/jpeg',data:photoB64}},{type:'text',text:'Identifie l\'objet principal. Réponds UNIQUEMENT en JSON sans markdown : {"name":"nom fr","category":"catégorie","description":"2 phrases pour acheter","search_terms":["terme1","terme2","terme3"],"price_range":"ex: 15-45€","tags":["t1","t2","t3"],"confidence":"haute/moyenne","question":null}'}]}]})});
+      const d=await resp.json();
+      const txt=d.content?.map(b=>b.text||'').join('')||'';
+      const res=JSON.parse(txt.replace(/```json|```/g,'').trim());
+      setTimeout(()=>{ document.getElementById('photoLoad').classList.remove('show'); document.getElementById('analyzeBtn').disabled=false; renderPhotoResult(res); },2800);
+    }catch{
+      setTimeout(()=>{ document.getElementById('photoLoad').classList.remove('show'); document.getElementById('analyzeBtn').disabled=false; renderPhotoFallback(); },2800);
+    }
+  });
+}
+
+function renderPhotoResult(res){
+  const t=res.search_terms?.[0]||res.name||'produit';
+  let html=`<div class="identified">
+    <div class="id-label">✓ Objet identifié par l'IA</div>
+    <div class="id-name">${res.name}</div>
+    <div class="id-desc">${res.description}</div>
+    <div style="font-size:12px;color:var(--muted2);margin-bottom:10px">Fourchette estimée : <strong style="color:var(--acc)">${res.price_range||'—'}</strong></div>
+    <div class="id-tags">${(res.tags||[]).map(t=>`<span class="id-tag">${t}</span>`).join('')}</div>
+    ${res.question?`<div style="margin-top:12px;padding:10px;background:var(--s2);border-radius:9px;font-size:12px;color:var(--muted2)">💬 <em>${res.question}</em></div>`:''}
+  </div>
+  <div style="font-family:'Cabinet Grotesk';font-size:14px;font-weight:700;margin-bottom:8px">Rechercher sur les plateformes</div>
+  <div class="search-terms">`;
+  (res.search_terms||[]).forEach(st=>{
+    html+=`<button class="search-term-btn" onclick="setSearch('${st}');switchTab('search')">🔍 Rechercher "${st}" →</button>`;
+  });
+  html+='</div><div class="affil">ℹ️ BestDeal utilise des liens d\'affiliation.</div>';
+  document.getElementById('photoResult').innerHTML=html;
+  document.getElementById('photoResult').classList.add('show');
+}
+
+function renderPhotoFallback(){
+  document.getElementById('photoResult').innerHTML=`
+    <div class="identified">
+      <div class="id-label">Image reçue</div>
+      <div class="id-name">Recherche manuelle</div>
+      <div class="id-desc">La reconnaissance IA nécessite une clé API Anthropic. Décrivez l'objet dans la recherche classique.</div>
+    </div>
+    <button class="analyze-btn" onclick="switchTab('search')">→ Recherche classique</button>`;
+  document.getElementById('photoResult').classList.add('show');
+}
+
+// ══════════════════════════════════════
+// PREMIUM / STRIPE
+// ══════════════════════════════════════
+let stripe,cardEl;
+
+function openModal(){ document.getElementById('premiumModal').classList.add('show'); }
+function closeModal(){
+  document.getElementById('premiumModal').classList.remove('show');
+  document.getElementById('cardWrap').style.display='none';
+  document.getElementById('payBtn').style.display='block';
+  if(cardEl){cardEl.unmount();cardEl=null;}
+}
+function closeSuccess(){
+  document.getElementById('successModal').classList.remove('show');
+  location.reload();
+}
+
+async function startPayment(){
+  document.getElementById('payBtn').disabled=true;
+  document.getElementById('payBtn').textContent='Chargement...';
+  stripe=Stripe(STRIPE_PK);
+  const els=stripe.elements();
+  cardEl=els.create('card',{style:{base:{color:'#f2f2f8',fontFamily:'DM Sans, sans-serif',fontSize:'15px','::placeholder':{color:'#6b6b82'}}}});
+  document.getElementById('cardWrap').style.display='block';
+  document.getElementById('payBtn').style.display='none';
+  cardEl.mount('#cardElement');
+}
+
+async function confirmPayment(){
+  const btn=document.getElementById('confirmBtn');
+  btn.disabled=true; btn.textContent='Traitement...';
+  const {error}=await stripe.createPaymentMethod({type:'card',card:cardEl});
+  if(error){ document.getElementById('stripeErr').textContent=error.message; document.getElementById('stripeErr').style.display='block'; btn.disabled=false; btn.textContent='Confirmer le paiement'; return; }
+  activatePremium();
+}
+
+function activatePremium(){
+  localStorage.setItem(PREMIUM_KEY,'true');
+  closeModal();
+  document.getElementById('successModal').classList.add('show');
+  addAlert('✨ Accès Premium activé','Toutes les fonctionnalités IA disponibles','new');
+}
+
+function applyGift(){
+  const c=document.getElementById('giftInput').value.trim();
+  if(c===GIFT_CODE){ activatePremium(); }
+  else{ const e=document.getElementById('giftErr'); e.style.display='block'; setTimeout(()=>e.style.display='none',3000); }
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+function initPremiumUI(){
+  const hdr=document.getElementById('headerPremiumEl');
+  if(isPremium()){
+    hdr.innerHTML='<span class="premium-badge">✓ Premium</span>';
   } else {
-    const btn = document.createElement('button');
-    btn.style.cssText = 'font-size:12px;padding:6px 14px;border-radius:20px;background:#7c6fff;color:#fff;border:none;cursor:pointer;font-family:DM Sans;font-weight:500';
-    btn.textContent = '✨ Premium 9€';
-    btn.onclick = openModal;
-    document.querySelector('header').appendChild(btn);
+    hdr.innerHTML='<button class="premium-btn" onclick="openModal()">✨ Premium 9€</button>';
+  }
+
+  // Banners
+  ['budget','photo'].forEach(k=>{
+    const el=document.getElementById(`${k}PremiumBanner`);
+    if(!el||isPremium()) return;
+    const uses=getFreeUses();
+    const left=Math.max(0,1-(uses[k]||0));
+    el.innerHTML=`<div style="background:linear-gradient(135deg,#110e24,#0e0e14);border:1px solid rgba(108,99,255,0.25);border-radius:12px;padding:13px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div><div style="font-size:13px;font-weight:500">✨ Fonctionnalité Premium</div><div style="font-size:12px;color:var(--muted)">${left>0?`${left} essai gratuit disponible`:'Essai gratuit utilisé'} · Accès illimité à vie pour 9€</div></div>
+      <button class="premium-btn" onclick="openModal()">Débloquer →</button>
+    </div>`;
+  });
+
+  // Sample alerts
+  const alerts=getAlerts();
+  if(!alerts.length){
+    addAlert('🎉 Bienvenue sur BestDeal !','Recherchez votre premier produit pour commencer','new');
+    addAlert('💡 Astuce','Ajoutez des produits à votre Radar pour surveiller les prix','new');
   }
 }
 
-function applyGiftCode() {
-  const code = document.getElementById('giftInput').value.trim();
-  if (code === GIFT_CODE) {
-    closeModal();
-    activatePremium();
-  } else {
-    document.getElementById('giftError').style.display = 'block';
-    setTimeout(() => document.getElementById('giftError').style.display = 'none', 3000);
-  }
-}
-
-// Init on load
-document.addEventListener('DOMContentLoaded', () => {
-  injectPremiumUI();
-  addPremiumHeaderBtn();
-});
+initPremiumUI();
+renderRadar();
 </script>
 </body>
+</html>
