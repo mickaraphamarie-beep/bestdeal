@@ -21,16 +21,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 #slider{display:flex;height:100%;width:400%;transition:transform .75s cubic-bezier(.86,0,.07,1);}
 .universe{width:25%;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
 .universe canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
-.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 20px 80px;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.20) 55%,transparent 100%);}
-.chip{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:5px 12px;font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px;width:fit-content;}
-.big-t{font-family:'Syne',sans-serif;font-size:clamp(26px,6.5vw,46px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-1.2px;margin-bottom:7px;}
-.tagline{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:14px;}
-.cards-row{display:flex;gap:8px;margin-bottom:14px;}
-.deal{flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:14px;padding:10px 10px;backdrop-filter:blur(12px);min-width:0;overflow:hidden;}
+.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px 72px;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.22) 50%,transparent 100%);}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:18px;padding:4px 10px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:8px;width:fit-content;}
+.big-t{font-family:'Syne',sans-serif;font-size:clamp(22px,5.5vw,38px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-1px;margin-bottom:6px;}
+.tagline{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:10px;}
+.cards-row{display:flex;gap:7px;margin-bottom:10px;}
+.deal{flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:12px;padding:9px 9px;backdrop-filter:blur(12px);min-width:0;overflow:hidden;}
 .deal-site{font-size:10px;color:var(--t3);margin-bottom:2px;}
 .deal-name{font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;line-height:1.3;}
 .deal-old{font-size:10px;color:rgba(255,255,255,.27);text-decoration:line-through;}
-.deal-new{font-size:18px;font-weight:700;font-family:'Syne',sans-serif;margin:1px 0;}
+.deal-new{font-size:15px;font-weight:700;font-family:'Syne',sans-serif;margin:1px 0;}
 .deal-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;display:inline-block;margin-top:1px;}
 .enter-btn{display:flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:22px;padding:13px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s;width:100%;}
 .enter-btn:hover{transform:translateY(-2px);}
@@ -259,14 +259,14 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
     </div>
   </div>
   <div id="tabs-bar">
-    <div class="tbtn on" onclick="showTab('recherche')">🔍 Recherche</div>
-    <div class="tbtn" onclick="showTab('radar')">📡 Radar</div>
-    <div class="tbtn" onclick="showTab('alertes')">🔔 Alertes</div>
-    <div class="tbtn" onclick="showTab('favoris')">❤️ Favoris</div>
-    <div class="tbtn" onclick="showTab('budget')">🤖 Budget IA</div>
-    <div class="tbtn" onclick="showTab('photo')">📷 Photo</div>
-    <div class="tbtn" onclick="showTab('boutiques')">🏪 Boutiques</div>
-  </div>
+  <div class="tbtn on" onclick="showTab('recherche')">🔍 Recherche</div>
+  <div class="tbtn" onclick="showTab('partenaires')">🏪 Boutiques</div>
+  <div class="tbtn" onclick="showTab('favoris')">❤️ Favoris</div>
+  <div class="tbtn" onclick="showTab('budget')">🤖 Budget IA</div>
+  <div class="tbtn" onclick="showTab('photo')">📷 Photo</div>
+  <div class="tbtn" onclick="showTab('radar')">📡 Radar</div>
+  <div class="tbtn" onclick="showTab('alertes')">🔔 Alertes</div>
+</div>
   <div id="panels">
 
     <!-- RECHERCHE -->
@@ -455,7 +455,15 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
 
 <!-- PREMIUM MODAL -->
 <div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button>
-<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;"><span style="font-size:10px;color:rgba(255,255,255,.3);">Paiement sécurisé :</span><span style="font-size:11px;color:rgba(255,255,255,.4);">💳 Carte</span><span style="font-size:11px;color:rgba(255,255,255,.4);">📱 Klarna</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🔗 Amazon Pay</span></div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
+<div style="text-align:center;margin-top:6px;"><span style="font-size:10px;color:rgba(255,255,255,.22);">🔒 Carte · Klarna · Amazon Pay</span></div>
+<button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button>
+<div style="text-align:center;margin-top:2px;"><span id="promo-dot" onclick="togglePromo()" style="font-size:14px;color:rgba(255,255,255,.08);cursor:pointer;user-select:none;padding:4px 8px;">·</span></div>
+<div id="promo-box" style="display:none;flex-direction:row;gap:6px;margin-top:4px;">
+  <input id="promo-in" placeholder="Code" onkeydown="if(event.key==='Enter')usePromo()" style="flex:1;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.12);border-radius:9px;padding:8px 11px;font-size:12px;color:#fff;font-family:DM Sans,sans-serif;outline:none;">
+  <button onclick="usePromo()" style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:9px;padding:8px 13px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap;">OK</button>
+</div>
+<div id="promo-msg" style="font-size:11px;text-align:center;margin-top:4px;display:none;"></div>
+</div></div>
 
 <script>
 /* HOME SLIDER */
@@ -489,7 +497,7 @@ function openApp(){document.getElementById('home').classList.add('hide');documen
 function closeApp(){document.getElementById('home').classList.remove('hide');document.getElementById('app').classList.remove('show');}
 
 /* TABS */
-const tabs=['recherche','boutiques','partenaires','favoris','budget','photo','radar','alertes'];
+const tabs=['recherche','partenaires','favoris','budget','photo','radar','alertes'];
 function showTab(id){
   // partenaires uses boutiques panel
   const panelId = id === 'partenaires' ? 'boutiques' : id;
@@ -530,24 +538,81 @@ document.getElementById('openS').addEventListener('click',()=>{
 
 /* Search products database */
 const PRODUCTS = [
-  {name:'iPhone 15 Pro 256GB', sites:'Amazon · Fnac · Cdiscount', old:'1 229€', price:'949€', save:'-23%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'MacBook Air M3 13"', sites:'Cdiscount · Amazon · Fnac', old:'1 499€', price:'1 099€', save:'-27%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Samsung Galaxy S24', sites:'Amazon · Samsung · Fnac', old:'899€', price:'649€', save:'-28%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Écouteurs Sony WF-1000XM5', sites:'AliExpress · Amazon · Fnac', old:'289€', price:'149€', save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Robot aspirateur Roborock S7', sites:'Temu · Amazon · Cdiscount', old:'399€', price:'219€', save:'-45%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'AirPods Pro 2', sites:'Amazon · Fnac · Apple', old:'279€', price:'189€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'PS5 Slim + manette', sites:'Amazon · Cdiscount · Fnac', old:'449€', price:'379€', save:'-16%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'TV Samsung 55" QLED', sites:'Cdiscount · Amazon · Fnac', old:'899€', price:'549€', save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Dyson V15 Detect', sites:'Dyson · Amazon · Fnac', old:'749€', price:'499€', save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Air Fryer Ninja DualZone', sites:'Amazon · ManoMano · Fnac', old:'179€', price:'99€', save:'-45%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
-  {name:'Chaussures Nike Air Max', sites:'AliExpress · Temu · Zalando', old:'129€', price:'67€', save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Gaming PC RTX 4070', sites:'Amazon · Cdiscount · Fnac', old:'1 899€', price:'1 299€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Bose QuietComfort 45', sites:'Amazon · Fnac', old:'329€', price:'199€', save:'-40%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'iPad Pro 11" M4', sites:'Apple · Amazon · Fnac', old:'1 099€', price:'899€', save:'-18%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Montre Galaxy Watch 7', sites:'Samsung · Amazon', old:'299€', price:'199€', save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  // SMARTPHONES
+  {name:'iPhone 17 Pro Max',       sites:'Amazon · Fnac · Cdiscount',         old:'1 499€', price:'1 299€', save:'-13%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'iPhone 17 Pro',           sites:'Amazon · Fnac · Apple',             old:'1 299€', price:'1 099€', save:'-15%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'iPhone 16 Pro Max',       sites:'Amazon · Fnac · Cdiscount',         old:'1 329€', price:'1 049€', save:'-21%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'iPhone 15 Pro 256GB',     sites:'Amazon · Fnac · Cdiscount',         old:'1 229€', price:'849€',   save:'-31%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Samsung Galaxy S25 Ultra',sites:'Samsung · Amazon · Fnac',           old:'1 299€', price:'999€',   save:'-23%', color:'or',        bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Samsung Galaxy S24',      sites:'Amazon · Samsung · Fnac',           old:'899€',   price:'549€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Google Pixel 9 Pro',      sites:'Google · Amazon · Fnac',            old:'999€',   price:'749€',   save:'-25%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
+  {name:'OnePlus 13',              sites:'AliExpress · Amazon',               old:'799€',   price:'549€',   save:'-31%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  // COQUES & ACCESSOIRES PHONE
+  {name:'Coque iPhone 17 Pro Max', sites:'Amazon · AliExpress · Temu',        old:'29€',    price:'8€',     save:'-72%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Coque iPhone 16 Pro',     sites:'Temu · Amazon · AliExpress',        old:'25€',    price:'6€',     save:'-76%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Coque Samsung S25',       sites:'AliExpress · Temu · Amazon',        old:'22€',    price:'5€',     save:'-77%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Chargeur MagSafe 15W',    sites:'Amazon · AliExpress · Temu',        old:'45€',    price:'18€',    save:'-60%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Verre trempé iPhone 17',  sites:'Amazon · Temu · AliExpress',        old:'15€',    price:'4€',     save:'-73%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  // AUDIO
+  {name:'AirPods Pro 2',           sites:'Amazon · Fnac · Apple',             old:'279€',   price:'189€',   save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'AirPods 4',               sites:'Amazon · Fnac · Apple',             old:'149€',   price:'119€',   save:'-20%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Écouteurs Sony WF-1000XM5',sites:'AliExpress · Amazon · Fnac',       old:'289€',   price:'149€',   save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Bose QuietComfort 45',    sites:'Amazon · Fnac',                     old:'329€',   price:'199€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Sony WH-1000XM5',        sites:'Amazon · AliExpress · Fnac',         old:'349€',   price:'249€',   save:'-29%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  // ORDINATEURS
+  {name:'MacBook Air M3 13"',      sites:'Cdiscount · Amazon · Fnac',         old:'1 499€', price:'1 099€', save:'-27%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'MacBook Pro M4',          sites:'Amazon · Apple · Fnac',             old:'1 999€', price:'1 749€', save:'-13%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Dell XPS 15',             sites:'Amazon · Dell · Fnac',              old:'1 799€', price:'1 299€', save:'-28%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'iPad Pro 11" M4',         sites:'Apple · Amazon · Fnac',             old:'1 099€', price:'899€',   save:'-18%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Gaming PC RTX 4070',      sites:'Amazon · Cdiscount · Fnac',         old:'1 899€', price:'1 299€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  // TV & GAMING
+  {name:'PS5 Slim + manette',      sites:'Amazon · Cdiscount · Fnac',         old:'449€',   price:'379€',   save:'-16%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
+  {name:'Xbox Series X',           sites:'Amazon · Fnac · Cdiscount',         old:'499€',   price:'399€',   save:'-20%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
+  {name:'TV Samsung 55" QLED',     sites:'Cdiscount · Amazon · Fnac',         old:'899€',   price:'549€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Nintendo Switch 2',       sites:'Amazon · Fnac · Cdiscount',         old:'349€',   price:'299€',   save:'-14%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
+  // MAISON
+  {name:'Robot aspirateur Roborock S7',sites:'Temu · Amazon · Cdiscount',     old:'399€',   price:'219€',   save:'-45%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Dyson V15 Detect',        sites:'Dyson · Amazon · Fnac',             old:'749€',   price:'499€',   save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Air Fryer Ninja DualZone',sites:'Amazon · ManoMano · Fnac',          old:'179€',   price:'99€',    save:'-45%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
+  {name:'Machine Nespresso Vertuo',sites:'Amazon · Cdiscount · Fnac',         old:'199€',   price:'89€',    save:'-55%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  // MODE
+  {name:'Nike Air Max 270',        sites:'AliExpress · Temu · Zalando',       old:'150€',   price:'67€',    save:'-55%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Adidas Stan Smith',       sites:'AliExpress · Temu · Amazon',        old:'90€',    price:'45€',    save:'-50%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+  {name:'Sac à main tendance',     sites:'AliExpress · Temu',                 old:'89€',    price:'22€',    save:'-75%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
 ];
 
 function doSearch(q){
+  if(!q||!q.trim())return;
+  document.getElementById('sovl').classList.remove('open');
+  openApp();
+  showTab('recherche');
+  const ql=q.toLowerCase().trim();
+  // Score each product
+  const scored = PRODUCTS.map(p=>{
+    let score=0;
+    const pn=p.name.toLowerCase();
+    const words=ql.split(/\s+/);
+    if(pn.includes(ql)) score+=10;
+    words.forEach(w=>{ if(w.length>2&&pn.includes(w)) score+=3; });
+    if(p.sites.toLowerCase().includes(ql)) score+=2;
+    return {...p, score};
+  }).filter(p=>p.score>0).sort((a,b)=>b.score-a.score);
+  const results = scored.length>0 ? scored.slice(0,8) : PRODUCTS.slice(0,6);
+  const grid=document.getElementById('res-grid');
+  if(grid){
+    const title = scored.length>0
+      ? `<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">${scored.length} résultat(s) pour "<strong style="color:#fff;">${q}</strong>"</div>`
+      : `<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">Aucun résultat exact — voici les meilleures offres du moment</div>`;
+    grid.innerHTML = title + results.map(p=>`
+      <div class="res-card">
+        <div><div class="rc-name">${p.name}</div><div class="rc-sites">${p.sites}</div></div>
+        <div class="rc-p"><div class="rc-old">${p.old}</div><div class="rc-new" style="color:${p.color};">${p.price}</div><div class="rc-save" style="background:${p.bg};color:${p.savec};">${p.save}</div></div>
+      </div>`).join('');
+  }
+  const ms=document.getElementById('msearch');
+  if(ms)ms.value=q;
+}
+(q){
   if(!q||!q.trim())return;
   document.getElementById('sovl').classList.remove('open');
   openApp();
@@ -573,6 +638,23 @@ function doSearch(q){
 }
 
 /* PREMIUM */
+function togglePromo(){
+  const box=document.getElementById('promo-box');
+  box.style.display=box.style.display==='flex'?'none':'flex';
+}
+function usePromo(){
+  const code=document.getElementById('promo-in').value.trim().toUpperCase();
+  const msg=document.getElementById('promo-msg');
+  if(code==='NINJAMIAPANPAN3'){
+    msg.style.display='block';
+    msg.textContent='✓ Code valide ! Redirection...';
+    setTimeout(()=>{window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');document.getElementById('pmoda').classList.remove('open');},800);
+  } else {
+    msg.style.display='block';
+    msg.style.color='rgba(255,80,80,0.8)';
+    msg.textContent='Code invalide.';
+  }
+}
 function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
 
 /* CANVAS */
