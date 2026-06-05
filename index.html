@@ -2,271 +2,284 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>BestDeal — Comparez tout, payez moins</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--or:#FF5E1A;--or2:rgba(255,94,26,0.18);--gr:#00D478;--gr2:rgba(0,212,120,0.15);--am:#FFB800;--am2:rgba(255,184,0,0.15);--vi:#A855F7;--vi2:rgba(168,85,247,0.15);--t1:#fff;--t2:rgba(255,255,255,0.55);--t3:rgba(255,255,255,0.30);}
+:root{--or:#FF5E1A;--or2:rgba(255,94,26,.18);--gr:#00D478;--gr2:rgba(0,212,120,.15);--am:#FFB800;--am2:rgba(255,184,0,.15);--vi:#A855F7;--vi2:rgba(168,85,247,.15);--t2:rgba(255,255,255,.55);--t3:rgba(255,255,255,.30);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM Sans',sans-serif;}
 
-/* SCREENS */
-#home,#app{position:fixed;inset:0;transition:opacity .45s,transform .45s;}
-#app{opacity:0;pointer-events:none;transform:translateY(28px);background:#080810;overflow:hidden;display:flex;flex-direction:column;}
-#app.show{opacity:1;pointer-events:all;transform:translateY(0);}
-#home.hide{opacity:0;pointer-events:none;transform:translateY(-20px);}
+/* ── SCREENS ── */
+#home,#app{position:fixed;inset:0;transition:opacity .4s,transform .4s;}
+#app{opacity:0;pointer-events:none;transform:translateY(24px);background:#080810;overflow:hidden;display:flex;flex-direction:column;}
+#app.show{opacity:1;pointer-events:all;transform:none;}
+#home.hide{opacity:0;pointer-events:none;}
 
-/* ─── HOME ─── */
-#home{overflow:hidden;}
-#slider{display:flex;height:100%;width:400%;transition:transform .75s cubic-bezier(.86,0,.07,1);}
-.universe{width:25%;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
-.universe canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
-.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px 72px;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.22) 50%,transparent 100%);}
-.chip{display:inline-flex;align-items:center;gap:5px;border-radius:18px;padding:4px 10px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:8px;width:fit-content;}
-.big-t{font-family:'Syne',sans-serif;font-size:clamp(22px,5.5vw,38px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-1px;margin-bottom:6px;}
-.tagline{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:10px;}
+/* ── HOME ── */
+#slider{display:flex;height:100%;width:400%;transition:transform .7s cubic-bezier(.86,0,.07,1);}
+.uni{width:25%;height:100%;position:relative;overflow:hidden;flex-shrink:0;}
+.uni canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.ov{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px 68px;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.2) 52%,transparent 100%);}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:16px;padding:4px 10px;font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;width:fit-content;}
+.big-t{font-family:'Syne',sans-serif;font-size:clamp(20px,5vw,34px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-1px;margin-bottom:5px;}
+.tline{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:10px;}
 .cards-row{display:flex;gap:7px;margin-bottom:10px;}
-.deal{flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:12px;padding:9px 9px;backdrop-filter:blur(12px);min-width:0;overflow:hidden;}
-.deal-site{font-size:10px;color:var(--t3);margin-bottom:2px;}
-.deal-name{font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;line-height:1.3;}
-.deal-old{font-size:10px;color:rgba(255,255,255,.27);text-decoration:line-through;}
+.deal{flex:1;min-width:0;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:11px;padding:9px 9px;backdrop-filter:blur(10px);}
+.deal-site{font-size:9px;color:var(--t3);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.deal-name{font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.deal-old{font-size:9px;color:rgba(255,255,255,.27);text-decoration:line-through;}
 .deal-new{font-size:15px;font-weight:700;font-family:'Syne',sans-serif;margin:1px 0;}
-.deal-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;display:inline-block;margin-top:1px;}
-.enter-btn{display:flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:22px;padding:13px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s;width:100%;}
-.enter-btn:hover{transform:translateY(-2px);}
+.deal-badge{font-size:8px;font-weight:700;padding:2px 5px;border-radius:7px;display:inline-block;}
+.enter-btn{display:flex;align-items:center;justify-content:center;border:none;border-radius:20px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;transition:transform .2s;}
+.enter-btn:hover{transform:translateY(-1px);}
 
-#hnav{position:fixed;top:0;left:0;right:0;z-index:80;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,transparent 100%);}
-.logo{font-family:'Syne',sans-serif;font-size:21px;font-weight:900;color:#fff;letter-spacing:-1px;text-decoration:none;}
-.logo em{font-style:normal;opacity:.36;}
-.srch-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.09);border:.5px solid rgba(255,255,255,.15);border-radius:22px;padding:7px 14px;font-size:12px;color:var(--t2);cursor:pointer;}
-.srch-pill svg{width:13px;height:13px;opacity:.5;}
+/* home nav */
+#hnav{position:fixed;top:0;left:0;right:0;z-index:80;padding:14px 18px 10px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(0,0,0,.55),transparent);}
+.logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-1px;text-decoration:none;}
+.logo em{font-style:normal;opacity:.35;}
+.srch-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.09);border:.5px solid rgba(255,255,255,.15);border-radius:20px;padding:7px 13px;font-size:12px;color:var(--t2);cursor:pointer;}
 
-#cattabs{position:fixed;top:62px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:5px;}
-.ctab{padding:5px 12px;border-radius:17px;font-size:11px;font-weight:500;cursor:pointer;color:var(--t3);background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);transition:all .3s;white-space:nowrap;}
+#cattabs{position:fixed;top:58px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:4px;}
+.ctab{padding:5px 11px;border-radius:15px;font-size:11px;font-weight:500;cursor:pointer;color:var(--t3);background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);transition:all .3s;white-space:nowrap;}
 .ctab.on{color:#fff;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.24);}
 
-#hbottom{position:fixed;bottom:0;left:0;right:0;z-index:80;padding:12px 20px 24px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 100%);}
-.nbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:opacity .3s;user-select:none;}
+#hbottom{position:fixed;bottom:0;left:0;right:0;z-index:80;padding:10px 18px 22px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);}
+.nbtn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:opacity .3s;user-select:none;}
 .nbtn.gone{opacity:0;pointer-events:none;}
 .dots{display:flex;gap:5px;align-items:center;}
 .dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:all .4s;cursor:pointer;}
 .dot.on{width:22px;background:#fff;}
-.hint{font-size:10px;color:rgba(255,255,255,.24);letter-spacing:.10em;text-transform:uppercase;text-align:center;margin-top:5px;}
+.hint{font-size:10px;color:rgba(255,255,255,.22);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-top:5px;}
 
-/* ─── APP ─── */
-#topbar{display:flex;align-items:center;gap:8px;padding:12px 14px 0;flex-shrink:0;border-bottom:.5px solid rgba(255,255,255,.06);}
+/* ── APP ── */
+#topbar{display:flex;align-items:center;gap:8px;padding:10px 14px 0;flex-shrink:0;border-bottom:.5px solid rgba(255,255,255,.06);}
 #back-btn{background:none;border:none;color:var(--t2);font-size:22px;cursor:pointer;padding:0 6px 10px 0;}
 .app-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:-.5px;margin-right:auto;}
-.app-logo em{font-style:normal;opacity:.36;}
-.app-search{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:20px;padding:7px 13px;flex:1;max-width:300px;margin-bottom:12px;}
-.app-search svg{width:12px;height:12px;color:var(--t3);flex-shrink:0;}
+.app-logo em{font-style:normal;opacity:.35;}
+.app-srch{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:18px;padding:6px 12px;flex:1;max-width:280px;margin-bottom:10px;}
+.app-srch svg{width:12px;height:12px;color:var(--t3);flex-shrink:0;}
 #msearch{background:none;border:none;color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;flex:1;outline:none;}
 #msearch::placeholder{color:var(--t3);}
 
 #tabs-bar{display:flex;overflow-x:auto;gap:4px;padding:8px 14px 10px;flex-shrink:0;scrollbar-width:none;}
 #tabs-bar::-webkit-scrollbar{display:none;}
-.tbtn{padding:7px 14px;border-radius:18px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);color:var(--t2);transition:all .22s;font-family:'DM Sans',sans-serif;flex-shrink:0;}
+.tbtn{padding:7px 13px;border-radius:17px;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);color:var(--t2);transition:all .22s;font-family:'DM Sans',sans-serif;flex-shrink:0;}
 .tbtn.on{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.22);color:#fff;}
 
 #panels{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent;}
 .panel{display:none;}
 .panel.on{display:block;}
-
 .sec-h{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff;margin-bottom:10px;}
 .sec-s{font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6;}
 
-/* RECHERCHE */
-.res-list{display:flex;flex-direction:column;gap:9px;}
-.res-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:background .2s;}
+/* Results */
+.res-list{display:flex;flex-direction:column;gap:8px;}
+.res-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:12px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:background .2s;}
 .res-card:hover{background:rgba(255,255,255,.09);}
-.rc-name{font-size:14px;font-weight:500;color:#fff;margin-bottom:2px;}
-.rc-sites{font-size:11px;color:var(--t3);}
+.rc-name{font-size:13px;font-weight:500;color:#fff;margin-bottom:2px;}
+.rc-sites{font-size:10px;color:var(--t3);}
 .rc-p{text-align:right;flex-shrink:0;}
-.rc-old{font-size:11px;color:rgba(255,255,255,.27);text-decoration:line-through;}
-.rc-new{font-size:20px;font-weight:700;font-family:'Syne',sans-serif;}
-.rc-save{font-size:9px;font-weight:700;padding:2px 7px;border-radius:9px;display:inline-block;margin-top:2px;}
+.rc-old{font-size:10px;color:rgba(255,255,255,.27);text-decoration:line-through;}
+.rc-new{font-size:18px;font-weight:700;font-family:'Syne',sans-serif;}
+.rc-save{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;display:inline-block;margin-top:2px;}
 
-/* RADAR */
-.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.radar-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:13px 12px;}
-.ri{font-size:26px;margin-bottom:7px;}
-.rn{font-size:12px;color:#fff;font-weight:500;margin-bottom:2px;}
-.rd{font-size:10px;color:var(--t3);}
-.rp{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-top:4px;}
-
-/* ALERTES */
-.al-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.al-info{flex:1;}
-.al-name{font-size:13px;color:#fff;font-weight:500;}
-.al-tgt{font-size:11px;color:var(--t2);margin-top:2px;}
-.al-del{background:none;border:none;color:var(--t3);font-size:17px;cursor:pointer;}
-.add-al{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.28);border-radius:13px;padding:12px;font-size:13px;color:var(--or);font-weight:500;cursor:pointer;margin-top:6px;transition:background .2s;}
-.add-al:hover{background:rgba(255,94,26,.22);}
-
-/* FAVORIS */
-.fav-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 13px;display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.fav-e{font-size:22px;width:34px;text-align:center;}
-.fav-info{flex:1;}
-.fav-n{font-size:13px;color:#fff;font-weight:500;}
-.fav-s{font-size:11px;color:var(--t2);margin-top:2px;}
-.fav-p{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;flex-shrink:0;}
-.fav-del{background:none;border:none;color:var(--t3);font-size:17px;cursor:pointer;}
-
-/* BUDGET IA */
-.bud-box{background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);border-radius:15px;padding:16px;}
-.bud-lbl{font-size:11px;color:rgba(168,85,247,.8);margin-bottom:5px;}
-.bud-val{font-family:'Syne',sans-serif;font-size:34px;font-weight:900;color:#fff;}
-input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
-.bud-cats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px;}
-.bcat{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 11px;}
-.bcn{font-size:11px;color:var(--t2);margin-bottom:3px;}
-.bcbar{height:3px;border-radius:2px;background:rgba(255,255,255,.09);margin-bottom:3px;}
-.bcfill{height:100%;border-radius:2px;}
-.bcv{font-size:12px;font-weight:500;color:#fff;}
-.ai-box{background:rgba(168,85,247,.07);border:.5px solid rgba(168,85,247,.16);border-radius:11px;padding:11px 13px;margin-top:12px;}
-.ai-lbl{font-size:10px;color:rgba(168,85,247,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
-.ai-txt{font-size:13px;color:var(--t2);line-height:1.6;}
-
-/* PHOTO */
-.photo-drop{border:1.5px dashed rgba(255,255,255,.16);border-radius:16px;padding:32px 18px;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;transition:border-color .2s;margin-bottom:14px;}
-.photo-drop:hover{border-color:rgba(255,255,255,.32);}
-.pd-icon{font-size:38px;}
-.pd-txt{font-size:13px;color:var(--t2);text-align:center;line-height:1.6;}
-.pd-sub{font-size:11px;color:var(--t3);text-align:center;}
-#ph-input{display:none;}
-.photo-res{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.ph-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:12px;text-align:center;}
-.ph-e{font-size:26px;margin-bottom:5px;}
-.ph-n{font-size:12px;color:#fff;font-weight:500;margin-bottom:3px;}
-.ph-p{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;}
-
-/* BOUTIQUES */
-.bout-search{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);border-radius:17px;padding:8px 13px;margin-bottom:13px;}
-.bout-search svg{width:12px;height:12px;color:var(--t3);}
-.bout-search input{background:none;border:none;color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;flex:1;outline:none;}
-.bout-search input::placeholder{color:var(--t3);}
-.bsect{margin-bottom:16px;}
-.bsect-t{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.10em;margin-bottom:9px;}
+/* Partenaires/Boutiques */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.cat-card{border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;transition:transform .2s;}
+.cat-card:hover{transform:scale(1.03);}
+.cat-icon{font-size:30px;margin-bottom:7px;}
+.cat-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;}
+.cat-sub{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
 .bout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
-.bout-card{background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);border-radius:11px;padding:11px 7px;text-align:center;cursor:pointer;transition:background .2s,transform .2s;}
+.bout-card{background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.09);border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:background .2s,transform .2s;}
 .bout-card:hover{background:rgba(255,255,255,.12);transform:scale(1.04);}
 .bl{font-size:20px;margin-bottom:4px;}
 .bn{font-size:11px;color:#fff;font-weight:500;}
-.bb{font-size:9px;padding:2px 6px;border-radius:8px;margin-top:3px;display:inline-block;}
+.bb{font-size:9px;padding:2px 5px;border-radius:7px;margin-top:3px;display:inline-block;}
+.bsect-t{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin:14px 0 8px;}
 
-/* PREMIUM */
-#prem{position:fixed;bottom:16px;right:14px;z-index:500;background:var(--or);border-radius:20px;padding:9px 16px;display:flex;align-items:center;gap:9px;cursor:pointer;box-shadow:0 5px 22px rgba(255,94,26,.45);transition:transform .2s;}
-#prem:hover{transform:translateY(-2px);}
-.pt{font-size:11px;font-weight:500;color:#fff;}
-.pp2{font-family:'Syne',sans-serif;font-size:14px;font-weight:900;color:#fff;}
+/* Radar */
+.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.radar-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:12px;}
+.ri{font-size:24px;margin-bottom:6px;}
+.rn{font-size:11px;color:#fff;font-weight:500;margin-bottom:2px;}
+.rd{font-size:10px;color:var(--t3);}
+.rp{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-top:3px;}
 
-/* SEARCH OVERLAY */
-#sovl{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.90);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;padding:52px 18px 18px;opacity:0;pointer-events:none;transition:opacity .25s;}
+/* Alertes */
+.al-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 13px;display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.al-name{font-size:13px;color:#fff;font-weight:500;}
+.al-tgt{font-size:10px;color:var(--t2);margin-top:2px;}
+.al-del{background:none;border:none;color:var(--t3);font-size:16px;cursor:pointer;margin-left:auto;}
+.add-al{display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.28);border-radius:12px;padding:11px;font-size:13px;color:var(--or);font-weight:500;cursor:pointer;margin-top:6px;}
+
+/* Favoris */
+.fav-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.fav-e{font-size:22px;width:32px;text-align:center;}
+.fav-n{font-size:13px;color:#fff;font-weight:500;}
+.fav-s{font-size:10px;color:var(--t2);margin-top:2px;}
+.fav-p{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-left:auto;}
+.fav-del{background:none;border:none;color:var(--t3);font-size:16px;cursor:pointer;}
+
+/* Budget IA */
+.bud-box{background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);border-radius:14px;padding:15px;}
+.bud-lbl{font-size:11px;color:rgba(168,85,247,.8);margin-bottom:4px;}
+.bud-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:900;color:#fff;}
+input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
+.bud-cats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px;}
+.bcat{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px;}
+.bcn{font-size:10px;color:var(--t2);margin-bottom:3px;}
+.bcbar{height:3px;border-radius:2px;background:rgba(255,255,255,.09);margin-bottom:3px;}
+.bcfill{height:100%;border-radius:2px;}
+.bcv{font-size:12px;font-weight:500;color:#fff;}
+.ai-box{background:rgba(168,85,247,.07);border:.5px solid rgba(168,85,247,.16);border-radius:10px;padding:10px 12px;margin-top:11px;}
+.ai-lbl{font-size:10px;color:rgba(168,85,247,.7);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
+.ai-txt{font-size:12px;color:var(--t2);line-height:1.6;}
+
+/* Photo */
+.photo-drop{border:1.5px dashed rgba(255,255,255,.16);border-radius:14px;padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;margin-bottom:12px;}
+.ph-res{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ph-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px;text-align:center;}
+
+/* Premium */
+#prem{position:fixed;bottom:14px;right:13px;z-index:500;background:var(--or);border-radius:18px;padding:8px 15px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 20px rgba(255,94,26,.45);}
+#prem:hover{transform:translateY(-1px);}
+
+/* Search overlay */
+#sovl{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.90);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;padding:48px 18px 18px;opacity:0;pointer-events:none;transition:opacity .25s;}
 #sovl.open{opacity:1;pointer-events:all;}
-#sovl input{width:100%;max-width:460px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:13px;padding:13px 17px;font-size:16px;color:#fff;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:13px;}
-#sovl input::placeholder{color:rgba(255,255,255,.3);}
-#scls{position:absolute;top:16px;right:20px;font-size:25px;color:var(--t2);cursor:pointer;background:none;border:none;}
-.stags{display:flex;flex-wrap:wrap;gap:7px;max-width:460px;}
-.stag{padding:6px 13px;border-radius:17px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);font-size:12px;color:var(--t2);cursor:pointer;transition:background .2s;}
+#sovl-input{width:100%;max-width:460px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:13px 16px;font-size:16px;color:#fff;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;}
+#sovl-input::placeholder{color:rgba(255,255,255,.3);}
+#sovl-btn{width:100%;max-width:460px;background:var(--or);border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;margin-bottom:12px;font-family:'DM Sans',sans-serif;}
+#scls{position:absolute;top:14px;right:18px;font-size:24px;color:var(--t2);cursor:pointer;background:none;border:none;}
+.stags{display:flex;flex-wrap:wrap;gap:6px;max-width:460px;}
+.stag{padding:6px 12px;border-radius:16px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.11);font-size:12px;color:var(--t2);cursor:pointer;transition:background .2s;}
 .stag:hover{background:rgba(255,255,255,.14);color:#fff;}
 
-/* PREMIUM MODAL */
+/* Premium modal */
 #pmoda{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.88);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .25s;}
 #pmoda.open{opacity:1;pointer-events:all;}
-.pcard{background:#0F0F1A;border:.5px solid rgba(255,255,255,.12);border-radius:22px;padding:26px 22px;max-width:360px;width:100%;}
-.pcard h2{font-family:'Syne',sans-serif;font-size:21px;font-weight:900;color:#fff;margin-bottom:3px;}
-.pcard p{font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.6;}
-.pfts{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
-.pf{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--t2);}
-.pf span{font-size:15px;}
-.pbuy{width:100%;background:var(--or);border:none;border-radius:13px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Syne',sans-serif;transition:background .2s;}
-.pbuy:hover{background:#e04e10;}
-.pcls{width:100%;background:none;border:.5px solid rgba(255,255,255,.13);border-radius:13px;padding:10px;font-size:13px;color:var(--t2);cursor:pointer;margin-top:9px;font-family:'DM Sans',sans-serif;}
+.pcard{background:#0F0F1A;border:.5px solid rgba(255,255,255,.12);border-radius:20px;padding:24px 20px;max-width:360px;width:100%;}
+.pcard h2{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:3px;}
+.pcard p{font-size:12px;color:var(--t2);margin-bottom:16px;line-height:1.6;}
+.pfts{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+.pf{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);}
+.pbuy{width:100%;background:var(--or);border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Syne',sans-serif;}
+.pcls{width:100%;background:none;border:.5px solid rgba(255,255,255,.13);border-radius:12px;padding:10px;font-size:13px;color:var(--t2);cursor:pointer;margin-top:8px;font-family:'DM Sans',sans-serif;}
 </style>
 </head>
 <body>
 
-<!-- HOME -->
+<!-- ═══════════ HOME ═══════════ -->
 <div id="home">
   <nav id="hnav">
     <a class="logo" href="#">Best<em>Deal</em></a>
-    <div class="srch-pill" id="openS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Rechercher...</div>
+    <div class="srch-pill" id="openS">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Rechercher...
+    </div>
   </nav>
+
   <div id="cattabs">
     <div class="ctab on" onclick="goTo(0)">🛍 Shopping</div>
     <div class="ctab" onclick="goTo(1)">✈️ Voyage</div>
     <div class="ctab" onclick="goTo(2)">🚗 Véhicules</div>
     <div class="ctab" onclick="goTo(3)">💻 High-Tech</div>
   </div>
+
   <div id="slider">
-    <div class="universe"><canvas id="c0"></canvas><div class="ov">
-      <div class="chip" style="background:rgba(255,94,26,.18);color:#FF7A40;">🛍 Shopping général</div>
-      <div class="big-t">Les meilleures<br>offres du jour</div>
-      <div class="tagline">Amazon, Temu, AliExpress, Fnac comparés en temps réel</div>
-      <div class="cards-row">
-        <div class="deal"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Écouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
-        <div class="deal"><div class="deal-site">Temu vs Fnac</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
+    <!-- SHOPPING -->
+    <div class="uni" id="u0"><canvas id="c0"></canvas>
+      <div class="ov">
+        <div class="chip" style="background:rgba(255,94,26,.18);color:#FF7A40;">🛍 Shopping général</div>
+        <div class="big-t">Les meilleures<br>offres du jour</div>
+        <div class="tline">Amazon, Temu, AliExpress, Fnac comparés</div>
+        <div class="cards-row">
+          <div class="deal"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Écouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
+          <div class="deal"><div class="deal-site">Temu vs Fnac</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
+        </div>
+        <button class="enter-btn" style="background:var(--or);color:#fff;box-shadow:0 4px 18px rgba(255,94,26,.4);" onclick="openApp()">Explorer toutes les offres →</button>
       </div>
-      <button class="enter-btn" style="background:var(--or);color:#fff;box-shadow:0 5px 20px rgba(255,94,26,.4);" onclick="openApp()">Explorer toutes les offres →</button>
-    </div></div>
-    <div class="universe"><canvas id="c1"></canvas><div class="ov">
-      <div class="chip" style="background:var(--gr2);color:#00E88A;">✈️ Voyage</div>
-      <div class="big-t">Partez plus loin<br>pour moins cher</div>
-      <div class="tagline">Vols, hôtels, séjours — Skyscanner, Kayak, Booking comparés</div>
-      <div class="cards-row">
-        <div class="deal"><div class="deal-site">Skyscanner vs Kayak</div><div class="deal-name">Paris → Ibiza A/R</div><div class="deal-old">210€</div><div class="deal-new" style="color:var(--gr);">67€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-68%</div></div>
-        <div class="deal"><div class="deal-site">Booking vs Hotels.com</div><div class="deal-name">Hôtel Barcelone 3j</div><div class="deal-old">480€</div><div class="deal-new" style="color:var(--gr);">195€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-59%</div></div>
+    </div>
+    <!-- VOYAGE -->
+    <div class="uni" id="u1"><canvas id="c1"></canvas>
+      <div class="ov">
+        <div class="chip" style="background:var(--gr2);color:#00E88A;">✈️ Voyage</div>
+        <div class="big-t">Partez plus loin<br>pour moins cher</div>
+        <div class="tline">Skyscanner, Booking, Kayak comparés</div>
+        <div class="cards-row">
+          <div class="deal"><div class="deal-site">Skyscanner vs Kayak</div><div class="deal-name">Paris → Ibiza A/R</div><div class="deal-old">210€</div><div class="deal-new" style="color:var(--gr);">67€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-68%</div></div>
+          <div class="deal"><div class="deal-site">Booking vs Hotels.com</div><div class="deal-name">Hôtel Barcelone 3j</div><div class="deal-old">480€</div><div class="deal-new" style="color:var(--gr);">195€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-59%</div></div>
+        </div>
+        <button class="enter-btn" style="background:var(--gr);color:#023a1e;box-shadow:0 4px 18px rgba(0,212,120,.35);" onclick="openApp()">Explorer les voyages →</button>
       </div>
-      <button class="enter-btn" style="background:var(--gr);color:#023a1e;box-shadow:0 5px 20px rgba(0,212,120,.35);" onclick="openApp()">Explorer les voyages →</button>
-    </div></div>
-    <div class="universe"><canvas id="c2"></canvas><div class="ov">
-      <div class="chip" style="background:var(--am2);color:#FFD040;">🚗 Véhicules</div>
-      <div class="big-t">Votre prochain<br>bolide vous attend</div>
-      <div class="tagline">AutoScout24, LeBonCoin, La Centrale réunis en un clic</div>
-      <div class="cards-row">
-        <div class="deal"><div class="deal-site">AutoScout vs LeBonCoin</div><div class="deal-name">Peugeot 308 SW 2022</div><div class="deal-old">24 000€</div><div class="deal-new" style="color:var(--am);">17 500€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
-        <div class="deal"><div class="deal-site">AutoScout</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+    </div>
+    <!-- VEHICULES -->
+    <div class="uni" id="u2"><canvas id="c2"></canvas>
+      <div class="ov">
+        <div class="chip" style="background:var(--am2);color:#FFD040;">🚗 Véhicules</div>
+        <div class="big-t">Votre prochain<br>bolide vous attend</div>
+        <div class="tline">AutoScout24, LeBonCoin, La Centrale</div>
+        <div class="cards-row">
+          <div class="deal"><div class="deal-site">AutoScout vs LeBonCoin</div><div class="deal-name">Peugeot 308 SW 2022</div><div class="deal-old">24 000€</div><div class="deal-new" style="color:var(--am);">17 500€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+          <div class="deal"><div class="deal-site">AutoScout</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+        </div>
+        <button class="enter-btn" style="background:var(--am);color:#2a1e00;box-shadow:0 4px 18px rgba(255,184,0,.35);" onclick="openApp()">Explorer les véhicules →</button>
       </div>
-      <button class="enter-btn" style="background:var(--am);color:#2a1e00;box-shadow:0 5px 20px rgba(255,184,0,.35);" onclick="openApp()">Explorer les véhicules →</button>
-    </div></div>
-    <div class="universe"><canvas id="c3"></canvas><div class="ov">
-      <div class="chip" style="background:var(--vi2);color:#C080FF;">💻 High-Tech</div>
-      <div class="big-t">La tech au<br>vrai bon prix</div>
-      <div class="tagline">MacBook, iPhone, PS5 — Amazon, Fnac, Cdiscount comparés</div>
-      <div class="cards-row">
-        <div class="deal"><div class="deal-site">Amazon vs Fnac</div><div class="deal-name">iPhone 15 Pro 256GB</div><div class="deal-old">1 229€</div><div class="deal-new" style="color:var(--vi);">949€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-23%</div></div>
-        <div class="deal"><div class="deal-site">Cdiscount vs Amazon</div><div class="deal-name">MacBook Air M3 13"</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
+    </div>
+    <!-- HIGH-TECH -->
+    <div class="uni" id="u3"><canvas id="c3"></canvas>
+      <div class="ov">
+        <div class="chip" style="background:var(--vi2);color:#C080FF;">💻 High-Tech</div>
+        <div class="big-t">La tech au<br>vrai bon prix</div>
+        <div class="tline">MacBook, iPhone, PS5 comparés</div>
+        <div class="cards-row">
+          <div class="deal"><div class="deal-site">Amazon vs Fnac</div><div class="deal-name">iPhone 15 Pro 256GB</div><div class="deal-old">1 229€</div><div class="deal-new" style="color:var(--vi);">949€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-23%</div></div>
+          <div class="deal"><div class="deal-site">Cdiscount vs Amazon</div><div class="deal-name">MacBook Air M3</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
+        </div>
+        <button class="enter-btn" style="background:var(--vi);color:#fff;box-shadow:0 4px 18px rgba(168,85,247,.35);" onclick="openApp()">Explorer la high-tech →</button>
       </div>
-      <button class="enter-btn" style="background:var(--vi);color:#fff;box-shadow:0 5px 20px rgba(168,85,247,.35);" onclick="openApp()">Explorer la high-tech →</button>
-    </div></div>
+    </div>
   </div>
+
   <div id="hbottom">
     <div class="nbtn gone" id="bl" onclick="go(-1)">‹</div>
-    <div style="display:flex;flex-direction:column;align-items:center;"><div class="dots" id="dots"><div class="dot on" onclick="goTo(0)"></div><div class="dot" onclick="goTo(1)"></div><div class="dot" onclick="goTo(2)"></div><div class="dot" onclick="goTo(3)"></div></div><div class="hint">Balayer pour explorer</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="dots" id="dots">
+        <div class="dot on" onclick="goTo(0)"></div>
+        <div class="dot" onclick="goTo(1)"></div>
+        <div class="dot" onclick="goTo(2)"></div>
+        <div class="dot" onclick="goTo(3)"></div>
+      </div>
+      <div class="hint">Balayer pour explorer</div>
+    </div>
     <div class="nbtn" id="br" onclick="go(1)">›</div>
   </div>
 </div>
 
-<!-- APP -->
+<!-- ═══════════ APP ═══════════ -->
 <div id="app">
   <div id="topbar">
     <button id="back-btn" onclick="closeApp()">←</button>
-    <a class="app-logo" href="#">Best<em>Deal</em></a>
-    <div class="app-search" style="margin-bottom:0;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="msearch" type="text" placeholder="iPhone 15, robot, vol Paris..." onkeydown="if(event.key==='Enter')doSearch(this.value)" oninput="if(this.value.length>1)showTab('recherche')">
+    <span class="app-logo">Best<em>Deal</em></span>
+    <div class="app-srch" style="margin-bottom:0;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="msearch" type="text" placeholder="iPhone 17, robot, vol Paris..." onkeydown="if(event.key==='Enter')doSearch(this.value)">
     </div>
   </div>
+
   <div id="tabs-bar">
-  <div class="tbtn on" onclick="showTab('recherche')">🔍 Recherche</div>
-  <div class="tbtn" onclick="showTab('partenaires')">🏪 Boutiques</div>
-  <div class="tbtn" onclick="showTab('favoris')">❤️ Favoris</div>
-  <div class="tbtn" onclick="showTab('budget')">🤖 Budget IA</div>
-  <div class="tbtn" onclick="showTab('photo')">📷 Photo</div>
-  <div class="tbtn" onclick="showTab('radar')">📡 Radar</div>
-  <div class="tbtn" onclick="showTab('alertes')">🔔 Alertes</div>
-</div>
+    <div class="tbtn on"  onclick="showTab('recherche')">🔍 Recherche</div>
+    <div class="tbtn"     onclick="showTab('partenaires')">🏪 Boutiques</div>
+    <div class="tbtn"     onclick="showTab('favoris')">❤️ Favoris</div>
+    <div class="tbtn"     onclick="showTab('budget')">🤖 Budget IA</div>
+    <div class="tbtn"     onclick="showTab('photo')">📷 Photo</div>
+    <div class="tbtn"     onclick="showTab('radar')">📡 Radar</div>
+    <div class="tbtn"     onclick="showTab('alertes')">🔔 Alertes</div>
+  </div>
+
   <div id="panels">
 
     <!-- RECHERCHE -->
@@ -275,48 +288,53 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
         <div class="res-card"><div><div class="rc-name">Écouteurs Sony WF-1000XM5</div><div class="rc-sites">AliExpress · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">289€</div><div class="rc-new" style="color:var(--or);">149€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-48%</div></div></div>
         <div class="res-card"><div><div class="rc-name">Robot aspirateur Roborock S7</div><div class="rc-sites">Temu · Amazon · Cdiscount</div></div><div class="rc-p"><div class="rc-old">399€</div><div class="rc-new" style="color:var(--or);">219€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-45%</div></div></div>
         <div class="res-card"><div><div class="rc-name">Galaxy Watch 6 Classic</div><div class="rc-sites">Samsung · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">299€</div><div class="rc-new" style="color:var(--or);">189€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-37%</div></div></div>
-        <div class="res-card"><div><div class="rc-name">Air Fryer Ninja DualZone</div><div class="rc-sites">Amazon · ManoMano · Fnac</div></div><div class="rc-p"><div class="rc-old">179€</div><div class="rc-new" style="color:var(--or);">99€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-45%</div></div></div>
-        <div class="res-card"><div><div class="rc-name">Aspirateur Dyson V15 Detect</div><div class="rc-sites">Dyson · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">749€</div><div class="rc-new" style="color:var(--or);">499€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-33%</div></div></div>
+        <div class="res-card"><div><div class="rc-name">Air Fryer Ninja DualZone</div><div class="rc-sites">Amazon · ManoMano · Fnac</div></div><div class="rc-p"><div class="rc-old">179€</div><div class="rc-new" style="color:var(--gr);">99€</div><div class="rc-save" style="background:var(--gr2);color:#00E88A;">-45%</div></div></div>
+        <div class="res-card"><div><div class="rc-name">Dyson V15 Detect</div><div class="rc-sites">Dyson · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">749€</div><div class="rc-new" style="color:var(--or);">499€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-33%</div></div></div>
       </div>
     </div>
 
-    <!-- RADAR -->
-    <div id="p-radar" class="panel">
-      <div class="sec-h">📡 Radar des prix</div>
-      <div class="sec-s">Produits dont le prix a le plus baissé ces 24h</div>
-      <div class="radar-grid">
-        <div class="radar-card"><div class="ri">🎧</div><div class="rn">AirPods Pro 2</div><div class="rd">Amazon · il y a 2h</div><div class="rp" style="color:var(--gr);">-31%</div></div>
-        <div class="radar-card"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">Fnac · il y a 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
-        <div class="radar-card"><div class="ri">📺</div><div class="rn">TV Samsung 55" QLED</div><div class="rd">Cdiscount · il y a 8h</div><div class="rp" style="color:var(--gr);">-40%</div></div>
-        <div class="radar-card"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">Amazon · il y a 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
-        <div class="radar-card"><div class="ri">📱</div><div class="rn">Samsung Galaxy S24</div><div class="rd">Fnac · il y a 3h</div><div class="rp" style="color:var(--gr);">-25%</div></div>
-        <div class="radar-card"><div class="ri">🖨️</div><div class="rn">HP LaserJet Pro</div><div class="rd">Amazon · il y a 6h</div><div class="rp" style="color:var(--gr);">-35%</div></div>
+    <!-- PARTENAIRES / BOUTIQUES -->
+    <div id="p-partenaires" class="panel">
+      <div class="sec-h">🏪 Boutiques &amp; Partenaires</div>
+      <div class="cat-grid">
+        <div class="cat-card" style="background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.25);" onclick="goTo(0);closeApp();">
+          <div class="cat-icon">🛍️</div><div class="cat-name">Shopping</div><div class="cat-sub">Amazon · Temu · AliExpress</div>
+        </div>
+        <div class="cat-card" style="background:rgba(0,212,120,.10);border:.5px solid rgba(0,212,120,.22);" onclick="goTo(1);closeApp();">
+          <div class="cat-icon">✈️</div><div class="cat-name">Voyage</div><div class="cat-sub">Skyscanner · Booking</div>
+        </div>
+        <div class="cat-card" style="background:rgba(255,184,0,.10);border:.5px solid rgba(255,184,0,.22);" onclick="goTo(2);closeApp();">
+          <div class="cat-icon">🚗</div><div class="cat-name">Véhicules</div><div class="cat-sub">AutoScout · LeBonCoin</div>
+        </div>
+        <div class="cat-card" style="background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);" onclick="goTo(3);closeApp();">
+          <div class="cat-icon">💻</div><div class="cat-name">High-Tech</div><div class="cat-sub">Amazon · Fnac · Cdiscount</div>
+        </div>
       </div>
-    </div>
-
-    <!-- ALERTES -->
-    <div id="p-alertes" class="panel">
-      <div class="sec-h">🔔 Mes alertes prix</div>
-      <div class="sec-s">Notifié dès que le prix cible est atteint</div>
-      <div id="al-list">
-        <div class="al-item"><div class="al-dot" style="background:var(--or);"></div><div class="al-info"><div class="al-name">iPhone 15 Pro 256GB</div><div class="al-tgt">Cible : sous 900€ · Actuel : 1 049€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
-        <div class="al-item"><div class="al-dot" style="background:var(--gr);"></div><div class="al-info"><div class="al-name">MacBook Air M3</div><div class="al-tgt">Cible : sous 1 100€ · Actuel : 1 229€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
-        <div class="al-item"><div class="al-dot" style="background:var(--am);"></div><div class="al-info"><div class="al-name">PS5 Slim Digital</div><div class="al-tgt">Cible : sous 350€ · Actuel : 399€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
+      <div class="bsect-t">🔥 Partenaires actifs</div>
+      <div class="bout-grid">
+        <div class="bout-card" onclick="window.open('https://www.amazon.fr/?tag=bestdeal0e9d0-21','_blank')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
+        <div class="bout-card" onclick="window.open('https://s.click.aliexpress.com/e/_c3EseUaH','_blank')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
+        <div class="bout-card" onclick="window.open('https://temu.to/k/eai20w7hh1c','_blank')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
       </div>
-      <div class="add-al" onclick="addAl()">+ Créer une nouvelle alerte</div>
+      <div class="bsect-t">⏳ Bientôt disponibles</div>
+      <div class="bout-grid">
+        <div class="bout-card" style="opacity:.5"><div class="bl">📚</div><div class="bn">Fnac</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">🏬</div><div class="bn">Cdiscount</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">🔨</div><div class="bn">ManoMano</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">🎨</div><div class="bn">Etsy</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">👕</div><div class="bn">Vinted</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+      </div>
     </div>
 
     <!-- FAVORIS -->
     <div id="p-favoris" class="panel">
       <div class="sec-h">❤️ Mes favoris</div>
-      <div style="margin-bottom:12px;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 13px;font-size:12px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:8px;">
-        <span>💡</span> Cliquez sur le ❤️ sur n'importe quelle offre ou boutique pour l'ajouter ici
-      </div>
+      <div style="margin-bottom:12px;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-radius:11px;padding:9px 12px;font-size:12px;color:rgba(255,255,255,.35);">💡 Appuyez sur ❤️ sur n'importe quelle offre pour l'ajouter ici</div>
       <div id="fav-list">
-        <div class="fav-item"><div class="fav-e">🎧</div><div class="fav-info"><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · Ajouté il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item"><div class="fav-e">💻</div><div class="fav-info"><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · Ajouté il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item"><div class="fav-e">📷</div><div class="fav-info"><div class="fav-n">Sony A7 IV</div><div class="fav-s">Amazon · Ajouté il y a 1 semaine</div></div><div class="fav-p" style="color:var(--am);">2 299€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item"><div class="fav-e">🎮</div><div class="fav-info"><div class="fav-n">PS5 + Manette DualSense</div><div class="fav-s">Cdiscount · Ajouté hier</div></div><div class="fav-p" style="color:var(--gr);">449€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item"><div class="fav-e">🎧</div><div><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item"><div class="fav-e">💻</div><div><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item"><div class="fav-e">🎮</div><div><div class="fav-n">PS5 Slim Digital</div><div class="fav-s">Cdiscount · hier</div></div><div class="fav-p" style="color:var(--gr);">399€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
       </div>
     </div>
 
@@ -341,244 +359,177 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
     <!-- PHOTO -->
     <div id="p-photo" class="panel">
       <div class="sec-h">📷 Recherche par photo</div>
-      <div class="sec-s">Photographiez un produit pour trouver le meilleur prix instantanément</div>
+      <div class="sec-s">Photographiez un produit pour trouver le meilleur prix</div>
       <div class="photo-drop" id="pdrop" onclick="document.getElementById('ph-input').click()">
-        <div class="pd-icon">📸</div>
-        <div class="pd-txt">Prendre une photo ou choisir<br>une image de votre galerie</div>
-        <div class="pd-sub">JPG, PNG, WEBP · Résultat en 2 secondes</div>
+        <div style="font-size:38px;">📸</div>
+        <div style="font-size:13px;color:var(--t2);text-align:center;line-height:1.6;">Prendre une photo ou<br>choisir dans la galerie</div>
+        <div style="font-size:11px;color:var(--t3);">JPG · PNG · WEBP</div>
       </div>
-      <input type="file" id="ph-input" accept="image/*" onchange="handlePhoto(this)">
-      <div class="photo-res" id="ph-res" style="display:none;">
-        <div class="ph-card"><div class="ph-e">🎧</div><div class="ph-n">Modèle identique</div><div class="ph-p" style="color:var(--gr);">28€</div></div>
-        <div class="ph-card"><div class="ph-e">📦</div><div class="ph-n">Produit similaire</div><div class="ph-p" style="color:var(--or);">34€</div></div>
-        <div class="ph-card"><div class="ph-e">⭐</div><div class="ph-n">Mieux noté</div><div class="ph-p" style="color:var(--am);">52€</div></div>
-        <div class="ph-card"><div class="ph-e">🏷️</div><div class="ph-n">Version Pro</div><div class="ph-p" style="color:var(--vi);">67€</div></div>
-      </div>
-    </div>
-
-    <!-- BOUTIQUES -->
-    <div id="p-boutiques" class="panel">
-      <div class="sec-h">🏪 Boutiques partenaires</div>
-      <div class="bout-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" placeholder="Rechercher une boutique..." oninput="filterB(this.value)" id="bsrch">
-      </div>
-      <div id="bcont">
-        <div class="bsect">
-          <div class="bsect-t">🔥 Actifs maintenant</div>
-          <div class="bout-grid">
-            <div class="bout-card" data-n="amazon" onclick="goShop('amazon')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
-            <div class="bout-card" data-n="aliexpress" onclick="goShop('aliexpress')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
-            <div class="bout-card" data-n="temu" onclick="goShop('temu')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
-          </div>
-        </div>
-        <div class="bsect">
-          <div class="bsect-t">⏳ En attente (Awin — 14 programmes)</div>
-          <div class="bout-grid">
-            <div class="bout-card" data-n="fnac" style="opacity:.55"><div class="bl">📚</div><div class="bn">Fnac</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-            <div class="bout-card" data-n="cdiscount" style="opacity:.55"><div class="bl">🏬</div><div class="bn">Cdiscount</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-            <div class="bout-card" data-n="manomano" style="opacity:.55"><div class="bl">🔨</div><div class="bn">ManoMano</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-            <div class="bout-card" data-n="ebay" style="opacity:.55"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-            <div class="bout-card" data-n="etsy" style="opacity:.55"><div class="bl">🎨</div><div class="bn">Etsy</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-            <div class="bout-card" data-n="vinted" style="opacity:.55"><div class="bl">👕</div><div class="bn">Vinted</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-          </div>
-        </div>
-        <div class="bsect">
-          <div class="bsect-t">🚀 Phase 2</div>
-          <div class="bout-grid">
-            <div class="bout-card" data-n="leboncoin" style="opacity:.35"><div class="bl">🟠</div><div class="bn">LeBonCoin</div><div class="bb" style="background:rgba(255,255,255,.05);color:var(--t3);">Phase 2</div></div>
-            <div class="bout-card" data-n="autoscout" style="opacity:.35"><div class="bl">🚗</div><div class="bn">AutoScout</div><div class="bb" style="background:rgba(255,255,255,.05);color:var(--t3);">Phase 2</div></div>
-            <div class="bout-card" data-n="booking" style="opacity:.35"><div class="bl">✈️</div><div class="bn">Booking</div><div class="bb" style="background:rgba(255,255,255,.05);color:var(--t3);">Phase 2</div></div>
-          </div>
-        </div>
+      <input type="file" id="ph-input" accept="image/*" style="display:none;" onchange="handlePhoto(this)">
+      <div class="ph-res" id="ph-res" style="display:none;">
+        <div class="ph-card"><div style="font-size:26px;margin-bottom:5px;">🎧</div><div style="font-size:12px;color:#fff;font-weight:500;margin-bottom:3px;">Modèle identique</div><div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;color:var(--gr);">28€</div></div>
+        <div class="ph-card"><div style="font-size:26px;margin-bottom:5px;">📦</div><div style="font-size:12px;color:#fff;font-weight:500;margin-bottom:3px;">Produit similaire</div><div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;color:var(--or);">34€</div></div>
+        <div class="ph-card"><div style="font-size:26px;margin-bottom:5px;">⭐</div><div style="font-size:12px;color:#fff;font-weight:500;margin-bottom:3px;">Mieux noté</div><div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;color:var(--am);">52€</div></div>
+        <div class="ph-card"><div style="font-size:26px;margin-bottom:5px;">🏷️</div><div style="font-size:12px;color:#fff;font-weight:500;margin-bottom:3px;">Version Pro</div><div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;color:var(--vi);">67€</div></div>
       </div>
     </div>
 
-
-    <!-- PARTENAIRES -->
-    <div id="p-partenaires" class="panel">
-      <div class="sec-h">🤝 Nos partenaires</div>
-      <div class="sec-s">Cliquez sur une catégorie pour découvrir les meilleures offres</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div onclick="goTo(0);closeApp();" style="background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.25);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-          <div style="font-size:32px;margin-bottom:8px;">🛍️</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Shopping</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Amazon · Temu · AliExpress</div>
-        </div>
-        <div onclick="goTo(1);closeApp();" style="background:rgba(0,212,120,.10);border:.5px solid rgba(0,212,120,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-          <div style="font-size:32px;margin-bottom:8px;">✈️</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Voyage</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Skyscanner · Booking · Kayak</div>
-        </div>
-        <div onclick="goTo(2);closeApp();" style="background:rgba(255,184,0,.10);border:.5px solid rgba(255,184,0,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-          <div style="font-size:32px;margin-bottom:8px;">🚗</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Véhicules</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">AutoScout · LeBonCoin · La Centrale</div>
-        </div>
-        <div onclick="goTo(3);closeApp();" style="background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-          <div style="font-size:32px;margin-bottom:8px;">💻</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">High-Tech</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Amazon · Fnac · Cdiscount</div>
-        </div>
-        <div style="background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:16px;padding:18px 14px;text-align:center;opacity:.5;">
-          <div style="font-size:32px;margin-bottom:8px;">🏡</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Maison</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">ManoMano · Leroy Merlin (bientôt)</div>
-        </div>
-        <div style="background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:16px;padding:18px 14px;text-align:center;opacity:.5;">
-          <div style="font-size:32px;margin-bottom:8px;">👗</div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Mode</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Vinted · Etsy (bientôt)</div>
-        </div>
+    <!-- RADAR -->
+    <div id="p-radar" class="panel">
+      <div class="sec-h">📡 Radar des prix</div>
+      <div class="sec-s">Produits dont le prix a le plus baissé ces 24h</div>
+      <div class="radar-grid">
+        <div class="radar-card"><div class="ri">🎧</div><div class="rn">AirPods Pro 2</div><div class="rd">Amazon · il y a 2h</div><div class="rp" style="color:var(--gr);">-31%</div></div>
+        <div class="radar-card"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">Fnac · il y a 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
+        <div class="radar-card"><div class="ri">📺</div><div class="rn">TV Samsung 55" QLED</div><div class="rd">Cdiscount · 8h</div><div class="rp" style="color:var(--gr);">-40%</div></div>
+        <div class="radar-card"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">Amazon · 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
+        <div class="radar-card"><div class="ri">📱</div><div class="rn">Samsung Galaxy S24</div><div class="rd">Fnac · 3h</div><div class="rp" style="color:var(--gr);">-25%</div></div>
+        <div class="radar-card"><div class="ri">🖨️</div><div class="rn">HP LaserJet Pro</div><div class="rd">Amazon · 6h</div><div class="rp" style="color:var(--gr);">-35%</div></div>
       </div>
     </div>
+
+    <!-- ALERTES -->
+    <div id="p-alertes" class="panel">
+      <div class="sec-h">🔔 Mes alertes prix</div>
+      <div class="sec-s">Notifié dès que le prix cible est atteint</div>
+      <div id="al-list">
+        <div class="al-item"><div class="al-dot" style="background:var(--or);"></div><div><div class="al-name">iPhone 15 Pro 256GB</div><div class="al-tgt">Cible : sous 900€ · Actuel : 1 049€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
+        <div class="al-item"><div class="al-dot" style="background:var(--gr);"></div><div><div class="al-name">MacBook Air M3</div><div class="al-tgt">Cible : sous 1 100€ · Actuel : 1 229€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
+        <div class="al-item"><div class="al-dot" style="background:var(--am);"></div><div><div class="al-name">PS5 Slim Digital</div><div class="al-tgt">Cible : sous 350€ · Actuel : 399€</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button></div>
+      </div>
+      <div class="add-al" onclick="addAl()">+ Créer une nouvelle alerte</div>
+    </div>
+
   </div>
 </div>
 
 <!-- PREMIUM BTN -->
-<div id="prem" onclick="document.getElementById('pmoda').classList.add('open')"><span class="pt">Premium</span><span class="pp2">9€/mois</span></div>
+<div id="prem" onclick="document.getElementById('pmoda').classList.add('open')">
+  <span style="font-size:11px;font-weight:500;color:#fff;">Premium</span>
+  <span style="font-family:Syne,sans-serif;font-size:14px;font-weight:900;color:#fff;">9€/mois</span>
+</div>
 
 <!-- SEARCH OVERLAY -->
-<div id="sovl"><button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button><input type="text" id="sovl-input" placeholder="iPhone 15, vol Paris Ibiza, Peugeot 308..." onkeydown="if(event.key==='Enter')doSearch(this.value)">
-  <button onclick="doSearch(document.getElementById('sovl-input').value)" style="background:var(--or);border:none;border-radius:12px;padding:11px 22px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;font-family:DM Sans,sans-serif;max-width:460px;width:100%;margin-bottom:10px;">Rechercher</button><div class="stags">
-  <div class="stag" onclick="doSearch('Meilleures offres')">🔥 Meilleures offres</div>
-  <div class="stag" onclick="doSearch('Smartphones')">📱 Smartphones</div>
-  <div class="stag" onclick="doSearch('Vols pas chers')">✈️ Vols pas chers</div>
-  <div class="stag" onclick="doSearch('Gaming')">🎮 Gaming</div>
-  <div class="stag" onclick="doSearch('Mode Chaussures')">👟 Mode & Chaussures</div>
-  <div class="stag" onclick="doSearch('Maison Déco')">🛋 Maison & Déco</div>
-  <div class="stag" onclick="doSearch('Beauté')">💄 Beauté</div>
-  <div class="stag" onclick="doSearch('Voitures occasion')">🚗 Voitures occasion</div>
-  <div class="stag" onclick="doSearch('TV Audio')">📺 TV & Audio</div>
-  <div class="stag" onclick="doSearch('Électroménager')">🏠 Électroménager</div>
-</div></div>
+<div id="sovl">
+  <button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button>
+  <input id="sovl-input" type="text" placeholder="iPhone 17, vol Paris, Peugeot 308..." onkeydown="if(event.key==='Enter')doSearch(this.value)">
+  <button id="sovl-btn" onclick="doSearch(document.getElementById('sovl-input').value)">🔍 Rechercher</button>
+  <div class="stags">
+    <div class="stag" onclick="doSearch('iPhone 17')">📱 iPhone 17</div>
+    <div class="stag" onclick="doSearch('Smartphones')">📱 Smartphones</div>
+    <div class="stag" onclick="doSearch('Meilleures offres')">🔥 Meilleures offres</div>
+    <div class="stag" onclick="doSearch('Gaming')">🎮 Gaming</div>
+    <div class="stag" onclick="doSearch('Mode Chaussures')">👟 Mode & Chaussures</div>
+    <div class="stag" onclick="doSearch('Maison')">🛋 Maison & Déco</div>
+    <div class="stag" onclick="doSearch('Beauté')">💄 Beauté</div>
+    <div class="stag" onclick="doSearch('Voitures')">🚗 Voitures occasion</div>
+    <div class="stag" onclick="doSearch('TV Audio')">📺 TV & Audio</div>
+    <div class="stag" onclick="doSearch('Électroménager')">🏠 Électroménager</div>
+    <div class="stag" onclick="doSearch('Coque iPhone')">📱 Coques & Accessoires</div>
+    <div class="stag" onclick="doSearch('MacBook')">💻 MacBook</div>
+  </div>
+</div>
 
 <!-- PREMIUM MODAL -->
-<div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button>
-<div style="text-align:center;margin-top:6px;"><span style="font-size:10px;color:rgba(255,255,255,.22);">🔒 Carte · Klarna · Amazon Pay</span></div>
-<button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button>
-<div style="text-align:center;margin-top:2px;"><span id="promo-dot" onclick="togglePromo()" style="font-size:14px;color:rgba(255,255,255,.08);cursor:pointer;user-select:none;padding:4px 8px;">·</span></div>
-<div id="promo-box" style="display:none;flex-direction:row;gap:6px;margin-top:4px;">
-  <input id="promo-in" placeholder="Code" onkeydown="if(event.key==='Enter')usePromo()" style="flex:1;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.12);border-radius:9px;padding:8px 11px;font-size:12px;color:#fff;font-family:DM Sans,sans-serif;outline:none;">
-  <button onclick="usePromo()" style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:9px;padding:8px 13px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap;">OK</button>
+<div id="pmoda">
+  <div class="pcard">
+    <h2>BestDeal Premium</h2>
+    <p>Débloquez tout pour ne plus jamais payer trop cher.</p>
+    <div class="pfts">
+      <div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div>
+      <div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div>
+      <div class="pf"><span>📷</span> Recherche photo illimitée</div>
+      <div class="pf"><span>📡</span> Radar — 50 produits suivis</div>
+      <div class="pf"><span>🚫</span> Zéro publicité</div>
+      <div class="pf"><span>⚡</span> Résultats prioritaires</div>
+    </div>
+    <button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button>
+    <div style="text-align:center;margin-top:6px;"><span style="font-size:10px;color:rgba(255,255,255,.22);">🔒 Carte · Klarna · Amazon Pay</span></div>
+    <button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button>
+    <div style="text-align:center;margin-top:4px;"><span id="pdot" onclick="togglePromo()" style="font-size:13px;color:rgba(255,255,255,.07);cursor:pointer;padding:4px 10px;">·</span></div>
+    <div id="promo-box" style="display:none;flex-direction:row;gap:6px;margin-top:4px;">
+      <input id="promo-in" placeholder="Code" onkeydown="if(event.key==='Enter')usePromo()" style="flex:1;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 10px;font-size:12px;color:#fff;font-family:DM Sans,sans-serif;outline:none;">
+      <button onclick="usePromo()" style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 12px;font-size:12px;color:#fff;cursor:pointer;">OK</button>
+    </div>
+    <div id="promo-msg" style="font-size:11px;text-align:center;margin-top:4px;display:none;"></div>
+  </div>
 </div>
-<div id="promo-msg" style="font-size:11px;text-align:center;margin-top:4px;display:none;"></div>
-</div></div>
 
 <script>
-/* HOME SLIDER */
+/* ══ HOME SLIDER ══ */
 let cur=0;const N=4;
 const sl=document.getElementById('slider');
 const dotsEl=document.querySelectorAll('.dot');
 const ctabs=document.querySelectorAll('.ctab');
 const bl=document.getElementById('bl'),br=document.getElementById('br');
-function goTo(n){cur=Math.max(0,Math.min(N-1,n));sl.style.transform=`translateX(-${cur*25}%)`;dotsEl.forEach((d,i)=>d.classList.toggle('on',i===cur));ctabs.forEach((t,i)=>t.classList.toggle('on',i===cur));bl.classList.toggle('gone',cur===0);br.classList.toggle('gone',cur===N-1);}
+
+function goTo(n){
+  cur=Math.max(0,Math.min(N-1,n));
+  sl.style.transform='translateX(-'+cur*25+'%)';
+  dotsEl.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  ctabs.forEach((t,i)=>t.classList.toggle('on',i===cur));
+  bl.classList.toggle('gone',cur===0);
+  br.classList.toggle('gone',cur===N-1);
+}
 function go(d){goTo(cur+d);}
+
+/* touch */
 let sx=0,drag=false;
 const homeEl=document.getElementById('home');
 homeEl.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;drag=true;},{passive:true});
 homeEl.addEventListener('touchend',e=>{if(!drag)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(dx<0?1:-1);drag=false;},{passive:true});
+/* mouse drag */
 homeEl.addEventListener('mousedown',e=>{sx=e.clientX;drag=true;});
 homeEl.addEventListener('mouseup',e=>{if(!drag)return;const dx=e.clientX-sx;if(Math.abs(dx)>40)go(dx<0?1:-1);drag=false;});
-/* trackpad swipe support */
+homeEl.addEventListener('mouseleave',()=>{drag=false;});
+/* trackpad */
 let wt=0;
 homeEl.addEventListener('wheel',e=>{
-  const now=Date.now();
-  if(now-wt<600)return;
-  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>30){
-    wt=now;
-    go(e.deltaX>0?1:-1);
-  }
+  const now=Date.now();if(now-wt<700)return;
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>25){wt=now;go(e.deltaX>0?1:-1);}
 },{passive:true});
+/* keyboard */
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
 
-/* SCREEN NAV */
+/* ══ SCREEN NAV ══ */
 function openApp(){document.getElementById('home').classList.add('hide');document.getElementById('app').classList.add('show');}
 function closeApp(){document.getElementById('home').classList.remove('hide');document.getElementById('app').classList.remove('show');}
 
-/* TABS */
-const tabs=['recherche','partenaires','favoris','budget','photo','radar','alertes'];
+/* ══ TABS ══ */
+const TABS=['recherche','partenaires','favoris','budget','photo','radar','alertes'];
 function showTab(id){
-  // partenaires uses boutiques panel
-  const panelId = id === 'partenaires' ? 'boutiques' : id;
-  tabs.forEach(t=>{
-    const el=document.getElementById('p-'+t);
-    if(el) el.classList.toggle('on', t===panelId || (panelId==='boutiques' && t==='boutiques'));
-  });
-  document.querySelectorAll('.tbtn').forEach((b,i)=>b.classList.toggle('on',tabs[i]===id));
+  TABS.forEach(t=>{const el=document.getElementById('p-'+t);if(el)el.classList.toggle('on',t===id);});
+  document.querySelectorAll('.tbtn').forEach((b,i)=>b.classList.toggle('on',TABS[i]===id));
   document.getElementById('panels').scrollTop=0;
 }
 
-/* BOUTIQUES SEARCH */
-function filterB(q){document.querySelectorAll('.bout-card').forEach(c=>{c.style.display=(c.dataset.n||'').includes(q.toLowerCase())||!q?'block':'none';});}
-function goShop(n){const u={amazon:'https://www.amazon.fr/?tag=bestdeal0e9d0-21',aliexpress:'https://s.click.aliexpress.com/e/_c3EseUaH',temu:'https://temu.to/k/eai20w7hh1c'};if(u[n])window.open(u[n],'_blank');}
-
-/* PHOTO */
-function handlePhoto(input){if(input.files&&input.files[0]){document.getElementById('pdrop').innerHTML='<div class="pd-icon">✅</div><div class="pd-txt">Image analysée !</div><div class="pd-sub">Recherche en cours...</div>';setTimeout(()=>document.getElementById('ph-res').style.display='grid',900);}}
-
-/* ALERTES */
-function addAl(){const n=prompt('Produit à surveiller ?');const p=prompt('Prix cible (€) ?');if(n&&p){const el=document.createElement('div');el.className='al-item';el.innerHTML=`<div class="al-dot" style="background:var(--vi);"></div><div class="al-info"><div class="al-name">${n}</div><div class="al-tgt">Cible : sous ${p}€ · Surveillance active</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button>`;document.getElementById('al-list').appendChild(el);}}
-
-/* BUDGET */
-function updBudget(v){
-  v=parseInt(v);document.getElementById('bval').textContent=v+'€';
-  const cats=[.60,.20,.13,.07];
-  cats.forEach((r,i)=>{const val=Math.round(v*r);document.getElementById('bc'+i).style.width=(r*100)+'%';document.getElementById('bv'+i).textContent=val+'€';});
-  const msgs={50:'Budget serré. Concentrez-vous sur AliExpress et Temu.',150:'Bon budget ! Les offres AliExpress sur l\'électronique sont excellentes.',300:'Avec 300€, les meilleures opportunités sont sur les écouteurs Sony (-48%) et la TV Samsung (-40%).',500:'Budget confortable. Surveillez les ventes flash Amazon cette semaine.',1000:'Grand budget. Le moment idéal pour le MacBook Air M3 à 1 099€ sur Cdiscount.',2000:'Budget premium. Envisagez l\'équipement photo Sony ou les téléphones haut de gamme.'};
-  const keys=Object.keys(msgs).map(Number).sort((a,b)=>a-b);
-  const k=keys.reduce((p,kk)=>v>=kk?kk:p,keys[0]);
-  document.getElementById('aitxt').textContent=msgs[k];
-}
-
-/* SEARCH */
-document.getElementById('openS').addEventListener('click',()=>{
-  document.getElementById('sovl').classList.add('open');
-  setTimeout(()=>document.getElementById('sovl-input').focus(),100);
-});
-
-/* Search products database */
-const PRODUCTS = [
-  // SMARTPHONES
-  {name:'iPhone 17 Pro Max',       sites:'Amazon · Fnac · Cdiscount',         old:'1 499€', price:'1 299€', save:'-13%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'iPhone 17 Pro',           sites:'Amazon · Fnac · Apple',             old:'1 299€', price:'1 099€', save:'-15%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'iPhone 16 Pro Max',       sites:'Amazon · Fnac · Cdiscount',         old:'1 329€', price:'1 049€', save:'-21%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'iPhone 15 Pro 256GB',     sites:'Amazon · Fnac · Cdiscount',         old:'1 229€', price:'849€',   save:'-31%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Samsung Galaxy S25 Ultra',sites:'Samsung · Amazon · Fnac',           old:'1 299€', price:'999€',   save:'-23%', color:'or',        bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Samsung Galaxy S24',      sites:'Amazon · Samsung · Fnac',           old:'899€',   price:'549€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Google Pixel 9 Pro',      sites:'Google · Amazon · Fnac',            old:'999€',   price:'749€',   save:'-25%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
-  {name:'OnePlus 13',              sites:'AliExpress · Amazon',               old:'799€',   price:'549€',   save:'-31%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  // COQUES & ACCESSOIRES PHONE
-  {name:'Coque iPhone 17 Pro Max', sites:'Amazon · AliExpress · Temu',        old:'29€',    price:'8€',     save:'-72%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Coque iPhone 16 Pro',     sites:'Temu · Amazon · AliExpress',        old:'25€',    price:'6€',     save:'-76%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Coque Samsung S25',       sites:'AliExpress · Temu · Amazon',        old:'22€',    price:'5€',     save:'-77%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Chargeur MagSafe 15W',    sites:'Amazon · AliExpress · Temu',        old:'45€',    price:'18€',    save:'-60%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Verre trempé iPhone 17',  sites:'Amazon · Temu · AliExpress',        old:'15€',    price:'4€',     save:'-73%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  // AUDIO
-  {name:'AirPods Pro 2',           sites:'Amazon · Fnac · Apple',             old:'279€',   price:'189€',   save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'AirPods 4',               sites:'Amazon · Fnac · Apple',             old:'149€',   price:'119€',   save:'-20%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Écouteurs Sony WF-1000XM5',sites:'AliExpress · Amazon · Fnac',       old:'289€',   price:'149€',   save:'-48%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Bose QuietComfort 45',    sites:'Amazon · Fnac',                     old:'329€',   price:'199€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Sony WH-1000XM5',        sites:'Amazon · AliExpress · Fnac',         old:'349€',   price:'249€',   save:'-29%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  // ORDINATEURS
-  {name:'MacBook Air M3 13"',      sites:'Cdiscount · Amazon · Fnac',         old:'1 499€', price:'1 099€', save:'-27%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'MacBook Pro M4',          sites:'Amazon · Apple · Fnac',             old:'1 999€', price:'1 749€', save:'-13%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Dell XPS 15',             sites:'Amazon · Dell · Fnac',              old:'1 799€', price:'1 299€', save:'-28%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'iPad Pro 11" M4',         sites:'Apple · Amazon · Fnac',             old:'1 099€', price:'899€',   save:'-18%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Gaming PC RTX 4070',      sites:'Amazon · Cdiscount · Fnac',         old:'1 899€', price:'1 299€', save:'-32%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  // TV & GAMING
-  {name:'PS5 Slim + manette',      sites:'Amazon · Cdiscount · Fnac',         old:'449€',   price:'379€',   save:'-16%', color:'var(--vi)', bg:'var(--vi2)', savec:'#C080FF'},
-  {name:'Xbox Series X',           sites:'Amazon · Fnac · Cdiscount',         old:'499€',   price:'399€',   save:'-20%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
-  {name:'TV Samsung 55" QLED',     sites:'Cdiscount · Amazon · Fnac',         old:'899€',   price:'549€',   save:'-39%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Nintendo Switch 2',       sites:'Amazon · Fnac · Cdiscount',         old:'349€',   price:'299€',   save:'-14%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
-  // MAISON
-  {name:'Robot aspirateur Roborock S7',sites:'Temu · Amazon · Cdiscount',     old:'399€',   price:'219€',   save:'-45%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Dyson V15 Detect',        sites:'Dyson · Amazon · Fnac',             old:'749€',   price:'499€',   save:'-33%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Air Fryer Ninja DualZone',sites:'Amazon · ManoMano · Fnac',          old:'179€',   price:'99€',    save:'-45%', color:'var(--gr)', bg:'var(--gr2)', savec:'#00E88A'},
-  {name:'Machine Nespresso Vertuo',sites:'Amazon · Cdiscount · Fnac',         old:'199€',   price:'89€',    save:'-55%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  // MODE
-  {name:'Nike Air Max 270',        sites:'AliExpress · Temu · Zalando',       old:'150€',   price:'67€',    save:'-55%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Adidas Stan Smith',       sites:'AliExpress · Temu · Amazon',        old:'90€',    price:'45€',    save:'-50%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
-  {name:'Sac à main tendance',     sites:'AliExpress · Temu',                 old:'89€',    price:'22€',    save:'-75%', color:'var(--or)', bg:'var(--or2)', savec:'#FF7A40'},
+/* ══ SEARCH ══ */
+const PRODS=[
+  {n:'iPhone 17 Pro Max',s:'Amazon · Fnac · Cdiscount',o:'1 499€',p:'1 299€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 17 Pro',s:'Amazon · Fnac · Apple',o:'1 299€',p:'1 099€',sv:'-15%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 16 Pro Max',s:'Amazon · Fnac · Cdiscount',o:'1 329€',p:'999€',sv:'-25%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 15 Pro 256GB',s:'Amazon · Fnac · Cdiscount',o:'1 229€',p:'849€',sv:'-31%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'Coque iPhone 17 Pro Max',s:'Amazon · AliExpress · Temu',o:'29€',p:'8€',sv:'-72%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Coque iPhone 16 Pro',s:'Temu · Amazon · AliExpress',o:'25€',p:'6€',sv:'-76%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Coque Samsung Galaxy S25',s:'AliExpress · Temu · Amazon',o:'22€',p:'5€',sv:'-77%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Samsung Galaxy S25 Ultra',s:'Samsung · Amazon · Fnac',o:'1 299€',p:'999€',sv:'-23%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Samsung Galaxy S24',s:'Amazon · Samsung · Fnac',o:'899€',p:'549€',sv:'-39%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'MacBook Air M3 13"',s:'Cdiscount · Amazon · Fnac',o:'1 499€',p:'1 099€',sv:'-27%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'MacBook Pro M4',s:'Amazon · Apple · Fnac',o:'1 999€',p:'1 749€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'AirPods Pro 2',s:'Amazon · Fnac · Apple',o:'279€',p:'189€',sv:'-32%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'Écouteurs Sony WF-1000XM5',s:'AliExpress · Amazon · Fnac',o:'289€',p:'149€',sv:'-48%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Sony WH-1000XM5',s:'Amazon · AliExpress · Fnac',o:'349€',p:'249€',sv:'-29%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'PS5 Slim + manette',s:'Amazon · Cdiscount · Fnac',o:'449€',p:'379€',sv:'-16%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'Nintendo Switch 2',s:'Amazon · Fnac · Cdiscount',o:'349€',p:'299€',sv:'-14%',c:'var(--gr)',b:'var(--gr2)',sc:'#00E88A'},
+  {n:'TV Samsung 55" QLED',s:'Cdiscount · Amazon · Fnac',o:'899€',p:'549€',sv:'-39%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Robot aspirateur Roborock S7',s:'Temu · Amazon · Cdiscount',o:'399€',p:'219€',sv:'-45%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Dyson V15 Detect',s:'Dyson · Amazon · Fnac',o:'749€',p:'499€',sv:'-33%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Air Fryer Ninja DualZone',s:'Amazon · ManoMano · Fnac',o:'179€',p:'99€',sv:'-45%',c:'var(--gr)',b:'var(--gr2)',sc:'#00E88A'},
+  {n:'Nike Air Max 270',s:'AliExpress · Temu · Zalando',o:'150€',p:'67€',sv:'-55%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Adidas Stan Smith',s:'AliExpress · Temu · Amazon',o:'90€',p:'45€',sv:'-50%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Chargeur MagSafe 15W',s:'Amazon · AliExpress · Temu',o:'45€',p:'18€',sv:'-60%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Verre trempé iPhone 17',s:'Amazon · Temu · AliExpress',o:'15€',p:'4€',sv:'-73%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'iPad Pro 11" M4',s:'Apple · Amazon · Fnac',o:'1 099€',p:'899€',sv:'-18%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
 ];
 
 function doSearch(q){
@@ -587,85 +538,160 @@ function doSearch(q){
   openApp();
   showTab('recherche');
   const ql=q.toLowerCase().trim();
-  // Score each product
-  const scored = PRODUCTS.map(p=>{
-    let score=0;
-    const pn=p.name.toLowerCase();
-    const words=ql.split(/\s+/);
-    if(pn.includes(ql)) score+=10;
-    words.forEach(w=>{ if(w.length>2&&pn.includes(w)) score+=3; });
-    if(p.sites.toLowerCase().includes(ql)) score+=2;
-    return {...p, score};
-  }).filter(p=>p.score>0).sort((a,b)=>b.score-a.score);
-  const results = scored.length>0 ? scored.slice(0,8) : PRODUCTS.slice(0,6);
+  const words=ql.split(/\s+/);
+  const scored=PRODS.map(p=>{
+    let sc=0;const pn=p.n.toLowerCase();
+    if(pn.includes(ql))sc+=10;
+    words.forEach(w=>{if(w.length>2&&pn.includes(w))sc+=3;});
+    if(p.s.toLowerCase().includes(ql))sc+=2;
+    return{...p,sc};
+  }).filter(p=>p.sc>0).sort((a,b)=>b.sc-a.sc);
+  const res=scored.length>0?scored.slice(0,8):PRODS.slice(0,6);
   const grid=document.getElementById('res-grid');
-  if(grid){
-    const title = scored.length>0
-      ? `<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">${scored.length} résultat(s) pour "<strong style="color:#fff;">${q}</strong>"</div>`
-      : `<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">Aucun résultat exact — voici les meilleures offres du moment</div>`;
-    grid.innerHTML = title + results.map(p=>`
-      <div class="res-card">
-        <div><div class="rc-name">${p.name}</div><div class="rc-sites">${p.sites}</div></div>
-        <div class="rc-p"><div class="rc-old">${p.old}</div><div class="rc-new" style="color:${p.color};">${p.price}</div><div class="rc-save" style="background:${p.bg};color:${p.savec};">${p.save}</div></div>
-      </div>`).join('');
-  }
-  const ms=document.getElementById('msearch');
-  if(ms)ms.value=q;
-}
-(q){
-  if(!q||!q.trim())return;
-  document.getElementById('sovl').classList.remove('open');
-  openApp();
-  showTab('recherche');
-  const ql=q.toLowerCase();
-  const matches = PRODUCTS.filter(p=>
-    p.name.toLowerCase().includes(ql)||
-    p.sites.toLowerCase().includes(ql)||
-    ql.split(' ').some(w=>p.name.toLowerCase().includes(w))
-  );
-  const results = matches.length>0 ? matches : PRODUCTS.slice(0,6);
-  const grid=document.getElementById('res-grid');
-  if(grid){
-    grid.innerHTML = results.map(p=>`
-      <div class="res-card">
-        <div><div class="rc-name">${p.name}</div><div class="rc-sites">${p.sites}</div></div>
-        <div class="rc-p"><div class="rc-old">${p.old}</div><div class="rc-new" style="color:${p.color};">${p.price}</div><div class="rc-save" style="background:${p.bg};color:${p.savec};">${p.save}</div></div>
-      </div>`).join('');
-  }
-  // Also update msearch
-  const ms=document.getElementById('msearch');
-  if(ms)ms.value=q;
+  if(!grid)return;
+  const title=scored.length>0
+    ?'<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">'+scored.length+' résultat(s) pour <strong style="color:#fff;">'+q+'</strong></div>'
+    :'<div style="font-size:12px;color:var(--t2);margin-bottom:10px;">Aucun résultat exact — meilleures offres du moment</div>';
+  grid.innerHTML=title+res.map(p=>'<div class="res-card"><div><div class="rc-name">'+p.n+'</div><div class="rc-sites">'+p.s+'</div></div><div class="rc-p"><div class="rc-old">'+p.o+'</div><div class="rc-new" style="color:'+p.c+';">'+p.p+'</div><div class="rc-save" style="background:'+p.b+';color:'+p.sc+';">'+p.sv+'</div></div></div>').join('');
+  const ms=document.getElementById('msearch');if(ms)ms.value=q;
 }
 
-/* PREMIUM */
-function togglePromo(){
-  const box=document.getElementById('promo-box');
-  box.style.display=box.style.display==='flex'?'none':'flex';
+document.getElementById('openS').addEventListener('click',()=>{
+  document.getElementById('sovl').classList.add('open');
+  setTimeout(()=>document.getElementById('sovl-input').focus(),100);
+});
+
+/* ══ PHOTO ══ */
+function handlePhoto(input){
+  if(input.files&&input.files[0]){
+    document.getElementById('pdrop').innerHTML='<div style="font-size:38px;">✅</div><div style="font-size:13px;color:var(--t2);">Image analysée !</div>';
+    setTimeout(()=>{document.getElementById('ph-res').style.display='grid';},800);
+  }
 }
+
+/* ══ ALERTES ══ */
+function addAl(){
+  const n=prompt('Produit à surveiller ?');const p=prompt('Prix cible (€) ?');
+  if(n&&p){const el=document.createElement('div');el.className='al-item';el.innerHTML='<div class="al-dot" style="background:var(--vi);"></div><div><div class="al-name">'+n+'</div><div class="al-tgt">Cible : sous '+p+'€ · Surveillance active</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button>';document.getElementById('al-list').appendChild(el);}
+}
+
+/* ══ BUDGET ══ */
+function updBudget(v){
+  v=parseInt(v);document.getElementById('bval').textContent=v+'€';
+  const cats=[.60,.20,.13,.07];
+  cats.forEach((r,i)=>{const val=Math.round(v*r);document.getElementById('bc'+i).style.width=(r*100)+'%';document.getElementById('bv'+i).textContent=val+'€';});
+  const msgs={50:'Budget serré. Concentrez-vous sur AliExpress et Temu.',150:'Bon budget ! Les offres AliExpress sur l'électronique sont excellentes.',300:'Avec 300€, les meilleures opportunités : écouteurs Sony (-48%) et TV Samsung (-40%).',500:'Budget confortable. Surveillez les ventes flash Amazon cette semaine.',1000:'Grand budget. Moment idéal pour le MacBook Air M3 à 1 099€ sur Cdiscount.',2000:'Budget premium. Envisagez l'équipement photo Sony ou les téléphones haut de gamme.'};
+  const keys=Object.keys(msgs).map(Number).sort((a,b)=>a-b);
+  const k=keys.reduce((pr,kk)=>v>=kk?kk:pr,keys[0]);
+  document.getElementById('aitxt').textContent=msgs[k];
+}
+
+/* ══ PREMIUM ══ */
+function togglePromo(){const b=document.getElementById('promo-box');b.style.display=b.style.display==='flex'?'none':'flex';}
 function usePromo(){
   const code=document.getElementById('promo-in').value.trim().toUpperCase();
   const msg=document.getElementById('promo-msg');
-  if(code==='NINJAMIAPANPAN3'){
-    msg.style.display='block';
-    msg.textContent='✓ Code valide ! Redirection...';
-    setTimeout(()=>{window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');document.getElementById('pmoda').classList.remove('open');},800);
-  } else {
-    msg.style.display='block';
-    msg.style.color='rgba(255,80,80,0.8)';
-    msg.textContent='Code invalide.';
-  }
+  msg.style.display='block';
+  if(code==='NINJAMIAPANPAN3'){msg.style.color='var(--gr)';msg.textContent='✓ Code valide ! Redirection...';setTimeout(()=>{window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');document.getElementById('pmoda').classList.remove('open');},800);}
+  else{msg.style.color='rgba(255,80,80,.8)';msg.textContent='Code invalide.';}
 }
 function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
 
-/* CANVAS */
-function initC(){
-  (function(){const cv=document.getElementById('c0');cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;const ctx=cv.getContext('2d'),W=()=>cv.width,H=()=>cv.height;const IC=['🛍','📦','💳','🏷️','🎁','🛒','📱','👟'];const orbs=IC.map((ic,i)=>({ic,angle:(i/IC.length)*Math.PI*2,r:.17+(i%3)*.07,spd:.005+(i%4)*.002,sz:22+(i%3)*5}));const pr=['34€','89€','22€','159€','45€','12€','299€','67€','8€','199€'];const bl=Array.from({length:14},(_,i)=>({x:Math.random(),y:Math.random(),vy:-(6e-4+Math.random()*4e-4),lb:pr[i%pr.length],a:.15+Math.random()*.25,sz:11+Math.random()*8}));function draw(){const w=W(),h=H();ctx.clearRect(0,0,w,h);ctx.fillStyle='#090B14';ctx.fillRect(0,0,w,h);const g=ctx.createRadialGradient(w*.5,h*.4,0,w*.5,h*.4,w*.5);g.addColorStop(0,'rgba(255,94,26,.22)');g.addColorStop(1,'rgba(255,94,26,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);[.17,.25,.33].forEach(r=>{ctx.beginPath();ctx.arc(w*.5,h*.38,r*w,0,Math.PI*2);ctx.strokeStyle='rgba(255,94,26,.06)';ctx.lineWidth=.5;ctx.stroke();});bl.forEach(b=>{ctx.save();ctx.globalAlpha=b.a;const bw=b.sz*3.2;ctx.fillStyle='rgba(255,80,20,.12)';ctx.strokeStyle='rgba(255,100,40,.28)';ctx.lineWidth=.5;ctx.beginPath();ctx.roundRect(b.x*w-bw/2,b.y*h-b.sz/2-2,bw,b.sz+6,5);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(255,160,110,.95)';ctx.font=`600 ${b.sz}px sans-serif`;ctx.textAlign='center';ctx.fillText(b.lb,b.x*w,b.y*h+b.sz*.38);ctx.restore();b.y+=b.vy;if(b.y<-.06){b.y=1.05;b.x=Math.random();}});orbs.forEach(o=>{o.angle+=o.spd;const ex=w*.5+Math.cos(o.angle)*o.r*w,ey=h*.38+Math.sin(o.angle)*o.r*w*.5;ctx.font=`${o.sz}px serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.65+.3*Math.sin(Date.now()*.001);ctx.fillText(o.ic,ex,ey);ctx.globalAlpha=1;});requestAnimationFrame(draw);}draw();})();
-  (function(){const cv=document.getElementById('c1');cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;const ctx=cv.getContext('2d'),W=()=>cv.width,H=()=>cv.height;const st=Array.from({length:120},()=>({x:Math.random(),y:Math.random()*.65,r:Math.random()*1.5+.3,tw:Math.random()*6}));const pl=[{x:-.1,y:.18,vx:.0014,sz:24,tr:[]},{x:.6,y:.30,vx:.001,sz:17,tr:[]},{x:.25,y:.42,vx:.0018,sz:13,tr:[]}];const cl=Array.from({length:6},()=>({x:Math.random(),y:.1+Math.random()*.45,w:.10+Math.random()*.20,vx:.0002+Math.random()*.0003,a:.05+Math.random()*.07}));function draw(){const w=W(),h=H();ctx.clearRect(0,0,w,h);ctx.fillStyle='#030E18';ctx.fillRect(0,0,w,h);const g=ctx.createRadialGradient(w*.5,h*.6,0,w*.5,h*.6,w*.65);g.addColorStop(0,'rgba(0,200,120,.18)');g.addColorStop(1,'rgba(0,200,120,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);st.forEach(s=>{const a=.3+.55*Math.abs(Math.sin(Date.now()*.0013+s.tw));ctx.beginPath();ctx.arc(s.x*w,s.y*h,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(190,230,255,${a})`;ctx.fill();});cl.forEach(c=>{ctx.save();ctx.globalAlpha=c.a;ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(c.x*w,c.y*h,c.w*w,13,0,0,Math.PI*2);ctx.fill();ctx.restore();c.x+=c.vx;if(c.x>1.25)c.x=-.25;});pl.forEach(p=>{p.tr.push({x:p.x*w,y:p.y*h});if(p.tr.length>40)p.tr.shift();p.tr.forEach((pt,i)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,.7,0,Math.PI*2);ctx.fillStyle=`rgba(0,230,140,${(i/p.tr.length)*.45})`;ctx.fill();});ctx.font=`${p.sz}px serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('✈',p.x*w,p.y*h);p.x+=p.vx;if(p.x>1.15){p.x=-.1;p.tr=[];}});requestAnimationFrame(draw);}draw();})();
-  (function(){const cv=document.getElementById('c2');cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;const ctx=cv.getContext('2d'),W=()=>cv.width,H=()=>cv.height;const da=Array.from({length:20},(_,i)=>({y:i/20,spd:.004+Math.random()*.006}));const li=Array.from({length:10},()=>({x:0,y:Math.random(),vy:.005+Math.random()*.007,side:Math.random()<.5?-.04:.04}));const ca=[{x:-.1,y:.5,vx:.003,ic:'🏎️',sz:26,tr:[]},{x:.3,y:.43,vx:.0022,ic:'🚗',sz:21,tr:[]},{x:.7,y:.55,vx:.0035,ic:'🚙',sz:19,tr:[]}];function draw(){const w=W(),h=H();ctx.clearRect(0,0,w,h);ctx.fillStyle='#0A0804';ctx.fillRect(0,0,w,h);const g=ctx.createRadialGradient(w*.5,h*.5,0,w*.5,h*.5,w*.55);g.addColorStop(0,'rgba(255,160,0,.12)');g.addColorStop(1,'rgba(255,160,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.fillStyle='#0C0906';ctx.beginPath();ctx.moveTo(w*.3,0);ctx.lineTo(w*.7,0);ctx.lineTo(w*.88,h);ctx.lineTo(w*.12,h);ctx.closePath();ctx.fill();ctx.strokeStyle='rgba(255,180,0,.14)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(w*.3,0);ctx.lineTo(w*.12,h);ctx.stroke();ctx.beginPath();ctx.moveTo(w*.7,0);ctx.lineTo(w*.88,h);ctx.stroke();ctx.strokeStyle='rgba(255,180,0,.42)';ctx.setLineDash([14,20]);da.forEach(d=>{const pw=w*.05*d.y,x=w*.5,y=d.y*h;ctx.globalAlpha=d.y*.8;ctx.lineWidth=1+d.y;ctx.beginPath();ctx.moveTo(x-pw,y);ctx.lineTo(x+pw,y);ctx.stroke();d.y+=d.spd;if(d.y>1)d.y=0;});ctx.setLineDash([]);ctx.globalAlpha=1;li.forEach(l=>{const x=w*(.5+l.side*l.y),y=l.y*h;const gr=ctx.createRadialGradient(x,y,0,x,y,24*l.y+4);gr.addColorStop(0,`rgba(255,220,90,${l.y*.75})`);gr.addColorStop(1,'rgba(255,200,0,0)');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,24*l.y+4,0,Math.PI*2);ctx.fill();l.y+=l.vy;if(l.y>1.02){l.y=.02;l.side=Math.random()<.5?-.04:.04;}});ca.forEach(c=>{c.tr.push({x:c.x*w,y:c.y*h});if(c.tr.length>20)c.tr.shift();c.tr.forEach((pt,i)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,.5,0,Math.PI*2);ctx.fillStyle=`rgba(255,200,60,${(i/c.tr.length)*.3})`;ctx.fill();});ctx.font=`${c.sz}px serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.8;ctx.fillText(c.ic,c.x*w,c.y*h);ctx.globalAlpha=1;c.x+=c.vx;if(c.x>1.1){c.x=-.1;c.tr=[];}});requestAnimationFrame(draw);}draw();})();
-  (function(){const cv=document.getElementById('c3');cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;const ctx=cv.getContext('2d'),W=()=>cv.width,H=()=>cv.height;const GX=8,GY=13;const nd=[];for(let i=0;i<=GX;i++)for(let j=0;j<=GY;j++)nd.push({x:i/GX,y:j/GY,tw:Math.random()*6,hot:Math.random()<.22});const pu=Array.from({length:8},()=>({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.003,vy:(Math.random()-.5)*.003,a:.5+Math.random()*.5,r:18+Math.random()*20}));const gl=['01','10','AI','∑','λ','∞','GPU','4K'];const fg=Array.from({length:10},(_,i)=>({x:Math.random(),y:Math.random(),vy:-(5e-4+Math.random()*4e-4),lb:gl[i%gl.length],a:.08+Math.random()*.15,sz:9+Math.random()*7}));function draw(){const w=W(),h=H();ctx.clearRect(0,0,w,h);ctx.fillStyle='#050310';ctx.fillRect(0,0,w,h);const g=ctx.createRadialGradient(w*.5,h*.38,0,w*.5,h*.38,w*.5);g.addColorStop(0,'rgba(160,80,255,.20)');g.addColorStop(1,'rgba(160,80,255,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle='rgba(140,60,240,.07)';ctx.lineWidth=.5;for(let i=0;i<=GX;i++){ctx.beginPath();ctx.moveTo(i/GX*w,0);ctx.lineTo(i/GX*w,h);ctx.stroke();}for(let j=0;j<=GY;j++){ctx.beginPath();ctx.moveTo(0,j/GY*h);ctx.lineTo(w,j/GY*h);ctx.stroke();}nd.forEach(n=>{const a=.12+.7*Math.abs(Math.sin(Date.now()*.0015+n.tw));ctx.beginPath();ctx.arc(n.x*w,n.y*h,n.hot?3:1.5,0,Math.PI*2);ctx.fillStyle=`rgba(${n.hot?'200,90,255':'140,60,240'},${a})`;ctx.fill();});pu.forEach(p=>{const gr=ctx.createRadialGradient(p.x*w,p.y*h,0,p.x*w,p.y*h,p.r);gr.addColorStop(0,`rgba(180,80,255,${p.a*.5})`);gr.addColorStop(1,'rgba(180,80,255,0)');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(p.x*w,p.y*h,p.r,0,Math.PI*2);ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1;});fg.forEach(f=>{ctx.save();ctx.globalAlpha=f.a;ctx.fillStyle='rgba(180,110,255,.9)';ctx.font=`600 ${f.sz}px monospace`;ctx.textAlign='center';ctx.fillText(f.lb,f.x*w,f.y*h);ctx.restore();f.y+=f.vy;if(f.y<-.05){f.y=1.05;f.x=Math.random();}});requestAnimationFrame(draw);}draw();})();
+/* ══ CANVAS ANIMATIONS ══ */
+function initCanvases(){
+  const W=(cv)=>cv.offsetWidth||window.innerWidth/4;
+  const H=(cv)=>cv.offsetHeight||window.innerHeight;
+
+  /* C0 SHOPPING */
+  (function(){
+    const cv=document.getElementById('c0');
+    cv.width=W(cv);cv.height=H(cv);
+    const ctx=cv.getContext('2d');
+    const IC=['🛍','📦','💳','🏷️','🎁','🛒','📱','👟'];
+    const orbs=IC.map((ic,i)=>({ic,angle:(i/IC.length)*Math.PI*2,r:.17+(i%3)*.07,spd:.005+(i%4)*.002,sz:22+(i%3)*5}));
+    const pr=['34€','89€','22€','159€','45€','12€','299€','67€','8€','199€'];
+    const blobs=Array.from({length:12},(_,i)=>({x:Math.random(),y:Math.random(),vy:-(5e-4+Math.random()*4e-4),lb:pr[i%pr.length],a:.15+Math.random()*.25,sz:11+Math.random()*8}));
+    (function draw(){
+      const w=cv.width,h=cv.height;
+      ctx.clearRect(0,0,w,h);ctx.fillStyle='#090B14';ctx.fillRect(0,0,w,h);
+      const g=ctx.createRadialGradient(w*.5,h*.4,0,w*.5,h*.4,w*.5);g.addColorStop(0,'rgba(255,94,26,.22)');g.addColorStop(1,'rgba(255,94,26,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      [.17,.25,.33].forEach(r=>{ctx.beginPath();ctx.arc(w*.5,h*.38,r*w,0,Math.PI*2);ctx.strokeStyle='rgba(255,94,26,.06)';ctx.lineWidth=.5;ctx.stroke();});
+      blobs.forEach(b=>{ctx.save();ctx.globalAlpha=b.a;const bw=b.sz*3.2;ctx.fillStyle='rgba(255,80,20,.12)';ctx.strokeStyle='rgba(255,100,40,.28)';ctx.lineWidth=.5;ctx.beginPath();ctx.roundRect(b.x*w-bw/2,b.y*h-b.sz/2-2,bw,b.sz+6,5);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(255,160,110,.95)';ctx.font='600 '+b.sz+'px sans-serif';ctx.textAlign='center';ctx.fillText(b.lb,b.x*w,b.y*h+b.sz*.38);ctx.restore();b.y+=b.vy;if(b.y<-.06){b.y=1.05;b.x=Math.random();}});
+      orbs.forEach(o=>{o.angle+=o.spd;const ex=w*.5+Math.cos(o.angle)*o.r*w,ey=h*.38+Math.sin(o.angle)*o.r*w*.5;ctx.font=o.sz+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.65+.3*Math.sin(Date.now()*.001);ctx.fillText(o.ic,ex,ey);ctx.globalAlpha=1;});
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  /* C1 VOYAGE */
+  (function(){
+    const cv=document.getElementById('c1');cv.width=W(cv);cv.height=H(cv);
+    const ctx=cv.getContext('2d');
+    const stars=Array.from({length:100},()=>({x:Math.random(),y:Math.random()*.65,r:Math.random()*1.5+.3,tw:Math.random()*6}));
+    const planes=[{x:-.1,y:.18,vx:.0014,sz:24,tr:[]},{x:.6,y:.30,vx:.001,sz:17,tr:[]},{x:.25,y:.42,vx:.0018,sz:13,tr:[]}];
+    const clouds=Array.from({length:5},()=>({x:Math.random(),y:.1+Math.random()*.45,w:.10+Math.random()*.20,vx:.0002+Math.random()*.0003,a:.05+Math.random()*.07}));
+    (function draw(){
+      const w=cv.width,h=cv.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#030E18';ctx.fillRect(0,0,w,h);
+      const g=ctx.createRadialGradient(w*.5,h*.6,0,w*.5,h*.6,w*.65);g.addColorStop(0,'rgba(0,200,120,.18)');g.addColorStop(1,'rgba(0,200,120,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      stars.forEach(s=>{const a=.3+.55*Math.abs(Math.sin(Date.now()*.0013+s.tw));ctx.beginPath();ctx.arc(s.x*w,s.y*h,s.r,0,Math.PI*2);ctx.fillStyle='rgba(190,230,255,'+a+')';ctx.fill();});
+      clouds.forEach(c=>{ctx.save();ctx.globalAlpha=c.a;ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(c.x*w,c.y*h,c.w*w,13,0,0,Math.PI*2);ctx.fill();ctx.restore();c.x+=c.vx;if(c.x>1.25)c.x=-.25;});
+      planes.forEach(p=>{p.tr.push({x:p.x*w,y:p.y*h});if(p.tr.length>40)p.tr.shift();p.tr.forEach((pt,i)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,.7,0,Math.PI*2);ctx.fillStyle='rgba(0,230,140,'+(i/p.tr.length)*.45+')';ctx.fill();});ctx.font=p.sz+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('✈',p.x*w,p.y*h);p.x+=p.vx;if(p.x>1.15){p.x=-.1;p.tr=[];}});
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  /* C2 VEHICULES */
+  (function(){
+    const cv=document.getElementById('c2');cv.width=W(cv);cv.height=H(cv);
+    const ctx=cv.getContext('2d');
+    const da=Array.from({length:18},(_,i)=>({y:i/18,spd:.004+Math.random()*.006}));
+    const li=Array.from({length:8},()=>({y:Math.random(),vy:.005+Math.random()*.007,side:Math.random()<.5?-.04:.04}));
+    const ca=[{x:-.1,y:.5,vx:.003,ic:'🏎️',sz:26,tr:[]},{x:.3,y:.44,vx:.0022,ic:'🚗',sz:20,tr:[]},{x:.7,y:.56,vx:.0035,ic:'🚙',sz:18,tr:[]}];
+    (function draw(){
+      const w=cv.width,h=cv.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#0A0804';ctx.fillRect(0,0,w,h);
+      const g=ctx.createRadialGradient(w*.5,h*.5,0,w*.5,h*.5,w*.55);g.addColorStop(0,'rgba(255,160,0,.12)');g.addColorStop(1,'rgba(255,160,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      ctx.fillStyle='#0C0906';ctx.beginPath();ctx.moveTo(w*.3,0);ctx.lineTo(w*.7,0);ctx.lineTo(w*.88,h);ctx.lineTo(w*.12,h);ctx.closePath();ctx.fill();
+      ctx.strokeStyle='rgba(255,180,0,.42)';ctx.setLineDash([14,20]);
+      da.forEach(d=>{const pw=w*.05*d.y,x=w*.5,y=d.y*h;ctx.globalAlpha=d.y*.8;ctx.lineWidth=1+d.y;ctx.beginPath();ctx.moveTo(x-pw,y);ctx.lineTo(x+pw,y);ctx.stroke();d.y+=d.spd;if(d.y>1)d.y=0;});
+      ctx.setLineDash([]);ctx.globalAlpha=1;
+      li.forEach(l=>{const x=w*(.5+l.side*l.y),y=l.y*h;const gr=ctx.createRadialGradient(x,y,0,x,y,24*l.y+4);gr.addColorStop(0,'rgba(255,220,90,'+l.y*.75+')');gr.addColorStop(1,'rgba(255,200,0,0)');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,24*l.y+4,0,Math.PI*2);ctx.fill();l.y+=l.vy;if(l.y>1.02){l.y=.02;l.side=Math.random()<.5?-.04:.04;}});
+      ca.forEach(c=>{c.tr.push({x:c.x*w,y:c.y*h});if(c.tr.length>18)c.tr.shift();c.tr.forEach((pt,i)=>{ctx.beginPath();ctx.arc(pt.x,pt.y,.5,0,Math.PI*2);ctx.fillStyle='rgba(255,200,60,'+(i/c.tr.length)*.3+')';ctx.fill();});ctx.font=c.sz+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.8;ctx.fillText(c.ic,c.x*w,c.y*h);ctx.globalAlpha=1;c.x+=c.vx;if(c.x>1.1){c.x=-.1;c.tr=[];}});
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  /* C3 HIGH-TECH */
+  (function(){
+    const cv=document.getElementById('c3');cv.width=W(cv);cv.height=H(cv);
+    const ctx=cv.getContext('2d');
+    const GX=7,GY=12;const nd=[];
+    for(let i=0;i<=GX;i++)for(let j=0;j<=GY;j++)nd.push({x:i/GX,y:j/GY,tw:Math.random()*6,hot:Math.random()<.22});
+    const pu=Array.from({length:7},()=>({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.003,vy:(Math.random()-.5)*.003,a:.5+Math.random()*.5,r:18+Math.random()*20}));
+    const gl=['01','10','AI','∑','λ','∞','GPU','4K'];
+    const fg=Array.from({length:9},(_,i)=>({x:Math.random(),y:Math.random(),vy:-(4e-4+Math.random()*4e-4),lb:gl[i%gl.length],a:.08+Math.random()*.15,sz:9+Math.random()*7}));
+    (function draw(){
+      const w=cv.width,h=cv.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#050310';ctx.fillRect(0,0,w,h);
+      const g=ctx.createRadialGradient(w*.5,h*.38,0,w*.5,h*.38,w*.5);g.addColorStop(0,'rgba(160,80,255,.20)');g.addColorStop(1,'rgba(160,80,255,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      ctx.strokeStyle='rgba(140,60,240,.07)';ctx.lineWidth=.5;
+      for(let i=0;i<=GX;i++){ctx.beginPath();ctx.moveTo(i/GX*w,0);ctx.lineTo(i/GX*w,h);ctx.stroke();}
+      for(let j=0;j<=GY;j++){ctx.beginPath();ctx.moveTo(0,j/GY*h);ctx.lineTo(w,j/GY*h);ctx.stroke();}
+      nd.forEach(n=>{const a=.12+.7*Math.abs(Math.sin(Date.now()*.0015+n.tw));ctx.beginPath();ctx.arc(n.x*w,n.y*h,n.hot?3:1.5,0,Math.PI*2);ctx.fillStyle='rgba('+(n.hot?'200,90,255':'140,60,240')+','+a+')';ctx.fill();});
+      pu.forEach(p=>{const gr=ctx.createRadialGradient(p.x*w,p.y*h,0,p.x*w,p.y*h,p.r);gr.addColorStop(0,'rgba(180,80,255,'+p.a*.5+')');gr.addColorStop(1,'rgba(180,80,255,0)');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(p.x*w,p.y*h,p.r,0,Math.PI*2);ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1;});
+      fg.forEach(f=>{ctx.save();ctx.globalAlpha=f.a;ctx.fillStyle='rgba(180,110,255,.9)';ctx.font='600 '+f.sz+'px monospace';ctx.textAlign='center';ctx.fillText(f.lb,f.x*w,f.y*h);ctx.restore();f.y+=f.vy;if(f.y<-.05){f.y=1.05;f.x=Math.random();}});
+      requestAnimationFrame(draw);
+    })();
+  })();
 }
-document.fonts.ready.then(initC);
-window.addEventListener('resize',()=>['c0','c1','c2','c3'].forEach(id=>{const cv=document.getElementById(id);cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}));
+
+/* Init after page fully rendered */
+window.addEventListener('load',()=>{
+  setTimeout(initCanvases, 100);
+});
+window.addEventListener('resize',()=>{
+  ['c0','c1','c2','c3'].forEach(id=>{
+    const cv=document.getElementById(id);
+    if(cv){cv.width=cv.offsetWidth||window.innerWidth/4;cv.height=cv.offsetHeight||window.innerHeight;}
+  });
+});
 </script>
 </body>
 </html>
