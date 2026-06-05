@@ -735,7 +735,7 @@ const DB = {
     {title:'iRobot Roomba j7+ Robot Aspirateur',price:449.00,delivery:3,rating:4.5,reviews:890,platform:'amazon',img:'🤖',asin:'B09276PNZP',avg:599.00},
   ],
   'cafetiere':[
-    {title:'De'Longhi La Specialista Arte Expresso',price:449.00,delivery:2,rating:4.7,reviews:2100,platform:'amazon',img:'☕',asin:'B08XKJ6TZX',avg:549.00},
+    {title:'DeLonghi La Specialista Arte Expresso',price:449.00,delivery:2,rating:4.7,reviews:2100,platform:'amazon',img:'☕',asin:'B08XKJ6TZX',avg:549.00},
     {title:'Nespresso Vertuo Pop Cafetière',price:79.99,delivery:2,rating:4.6,reviews:3400,platform:'amazon',img:'☕',asin:'B0B3BBZM5K',avg:99.00},
     {title:'Philips Series 5000 Machine café grains',price:299.00,delivery:3,rating:4.5,reviews:1560,platform:'amazon',img:'☕',asin:'B08F3HYZS6',avg:379.00},
   ],
@@ -762,7 +762,7 @@ const DB = {
   'mariage':[
     {title:'Guirlande lumineuse LED 10m extérieur',price:19.99,delivery:2,rating:4.6,reviews:3400,platform:'amazon',img:'✨',asin:'B07WPJB89G',avg:25.00},
     {title:'Centre de table mariage fleurs séchées',price:24.90,delivery:3,rating:4.8,reviews:567,platform:'etsy',img:'💐',asin:'',avg:32.00},
-    {title:'Livre d'or mariage personnalisé',price:18.99,delivery:4,rating:4.9,reviews:234,platform:'etsy',img:'📖',asin:'',avg:25.00},
+    {title:'Livre dor mariage personnalisé',price:18.99,delivery:4,rating:4.9,reviews:234,platform:'etsy',img:'📖',asin:'',avg:25.00},
     {title:'Ballons arch kit décoration mariage',price:14.99,delivery:2,rating:4.4,reviews:1890,platform:'amazon',img:'🎈',asin:'B08BHZM5VY',avg:19.00},
   ],
   'default':[
@@ -1192,7 +1192,7 @@ async function generateBudget(){
     const steps=['as1','as2','as3','as4'];
     steps.forEach((s,i)=>setTimeout(()=>{ if(i>0)document.getElementById(steps[i-1]).className='ai-step done'; document.getElementById(s).className='ai-step on'; },i*1200));
 
-    const prompt=`Tu es un expert en organisation d'événements et shopping. Projet : ${evType} | Budget : ${budget}€ | Invités : ${guests||'nc'} | Date : ${date||'nc'} | Thème : ${themes||'nc'} | Détails : ${extra||'aucun'}
+    const prompt=`Tu es un expert en organisation d evenements et shopping. Projet : ${evType} | Budget : ${budget}€ | Invités : ${guests||'nc'} | Date : ${date||'nc'} | Thème : ${themes||'nc'} | Détails : ${extra||'aucun'}
 Génère 3 packages en JSON valide sans markdown :
 {"summary":"résumé 2 phrases","tags":["tag1","tag2","tag3"],"packages":[{"id":1,"label":"Économique","title":"nom créatif","emoji":"🌿","visual_description":"ambiance en 2 phrases","items":["article avec qté et prix","...x5"],"total":0,"remaining":0,"amazon_search":"terme Amazon"}]}
 3 niveaux : Économique, Équilibré, Premium. Budget total ${budget}€. Réponds UNIQUEMENT JSON.`;
