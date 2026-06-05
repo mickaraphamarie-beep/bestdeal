@@ -1418,16 +1418,15 @@ function filterBoutiques(q) {
 }
 
 function renderBoutiques() {
-  document.getElementById('boutiquesGrid').innerHTML = filteredBoutiques.map(b => `
-    <div onclick="window.open('${b.url}','_blank')"
-      style="background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative"
-      onmouseover="this.style.borderColor='var(--b2)';this.style.transform='translateY(-2px)'"
-      onmouseout="this.style.borderColor='var(--b1)';this.style.transform='translateY(0)'">
-      <div style="width:48px;height:48px;border-radius:12px;background:${b.bg};display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:24px">${b.emoji}</div>
-      <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px;color:var(--tx)">${b.name}</div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:6px">${b.cat}</div>
-      <div style="font-size:9px;padding:2px 7px;border-radius:20px;display:inline-block;font-weight:600;${b.tag.includes('✓')?'background:rgba(34,197,94,0.1);color:var(--green)':b.tag.includes('Awin')?'background:rgba(108,99,255,0.1);color:var(--acc)':'background:rgba(107,107,130,0.1);color:var(--muted)'}">${b.tag}</div>
-    </div>`).join('');
+  document.getElementById('boutiquesGrid').innerHTML = filteredBoutiques.map(function(b) {
+    var tagStyle = b.tag.includes('V')?'background:rgba(34,197,94,0.1);color:var(--green)':b.tag.includes('Awin')?'background:rgba(108,99,255,0.1);color:var(--acc)':'background:rgba(107,107,130,0.1);color:var(--muted)';
+    return '<div onclick="window.open(\'' + b.url + '\',\'_blank\')" style="background:var(--s1);border:1px solid var(--b1);border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor=\'var(--b2)\'" onmouseout="this.style.borderColor=\'var(--b1)\'">'
+      + '<div style="width:48px;height:48px;border-radius:12px;background:' + b.bg + ';display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:24px">' + b.emoji + '</div>'
+      + '<div style="font-size:14px;font-weight:700;margin-bottom:3px;color:var(--tx)">' + b.name + '</div>'
+      + '<div style="font-size:10px;color:var(--muted);margin-bottom:6px">' + b.cat + '</div>'
+      + '<div style="font-size:9px;padding:2px 7px;border-radius:20px;display:inline-block;font-weight:600;' + tagStyle + '">' + b.tag + '</div>'
+      + '</div>';
+  }).join('');
 }
 
 // ══════════════════════════════════════
