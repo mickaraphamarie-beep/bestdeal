@@ -572,7 +572,7 @@ function handlePhoto(input){
 /* ══ ALERTES ══ */
 function addAl(){
   const n=prompt('Produit à surveiller ?');const p=prompt('Prix cible (€) ?');
-  if(n&&p){const el=document.createElement('div');el.className='al-item';el.innerHTML='<div class="al-dot" style="background:var(--vi);"></div><div><div class="al-name">'+n+'</div><div class="al-tgt">Cible : sous '+p+'€ · Surveillance active</div></div><button class="al-del" onclick="this.closest('.al-item').remove()">×</button>';document.getElementById('al-list').appendChild(el);}
+  if(n&&p){const el=document.createElement('div');el.className='al-item';el.innerHTML='<div class="al-dot" style="background:var(--vi);"></div><div><div class="al-name">'+n+'</div><div class="al-tgt">Cible : sous '+p+'euro · Surveillance active</div></div><button class="al-del" onclick="this.parentElement.parentElement.remove()">x</button>';document.getElementById('al-list').appendChild(el);}
 }
 
 /* ══ BUDGET ══ */
@@ -580,7 +580,14 @@ function updBudget(v){
   v=parseInt(v);document.getElementById('bval').textContent=v+'€';
   const cats=[.60,.20,.13,.07];
   cats.forEach((r,i)=>{const val=Math.round(v*r);document.getElementById('bc'+i).style.width=(r*100)+'%';document.getElementById('bv'+i).textContent=val+'€';});
-  const msgs={50:'Budget serré. Concentrez-vous sur AliExpress et Temu.',150:'Bon budget ! Les offres AliExpress sur l'électronique sont excellentes.',300:'Avec 300€, les meilleures opportunités : écouteurs Sony (-48%) et TV Samsung (-40%).',500:'Budget confortable. Surveillez les ventes flash Amazon cette semaine.',1000:'Grand budget. Moment idéal pour le MacBook Air M3 à 1 099€ sur Cdiscount.',2000:'Budget premium. Envisagez l'équipement photo Sony ou les téléphones haut de gamme.'};
+  const msgs={
+    50:"Budget serre. Concentrez-vous sur AliExpress et Temu.",
+    150:"Bon budget ! Les offres AliExpress sur l'electronique sont excellentes.",
+    300:"Avec 300euro, les meilleures opportunites : ecouteurs Sony (-48%) et TV Samsung (-40%).",
+    500:"Budget confortable. Surveillez les ventes flash Amazon cette semaine.",
+    1000:"Grand budget. Moment ideal pour le MacBook Air M3 a 1099euro sur Cdiscount.",
+    2000:"Budget premium. Envisagez les appareils photo Sony ou telephones haut de gamme."
+  }
   const keys=Object.keys(msgs).map(Number).sort((a,b)=>a-b);
   const k=keys.reduce((pr,kk)=>v>=kk?kk:pr,keys[0]);
   document.getElementById('aitxt').textContent=msgs[k];
