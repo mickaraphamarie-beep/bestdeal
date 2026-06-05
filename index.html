@@ -49,7 +49,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 .nbtn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:opacity .3s;user-select:none;}
 .nbtn.gone{opacity:0;pointer-events:none;}
 .dots{display:flex;gap:5px;align-items:center;}
-.dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:all .4s;}
+.dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:all .4s;cursor:pointer;}
 .dot.on{width:22px;background:#fff;}
 .hint{font-size:10px;color:rgba(255,255,255,.24);letter-spacing:.10em;text-transform:uppercase;text-align:center;margin-top:5px;}
 
@@ -243,7 +243,7 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
   </div>
   <div id="hbottom">
     <div class="nbtn gone" id="bl" onclick="go(-1)">‹</div>
-    <div style="display:flex;flex-direction:column;align-items:center;"><div class="dots" id="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="hint">Balayer pour explorer</div></div>
+    <div style="display:flex;flex-direction:column;align-items:center;"><div class="dots" id="dots"><div class="dot on" onclick="goTo(0)"></div><div class="dot" onclick="goTo(1)"></div><div class="dot" onclick="goTo(2)"></div><div class="dot" onclick="goTo(3)"></div></div><div class="hint">Balayer pour explorer</div></div>
     <div class="nbtn" id="br" onclick="go(1)">›</div>
   </div>
 </div>
@@ -309,6 +309,9 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
     <!-- FAVORIS -->
     <div id="p-favoris" class="panel">
       <div class="sec-h">❤️ Mes favoris</div>
+      <div style="margin-bottom:12px;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 13px;font-size:12px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:8px;">
+        <span>💡</span> Cliquez sur le ❤️ sur n'importe quelle offre ou boutique pour l'ajouter ici
+      </div>
       <div id="fav-list">
         <div class="fav-item"><div class="fav-e">🎧</div><div class="fav-info"><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · Ajouté il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
         <div class="fav-item"><div class="fav-e">💻</div><div class="fav-info"><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · Ajouté il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="this.closest('.fav-item').remove()">×</button></div>
@@ -364,9 +367,9 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
         <div class="bsect">
           <div class="bsect-t">🔥 Actifs maintenant</div>
           <div class="bout-grid">
-            <div class="bout-card" data-n="amazon" onclick="goShop('amazon')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Affilié</div></div>
-            <div class="bout-card" data-n="aliexpress" onclick="goShop('aliexpress')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(230,33,23,.15);color:#E62117;">Affilié</div></div>
-            <div class="bout-card" data-n="temu" onclick="goShop('temu')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Affilié</div></div>
+            <div class="bout-card" data-n="amazon" onclick="goShop('amazon')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
+            <div class="bout-card" data-n="aliexpress" onclick="goShop('aliexpress')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
+            <div class="bout-card" data-n="temu" onclick="goShop('temu')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
           </div>
         </div>
         <div class="bsect">
@@ -391,6 +394,44 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
       </div>
     </div>
 
+
+    <!-- PARTENAIRES -->
+    <div id="p-partenaires" class="panel">
+      <div class="sec-h">🤝 Nos partenaires</div>
+      <div class="sec-s">Cliquez sur une catégorie pour découvrir les meilleures offres</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div onclick="goTo(0);closeApp();" style="background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.25);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="font-size:32px;margin-bottom:8px;">🛍️</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Shopping</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Amazon · Temu · AliExpress</div>
+        </div>
+        <div onclick="goTo(1);closeApp();" style="background:rgba(0,212,120,.10);border:.5px solid rgba(0,212,120,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="font-size:32px;margin-bottom:8px;">✈️</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Voyage</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Skyscanner · Booking · Kayak</div>
+        </div>
+        <div onclick="goTo(2);closeApp();" style="background:rgba(255,184,0,.10);border:.5px solid rgba(255,184,0,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="font-size:32px;margin-bottom:8px;">🚗</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Véhicules</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">AutoScout · LeBonCoin · La Centrale</div>
+        </div>
+        <div onclick="goTo(3);closeApp();" style="background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="font-size:32px;margin-bottom:8px;">💻</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">High-Tech</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Amazon · Fnac · Cdiscount</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:16px;padding:18px 14px;text-align:center;opacity:.5;">
+          <div style="font-size:32px;margin-bottom:8px;">🏡</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Maison</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">ManoMano · Leroy Merlin (bientôt)</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:16px;padding:18px 14px;text-align:center;opacity:.5;">
+          <div style="font-size:32px;margin-bottom:8px;">👗</div>
+          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:#fff;">Mode</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:3px;">Vinted · Etsy (bientôt)</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -401,7 +442,8 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
 <div id="sovl"><button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button><input type="text" placeholder="iPhone 15, vol Paris Ibiza, Peugeot 308..."><div class="stags"><div class="stag">🔥 Meilleures offres</div><div class="stag">📱 Smartphones</div><div class="stag">✈️ Vols pas chers</div><div class="stag">🎮 Gaming</div><div class="stag">👟 Mode & Chaussures</div><div class="stag">🛋 Maison & Déco</div><div class="stag">💄 Beauté</div><div class="stag">🚗 Voitures occasion</div><div class="stag">📺 TV & Audio</div><div class="stag">🏠 Électroménager</div></div></div>
 
 <!-- PREMIUM MODAL -->
-<div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button><div style="margin:8px 0 0;display:flex;gap:7px;"><input id='coupon-input' placeholder='Code promo (ex: NINJAMIAPANPAN3)' style='flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;font-size:12px;color:#fff;font-family:DM Sans,sans-serif;outline:none;'><button onclick="applyCoupon()" style='background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 14px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap;'>Appliquer</button></div><div id='coupon-msg' style='font-size:11px;color:rgba(0,212,120,0.8);margin-top:5px;display:none;'>✓ Code valide — accès offert !</div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
+<div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button>
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;"><span style="font-size:10px;color:rgba(255,255,255,.3);">Paiement accepté :</span><span style="font-size:11px;color:rgba(255,255,255,.4);">💳 Carte</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🅿️ PayPal</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🏦 Virement</span><span style="font-size:11px;color:rgba(255,255,255,.4);">📱 Klarna</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🟣 Wero</span><span style="font-size:11px;color:rgba(255,255,255,.4);">🅿️ Apple Pay</span></div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
 
 <script>
 /* HOME SLIDER */
@@ -425,16 +467,21 @@ function openApp(){document.getElementById('home').classList.add('hide');documen
 function closeApp(){document.getElementById('home').classList.remove('hide');document.getElementById('app').classList.remove('show');}
 
 /* TABS */
-const tabs=['recherche','radar','alertes','favoris','budget','photo','boutiques'];
+const tabs=['recherche','boutiques','partenaires','favoris','budget','photo','radar','alertes'];
 function showTab(id){
-  tabs.forEach(t=>{document.getElementById('p-'+t).classList.toggle('on',t===id);});
+  // partenaires uses boutiques panel
+  const panelId = id === 'partenaires' ? 'boutiques' : id;
+  tabs.forEach(t=>{
+    const el=document.getElementById('p-'+t);
+    if(el) el.classList.toggle('on', t===panelId || (panelId==='boutiques' && t==='boutiques'));
+  });
   document.querySelectorAll('.tbtn').forEach((b,i)=>b.classList.toggle('on',tabs[i]===id));
   document.getElementById('panels').scrollTop=0;
 }
 
 /* BOUTIQUES SEARCH */
 function filterB(q){document.querySelectorAll('.bout-card').forEach(c=>{c.style.display=(c.dataset.n||'').includes(q.toLowerCase())||!q?'block':'none';});}
-function goShop(n){const u={amazon:'https://amzn.to/bestdeal0e9d0-21',aliexpress:'https://s.click.aliexpress.com/e/_c3EseUaH',temu:'https://temu.to/k/eai20w7hh1c'};if(u[n])window.open(u[n],'_blank');}
+function goShop(n){const u={amazon:'https://www.amazon.fr/?tag=bestdeal0e9d0-21',aliexpress:'https://s.click.aliexpress.com/e/_c3EseUaH',temu:'https://temu.to/k/eai20w7hh1c'};if(u[n])window.open(u[n],'_blank');}
 
 /* PHOTO */
 function handlePhoto(input){if(input.files&&input.files[0]){document.getElementById('pdrop').innerHTML='<div class="pd-icon">✅</div><div class="pd-txt">Image analysée !</div><div class="pd-sub">Recherche en cours...</div>';setTimeout(()=>document.getElementById('ph-res').style.display='grid',900);}}
@@ -457,23 +504,6 @@ function updBudget(v){
 document.getElementById('openS').addEventListener('click',()=>document.getElementById('sovl').classList.add('open'));
 
 /* PREMIUM */
-function applyCoupon(){
-  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
-  const valid = ['NINJAMIAPANPAN3'];
-  const msg = document.getElementById('coupon-msg');
-  if(valid.includes(code)){
-    msg.style.display='block';
-    msg.textContent='✓ Code valide — accès Premium offert !';
-    setTimeout(()=>{
-      window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');
-      document.getElementById('pmoda').classList.remove('open');
-    },800);
-  } else {
-    msg.style.display='block';
-    msg.style.color='rgba(255,80,80,0.9)';
-    msg.textContent='Code invalide. Vérifiez votre code.';
-  }
-}
 function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
 
 /* CANVAS */
