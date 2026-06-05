@@ -401,7 +401,7 @@ input[type=range]{width:100%;margin:12px 0;accent-color:var(--vi);}
 <div id="sovl"><button id="scls" onclick="document.getElementById('sovl').classList.remove('open')">×</button><input type="text" placeholder="iPhone 15, vol Paris Ibiza, Peugeot 308..."><div class="stags"><div class="stag">🔥 Meilleures offres</div><div class="stag">📱 Smartphones</div><div class="stag">✈️ Vols pas chers</div><div class="stag">🎮 Gaming</div><div class="stag">👟 Mode & Chaussures</div><div class="stag">🛋 Maison & Déco</div><div class="stag">💄 Beauté</div><div class="stag">🚗 Voitures occasion</div><div class="stag">📺 TV & Audio</div><div class="stag">🏠 Électroménager</div></div></div>
 
 <!-- PREMIUM MODAL -->
-<div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
+<div id="pmoda"><div class="pcard"><h2>BestDeal Premium</h2><p>Débloquez tout pour ne plus jamais payer trop cher.</p><div class="pfts"><div class="pf"><span>🔔</span> Alertes prix illimitées en temps réel</div><div class="pf"><span>🤖</span> Budget IA avancé & recommandations</div><div class="pf"><span>📷</span> Recherche photo illimitée</div><div class="pf"><span>📡</span> Radar — 50 produits suivis</div><div class="pf"><span>🚫</span> Zéro publicité</div><div class="pf"><span>⚡</span> Résultats prioritaires</div></div><button class="pbuy" onclick="payP()">Passer Premium — 9€/mois</button><div style="margin:8px 0 0;display:flex;gap:7px;"><input id='coupon-input' placeholder='Code promo (ex: NINJAMIAPANPAN3)' style='flex:1;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;font-size:12px;color:#fff;font-family:DM Sans,sans-serif;outline:none;'><button onclick="applyCoupon()" style='background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 14px;font-size:12px;color:#fff;cursor:pointer;white-space:nowrap;'>Appliquer</button></div><div id='coupon-msg' style='font-size:11px;color:rgba(0,212,120,0.8);margin-top:5px;display:none;'>✓ Code valide — accès offert !</div><button class="pcls" onclick="document.getElementById('pmoda').classList.remove('open')">Continuer gratuitement</button></div></div>
 
 <script>
 /* HOME SLIDER */
@@ -457,7 +457,24 @@ function updBudget(v){
 document.getElementById('openS').addEventListener('click',()=>document.getElementById('sovl').classList.add('open'));
 
 /* PREMIUM */
-function payP(){alert('Stripe Checkout — 9€/mois\nIntégrez votre lien Stripe ici');document.getElementById('pmoda').classList.remove('open');}
+function applyCoupon(){
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  const valid = ['NINJAMIAPANPAN3'];
+  const msg = document.getElementById('coupon-msg');
+  if(valid.includes(code)){
+    msg.style.display='block';
+    msg.textContent='✓ Code valide — accès Premium offert !';
+    setTimeout(()=>{
+      window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');
+      document.getElementById('pmoda').classList.remove('open');
+    },800);
+  } else {
+    msg.style.display='block';
+    msg.style.color='rgba(255,80,80,0.9)';
+    msg.textContent='Code invalide. Vérifiez votre code.';
+  }
+}
+function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
 
 /* CANVAS */
 function initC(){
