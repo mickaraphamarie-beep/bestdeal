@@ -364,71 +364,44 @@ input[type=range]{width:100%;margin:11px 0;accent-color:var(--vi);}
     <!-- BUDGET IA -->
     <div id="p-budget" class="panel">
       <div class="sec-h">🤖 Budget IA</div>
-      <div class="sec-s">Décrivez votre projet ou choisissez un événement — l'IA compose votre pack idéal</div>
-
-      <!-- Event type selector -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;" id="evt-grid">
-        <div class="evt-card on" onclick="selectEvt(this,'mariage')" data-evt="mariage">
-          <div class="evt-icon">💒</div><div class="evt-name">Mariage</div>
-        </div>
-        <div class="evt-card" onclick="selectEvt(this,'anniversaire')" data-evt="anniversaire">
-          <div class="evt-icon">🎂</div><div class="evt-name">Anniversaire</div>
-        </div>
-        <div class="evt-card" onclick="selectEvt(this,'voyage')" data-evt="voyage">
-          <div class="evt-icon">✈️</div><div class="evt-name">Voyage</div>
-        </div>
-        <div class="evt-card" onclick="selectEvt(this,'maison')" data-evt="maison">
-          <div class="evt-icon">🏠</div><div class="evt-name">Maison</div>
-        </div>
-        <div class="evt-card" onclick="selectEvt(this,'gaming')" data-evt="gaming">
-          <div class="evt-icon">🎮</div><div class="evt-name">Gaming</div>
-        </div>
-        <div class="evt-card" onclick="selectEvt(this,'custom')" data-evt="custom">
-          <div class="evt-icon">✏️</div><div class="evt-name">Personnalisé</div>
-        </div>
-      </div>
-
-      <!-- Custom input -->
-      <div id="custom-input" style="display:none;margin-bottom:12px;">
-        <input id="custom-desc" type="text" placeholder="Ex: équiper ma cuisine, préparer une randonnée..." style="width:100%;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.15);border-radius:12px;padding:11px 14px;font-size:13px;color:#fff;font-family:DM Sans,sans-serif;outline:none;">
-      </div>
-
-      <!-- Budget + persons -->
-      <div style="display:flex;gap:10px;margin-bottom:14px;">
-        <div style="flex:2;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em;">Budget total</div>
-          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:11px;padding:8px 12px;">
-            <input id="bud-amount" type="number" value="500" min="50" max="50000" step="50" style="background:none;border:none;color:#fff;font-family:Syne,sans-serif;font-size:20px;font-weight:800;width:80px;outline:none;">
-            <span style="font-size:16px;color:var(--t2);">€</span>
-          </div>
-        </div>
-        <div style="flex:1;">
-          <div style="font-size:10px;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em;">Personnes</div>
-          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);border-radius:11px;padding:8px 12px;">
-            <input id="bud-persons" type="number" value="2" min="1" max="500" style="background:none;border:none;color:#fff;font-family:Syne,sans-serif;font-size:20px;font-weight:800;width:40px;outline:none;">
-            <span style="font-size:14px;">👤</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Style selector -->
+      
+      <!-- FREE TEXT - PRIMARY INPUT -->
       <div style="margin-bottom:14px;">
-        <div style="font-size:10px;color:var(--t3);margin-bottom:7px;text-transform:uppercase;letter-spacing:.08em;">Style / Ambiance</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;" id="style-grid">
-          <div class="style-tag on" onclick="selectStyle(this,'luxe')">✨ Luxe</div>
-          <div class="style-tag" onclick="selectStyle(this,'eco')">🌿 Eco</div>
-          <div class="style-tag" onclick="selectStyle(this,'fun')">🎉 Fun</div>
-          <div class="style-tag" onclick="selectStyle(this,'minimaliste')">⬜ Minimaliste</div>
-          <div class="style-tag" onclick="selectStyle(this,'aventure')">🏕️ Aventure</div>
-          <div class="style-tag" onclick="selectStyle(this,'romantique')">💕 Romantique</div>
-        </div>
+        <textarea id="ai-desc" rows="3" placeholder="Décrivez votre projet... Ex: anniversaire fils 4 ans thème Pokémon ils seront 15 budget 300€" style="width:100%;background:rgba(255,255,255,.07);border:.5px solid rgba(168,85,247,.35);border-radius:14px;padding:13px 14px;font-size:13px;color:#fff;font-family:DM Sans,sans-serif;outline:none;resize:none;line-height:1.5;" oninput="parseDesc(this.value)"></textarea>
+        <div id="parsed-hint" style="font-size:11px;color:rgba(168,85,247,.7);margin-top:5px;min-height:16px;"></div>
       </div>
 
-      <button onclick="genBudget()" style="width:100%;background:var(--vi);border:none;border-radius:13px;padding:13px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;font-family:Syne,sans-serif;margin-bottom:14px;">🤖 Composer mon pack IA →</button>
+      <!-- OR divider -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="flex:1;height:.5px;background:rgba(255,255,255,.10);"></div>
+        <div style="font-size:11px;color:var(--t3);">ou choisissez</div>
+        <div style="flex:1;height:.5px;background:rgba(255,255,255,.10);"></div>
+      </div>
 
-      <div id="pack-result" style="display:none;"></div>
+      <!-- EVENT CARDS - SECONDARY -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;">
+        <div class="evt-card" onclick="selectEvt(this,'mariage')"><div class="evt-icon">💒</div><div class="evt-name">Mariage</div></div>
+        <div class="evt-card" onclick="selectEvt(this,'anniversaire')"><div class="evt-icon">🎂</div><div class="evt-name">Anniversaire</div></div>
+        <div class="evt-card" onclick="selectEvt(this,'voyage')"><div class="evt-icon">✈️</div><div class="evt-name">Voyage</div></div>
+        <div class="evt-card" onclick="selectEvt(this,'maison')"><div class="evt-icon">🏠</div><div class="evt-name">Maison</div></div>
+        <div class="evt-card" onclick="selectEvt(this,'gaming')"><div class="evt-icon">🎮</div><div class="evt-name">Gaming</div></div>
+        <div class="evt-card" onclick="selectEvt(this,'sport')"><div class="evt-icon">⚽</div><div class="evt-name">Sport</div></div>
+      </div>
+
+      <!-- STYLE -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+        <div class="style-tag on" onclick="selectStyle(this,'luxe')">✨ Luxe</div>
+        <div class="style-tag" onclick="selectStyle(this,'eco')">🌿 Eco</div>
+        <div class="style-tag" onclick="selectStyle(this,'fun')">🎉 Fun</div>
+        <div class="style-tag" onclick="selectStyle(this,'minimaliste')">⬜ Minimaliste</div>
+        <div class="style-tag" onclick="selectStyle(this,'aventure')">🏕️ Aventure</div>
+        <div class="style-tag" onclick="selectStyle(this,'romantique')">💕 Romantique</div>
+      </div>
+
+      <button onclick="genBudget()" style="width:100%;background:var(--vi);border:none;border-radius:13px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:Syne,sans-serif;margin-bottom:16px;">🤖 Composer mon pack IA →</button>
+
+      <div id="pack-result"></div>
     </div>
-
     <!-- PHOTO -->
     <div id="p-photo" class="panel">
       <div class="sec-h">📷 Recherche par photo</div>
@@ -649,22 +622,290 @@ function addAl(){
 }
 
 /* ══ BUDGET ══ */
-function updBudget(v){
-  v=parseInt(v);document.getElementById('bval').textContent=v+'€';
-  const cats=[.60,.20,.13,.07];
-  cats.forEach((r,i)=>{const val=Math.round(v*r);document.getElementById('bc'+i).style.width=(r*100)+'%';document.getElementById('bv'+i).textContent=val+'€';});
-  const msgs={
-    50:"Budget serre. Concentrez-vous sur AliExpress et Temu.",
-    150:"Bon budget ! Les offres AliExpress sur l'electronique sont excellentes.",
-    300:"Avec 300euro, les meilleures opportunites : ecouteurs Sony (-48%) et TV Samsung (-40%).",
-    500:"Budget confortable. Surveillez les ventes flash Amazon cette semaine.",
-    1000:"Grand budget. Moment ideal pour le MacBook Air M3 a 1099euro sur Cdiscount.",
-    2000:"Budget premium. Envisagez les appareils photo Sony ou telephones haut de gamme."
-  }
-  const keys=Object.keys(msgs).map(Number).sort((a,b)=>a-b);
-  const k=keys.reduce((pr,kk)=>v>=kk?kk:pr,keys[0]);
-  document.getElementById('aitxt').textContent=msgs[k];
+function updBudget(v){}
+
+var _evt='mariage',_style='luxe';
+
+function selectEvt(el,evt){
+  document.querySelectorAll('.evt-card').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');_evt=evt;
+  document.getElementById('custom-input').style.display=evt==='custom'?'block':'none';
 }
+
+function selectStyle(el,s){
+  document.querySelectorAll('.style-tag').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');_style=s;
+}
+
+function selectFreeText(){}
+
+var _evt='', _style='fun', _packContext='';
+
+function parseDesc(txt){
+  var hint=document.getElementById('parsed-hint');
+  if(!txt||txt.length<3){hint.textContent='';return;}
+  // Extract persons count
+  var persMatch=txt.match(/(\d+)\s*(?:personnes?|pers|invités?|enfants?|kids?|amis?)/i);
+  var budMatch=txt.match(/(\d+)\s*(?:euros?|€|eur)/i);
+  var hints=[];
+  if(persMatch) hints.push(persMatch[1]+' personnes détectées');
+  if(budMatch) hints.push('Budget '+budMatch[1]+'€ détecté');
+  hint.textContent=hints.length?'✓ '+hints.join(' · '):'Décrivez votre projet pour une suggestion personnalisée';
+}
+
+function selectEvt(el,evt){
+  document.querySelectorAll('.evt-card').forEach(function(c){c.classList.remove('on');});
+  el.classList.add('on');
+  _evt=evt;
+}
+
+function selectStyle(el,s){
+  document.querySelectorAll('.style-tag').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');_style=s;
+}
+
+function parseRequest(txt,budget,persons,style){
+  var t=txt.toLowerCase();
+  if((t.includes('anniversaire')||t.includes('birthday'))&&(t.includes('enfant')||t.includes('fils')||t.includes('fille')||/\d+\s*an/.test(t)||t.includes('kid'))){
+    var theme='';
+    if(t.includes('pokemon')||t.includes('pokémon'))theme='Pokémon';
+    else if(t.includes('star wars'))theme='Star Wars';
+    else if(t.includes('disney')||t.includes('reine'))theme='Disney';
+    else if(t.includes('marvel')||t.includes('super hero'))theme='Super-Héros';
+    else if(t.includes('licorne'))theme='Licorne';
+    else if(t.includes('dinosaure'))theme='Dinosaure';
+    else if(t.includes('foot')||t.includes('football'))theme='Football';
+    else theme='';
+    var n=theme?'Pokémon':'enfant';
+    return {emoji:'🎂',label:'Anniversaire '+(theme||'enfant'),items:[
+      {n:'Déco & ballons '+(theme||''),e:'🎈',r:.18,s:'Amazon · AliExpress · Temu'},
+      {n:'Gâteau & bougies '+(theme||''),e:'🎂',r:.16,s:'Amazon · Cdiscount'},
+      {n:'Cadeaux & jouets '+(theme||''),e:'🎁',r:.28,s:'Amazon · AliExpress · Temu'},
+      {n:'Costumes & accessoires',e:'🦸',r:.16,s:'Amazon · Temu · AliExpress'},
+      {n:'Vaisselle & nappe thème',e:'🍽️',r:.10,s:'Amazon · Temu'},
+      {n:'Jeux & animations',e:'🕹️',r:.12,s:'Amazon · Fnac'},
+    ]};
+  }
+  if(t.includes('anniversaire')){
+    return {emoji:'🎉',label:'Anniversaire',items:[
+      {n:'Décoration festive',e:'🎉',r:.20,s:'Amazon · AliExpress · Temu'},
+      {n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · Fnac · Etsy'},
+      {n:'Boissons & dégustation',e:'🍾',r:.25,s:'Amazon · Cdiscount'},
+      {n:'Photo booth & souvenirs',e:'📸',r:.20,s:'Amazon · AliExpress'},
+    ]};
+  }
+  if(t.includes('mariage')||t.includes('wedding')){
+    return {emoji:'💒',label:'Mariage',items:[
+      {n:'Tenue de cérémonie',e:'👗',r:.25,s:'AliExpress · Etsy'},
+      {n:'Alliance & bijoux',e:'💍',r:.20,s:'Amazon · Etsy'},
+      {n:'Décoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},
+      {n:'Champagne & traiteur',e:'🍾',r:.15,s:'Amazon · Cdiscount'},
+      {n:'Appareil photo',e:'📷',r:.25,s:'Amazon · Fnac'},
+    ]};
+  }
+  if(t.includes('voyage')||t.includes('vacances')||t.includes('partir')){
+    var dest=t.includes('montagne')?'Montagne':t.includes('mer')||t.includes('plage')?'Mer':t.includes('ski')?'Ski':'';
+    return {emoji:'✈️',label:'Voyage'+(dest?' '+dest:''),items:[
+      {n:'Vols & transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},
+      {n:'Hébergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},
+      {n:'Bagages & équipement',e:'🧳',r:.20,s:'Amazon · AliExpress'},
+      {n:'Activités & loisirs',e:'🗺️',r:.15,s:'Booking · Amazon'},
+    ]};
+  }
+  if(t.includes('gaming')||t.includes('setup')||t.includes('stream')){
+    return {emoji:'🎮',label:'Setup Gaming',items:[
+      {n:'Console ou PC gaming',e:'🎮',r:.40,s:'Amazon · Fnac · Cdiscount'},
+      {n:'Écran haute performance',e:'🖥️',r:.25,s:'Amazon · Cdiscount'},
+      {n:'Casque & périphériques',e:'🎧',r:.20,s:'Amazon · AliExpress'},
+      {n:'Éclairage RGB & déco',e:'💡',r:.15,s:'Temu · Amazon'},
+    ]};
+  }
+  if(t.includes('bébé')||t.includes('naissance')||t.includes('nursery')){
+    return {emoji:'👶',label:'Chambre bébé',items:[
+      {n:'Lit & literie bébé',e:'🛏️',r:.30,s:'Amazon · AliExpress'},
+      {n:'Déco chambre',e:'🎨',r:.20,s:'Temu · Amazon · AliExpress'},
+      {n:'Vêtements & layette',e:'👶',r:.25,s:'AliExpress · Amazon'},
+      {n:'Jouets & éveil',e:'🧸',r:.25,s:'Amazon · AliExpress · Temu'},
+    ]};
+  }
+  if(t.includes('maison')||t.includes('appart')||t.includes('déco')||t.includes('aménag')){
+    return {emoji:'🏠',label:'Maison & Déco',items:[
+      {n:'Mobilier principal',e:'🛋️',r:.35,s:'Amazon · ManoMano'},
+      {n:'Éclairage & ambiance',e:'💡',r:.20,s:'Temu · Amazon'},
+      {n:'Plantes & décoration',e:'🪴',r:.15,s:'Amazon · Temu'},
+      {n:'Électroménager',e:'🍳',r:.30,s:'Amazon · Fnac · Cdiscount'},
+    ]};
+  }
+  if(t.includes('sport')||t.includes('foot')||t.includes('run')||t.includes('fitness')){
+    return {emoji:'⚽',label:'Sport & Fitness',items:[
+      {n:'Équipement sportif',e:'⚽',r:.35,s:'Amazon · Fnac · AliExpress'},
+      {n:'Tenue & chaussures',e:'👟',r:.30,s:'Amazon · AliExpress · Temu'},
+      {n:'Accessoires training',e:'💪',r:.20,s:'Amazon · AliExpress'},
+      {n:'Nutrition sportive',e:'🥤',r:.15,s:'Amazon · Cdiscount'},
+    ]};
+  }
+  // Default - use actual text as product names
+  var shortTxt=txt.slice(0,35);
+  return {emoji:'✨',label:shortTxt,items:[
+    {n:shortTxt,e:'🎁',r:.35,s:'Amazon · AliExpress · Temu'},
+    {n:'Idées cadeaux',e:'🎀',r:.25,s:'Amazon · Etsy · AliExpress'},
+    {n:'Accessoires tendance',e:'🛍️',r:.25,s:'Amazon · AliExpress · Temu'},
+    {n:'Déco & ambiance',e:'✨',r:.15,s:'Amazon · Temu · AliExpress'},
+  ]};
+}
+
+function genBudget(){
+  var descEl=document.getElementById('ai-desc');
+  var txt=descEl?descEl.value.trim():'';
+  
+  // Auto-extract budget and persons from description
+  var budget=500, persons=2;
+  if(txt){
+    var persMatch=txt.match(/(\d+)\s*(?:personnes?|pers|invités?|enfants?|kids?|amis?)/i);
+    var budMatch=txt.match(/(\d+)\s*(?:euros?|€|eur)/i);
+    if(persMatch) persons=parseInt(persMatch[1]);
+    if(budMatch) budget=parseInt(budMatch[1]);
+    // Also read manual inputs if no match in text
+    var manualBudget=parseInt(document.getElementById('bud-amount')?document.getElementById('bud-amount').value:0);
+    var manualPersons=parseInt(document.getElementById('bud-persons')?document.getElementById('bud-persons').value:0);
+    if(!budMatch&&manualBudget>0) budget=manualBudget;
+    if(!persMatch&&manualPersons>0) persons=manualPersons;
+  }
+
+  var pack, emoji, label;
+
+  if(txt.length>3){
+    var parsed=parseRequest(txt,budget,persons,_style);
+    pack=parsed.items.map(function(it){return {n:it.n,e:it.e,p:Math.round(it.r*budget),s:it.s};});
+    emoji=parsed.emoji;
+    label=parsed.label;
+  } else if(_evt){
+    var DB={
+      mariage:[{n:'Tenue cérémonie',e:'👗',r:.25,s:'AliExpress · Etsy'},{n:'Alliance & bijoux',e:'💍',r:.20,s:'Amazon · Etsy'},{n:'Décoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},{n:'Traiteur & champagne',e:'🍾',r:.15,s:'Amazon · Cdiscount'},{n:'Appareil photo',e:'📷',r:.25,s:'Amazon · Fnac'}],
+      anniversaire:[{n:'Décoration festive',e:'🎉',r:.25,s:'Amazon · AliExpress'},{n:'Gâteau & bougies',e:'🎂',r:.20,s:'Amazon · Cdiscount'},{n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · Fnac'},{n:'Animation & jeux',e:'🎮',r:.20,s:'Amazon · Fnac'}],
+      voyage:[{n:'Vols & transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},{n:'Hébergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},{n:'Bagages',e:'🧳',r:.20,s:'Amazon · AliExpress'},{n:'Activités',e:'🗺️',r:.15,s:'Booking'}],
+      gaming:[{n:'Console gaming',e:'🎮',r:.40,s:'Amazon · Fnac'},{n:'Écran',e:'🖥️',r:.25,s:'Amazon · Cdiscount'},{n:'Casque',e:'🎧',r:.20,s:'Amazon · AliExpress'},{n:'Éclairage RGB',e:'💡',r:.15,s:'Temu · Amazon'}],
+      maison:[{n:'Mobilier',e:'🛋️',r:.35,s:'Amazon · ManoMano'},{n:'Éclairage',e:'💡',r:.20,s:'Temu · Amazon'},{n:'Déco & plantes',e:'🪴',r:.20,s:'Amazon · Temu'},{n:'Électroménager',e:'🍳',r:.25,s:'Amazon · Fnac'}],
+      sport:[{n:'Équipement sport',e:'⚽',r:.35,s:'Amazon · AliExpress'},{n:'Tenue & chaussures',e:'👟',r:.30,s:'Amazon · Temu'},{n:'Accessoires',e:'💪',r:.20,s:'Amazon · AliExpress'},{n:'Nutrition',e:'🥤',r:.15,s:'Amazon'}]
+    };
+    var evtIcons={mariage:'💒',anniversaire:'🎂',voyage:'✈️',gaming:'🎮',maison:'🏠',sport:'⚽'};
+    var rawItems=DB[_evt]||DB.anniversaire;
+    pack=rawItems.map(function(it){return {n:it.n,e:it.e,p:Math.round(it.r*budget),s:it.s};});
+    emoji=evtIcons[_evt]||'✨';
+    label=_evt.charAt(0).toUpperCase()+_evt.slice(1);
+  } else {
+    alert('Décrivez votre projet ou choisissez une catégorie');
+    return;
+  }
+
+  _packContext=txt||label;
+  var res=document.getElementById('pack-result');
+  
+  // Colors per item
+  var cols=['#FF5E1A','#00D478','#FFB800','#A855F7','#FF5E1A','#00D478'];
+  
+  // VISUAL MOODBOARD - immersive scene
+  var siteColors={Amazon:'#FF9900',AliExpress:'#FF6A00',Temu:'#FF6900',Fnac:'#E2A612',Cdiscount:'#E2001A',Etsy:'#F56400',Skyscanner:'#0770E3',Booking:'#003580',ManoMano:'#3B7DDD'};
+  var siteBg={Amazon:'rgba(255,153,0,.15)',AliExpress:'rgba(255,106,0,.15)',Temu:'rgba(255,105,0,.15)',Fnac:'rgba(226,166,18,.15)',Cdiscount:'rgba(226,0,26,.15)',Etsy:'rgba(245,100,0,.15)',Skyscanner:'rgba(7,112,227,.15)',Booking:'rgba(0,53,128,.15)',ManoMano:'rgba(59,125,221,.15)'};
+  var packCols=['#FF5E1A','#00D478','#FFB800','#A855F7','#FF5E1A','#00D478'];
+
+  // Build scene visual
+  var sceneHtml='<div style="border-radius:18px;overflow:hidden;margin-bottom:16px;position:relative;background:linear-gradient(160deg,#0a0a1f 0%,#150a25 40%,#0a150a 100%);padding:0;">';
+  
+  // Top banner
+  sceneHtml+='<div style="background:linear-gradient(90deg,rgba(168,85,247,.3),rgba(0,212,120,.2),rgba(255,94,26,.3));padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">';
+  sceneHtml+='<div style="font-family:Syne,sans-serif;font-size:16px;font-weight:900;color:#fff;">'+emoji+' '+label+'</div>';
+  sceneHtml+='<div style="font-size:12px;color:rgba(255,255,255,.6);">'+persons+' pers · '+budget+'€</div>';
+  sceneHtml+='</div>';
+
+  // Product scene cards - like a shopping table
+  sceneHtml+='<div style="padding:14px;">';
+  sceneHtml+='<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">';
+  
+  pack.forEach(function(it,i){
+    var mainSite=it.s.split(' · ')[0].trim();
+    var col=packCols[i%packCols.length];
+    var sCol=siteColors[mainSite]||col;
+    var sBg=siteBg[mainSite]||'rgba(255,255,255,.08)';
+    
+    sceneHtml+='<div style="background:#0f0f1a;border:.5px solid '+col+'33;border-radius:14px;overflow:hidden;">';
+    // Product visual area
+    sceneHtml+='<div style="background:linear-gradient(135deg,'+col+'15,'+col+'05);padding:14px;text-align:center;position:relative;">';
+    sceneHtml+='<div style="font-size:38px;margin-bottom:4px;">'+it.e+'</div>';
+    sceneHtml+='<div style="font-size:11px;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3;">'+it.n+'</div>';
+    sceneHtml+='<div style="font-family:Syne,sans-serif;font-size:18px;font-weight:900;color:'+col+';margin-top:4px;">'+it.p+'€</div>';
+    sceneHtml+='</div>';
+    // Site badge
+    sceneHtml+='<div style="background:'+sBg+';border-top:.5px solid '+sCol+'33;padding:6px 10px;display:flex;align-items:center;justify-content:space-between;">';
+    sceneHtml+='<span style="font-size:10px;color:'+sCol+';font-weight:700;">Meilleur prix sur '+mainSite+'</span>';
+    sceneHtml+='<span style="font-size:14px;color:'+sCol+';">›</span>';
+    sceneHtml+='</div>';
+    sceneHtml+='</div>';
+  });
+  
+  sceneHtml+='</div>';
+
+  // Summary bar
+  var total=pack.reduce(function(s,i){return s+i.p;},0);
+  sceneHtml+='<div style="margin-top:12px;background:rgba(255,255,255,.05);border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;">';
+  sceneHtml+='<div style="font-size:12px;color:rgba(255,255,255,.5);">Total estimé pour '+persons+' personne'+(persons>1?'s':'')+'</div>';
+  sceneHtml+='<div style="font-family:Syne,sans-serif;font-size:20px;font-weight:900;color:#fff;">'+total+'€ <span style="font-size:12px;color:rgba(255,255,255,.4);">('+Math.round(total/persons)+'€/pers)</span></div>';
+  sceneHtml+='</div>';
+
+  // Site summary - "on a trouvé sur..."
+  var siteMap={};
+  pack.forEach(function(it){
+    var mainSite=it.s.split(' · ')[0].trim();
+    if(!siteMap[mainSite])siteMap[mainSite]=[];
+    siteMap[mainSite].push(it.n);
+  });
+  sceneHtml+='<div style="margin-top:10px;">';
+  sceneHtml+='<div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Où trouver chaque produit</div>';
+  Object.keys(siteMap).forEach(function(site){
+    var sCol=siteColors[site]||'#fff';
+    var sBg=siteBg[site]||'rgba(255,255,255,.06)';
+    sceneHtml+='<div style="background:'+sBg+';border:.5px solid '+sCol+'33;border-radius:10px;padding:8px 12px;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;">';
+    sceneHtml+='<span style="font-size:11px;font-weight:700;color:'+sCol+';white-space:nowrap;min-width:70px;">'+site+'</span>';
+    sceneHtml+='<span style="font-size:11px;color:rgba(255,255,255,.6);">'+siteMap[site].join(', ')+'</span>';
+    sceneHtml+='</div>';
+  });
+  sceneHtml+='</div>';
+  sceneHtml+='</div></div>';
+
+    // PRODUCT LIST with site attribution
+  var list='<div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px;">Où acheter chaque produit ↓</div>';
+  pack.forEach(function(it,i){
+    var col=cols[i%cols.length];
+    var nm=it.n.replace(/['"<>&]/g,' ');
+    list+='<div class="pack-item" data-nm="'+nm+'" onclick="showCompare(this.dataset.nm)" style="border-left:3px solid '+col+';">';
+    list+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">';
+    list+='<span style="font-size:20px;">'+it.e+'</span>';
+    list+='<span style="font-size:13px;font-weight:600;color:#fff;flex:1;">'+it.n+'</span>';
+    list+='<span style="font-family:Syne,sans-serif;font-size:16px;font-weight:800;color:'+col+';">'+it.p+'€</span>';
+    list+='</div>';
+    // Show each site as clickable tag
+    var siteTags=it.s.split(' · ').map(function(site){
+      site=site.trim();
+      var smartN=it.n;
+      if(_packContext&&_packContext.length>3){
+        var ctx2=_packContext.replace(/[0-9]/g,'').trim();
+        var ws=ctx2.split(' ');var th=[];
+        for(var wj=0;wj<ws.length;wj++){if(ws[wj].length>3)th.push(ws[wj]);}
+        if(th.length>0&&!it.n.toLowerCase().includes(th[0].toLowerCase()))smartN=it.n+' '+th.slice(0,2).join(' ');
+      }
+      var encS=encodeURIComponent(smartN);
+      var encN=encodeURIComponent(it.n);
+      var urls={Amazon:'https://www.amazon.fr/s?k='+encS+'&tag=bestdeal0e9d0-21',AliExpress:'https://fr.aliexpress.com/wholesale?SearchText='+encS,Temu:'https://www.temu.com/search_result.html?search_key='+encS,Fnac:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+encN,Cdiscount:'https://www.cdiscount.com/search/10/'+encN+'.html',Etsy:'https://www.etsy.com/fr/search?q='+encS,Skyscanner:'https://www.skyscanner.fr',Booking:'https://www.booking.com',Kayak:'https://www.kayak.fr',ManoMano:'https://www.manomano.fr/search/'+encN}
+      var url=urls[site]||'#';
+      return '<a href="'+url+'" target="_blank" onclick="event.stopPropagation()" style="display:inline-block;padding:3px 8px;border-radius:8px;background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.12);font-size:10px;color:rgba(255,255,255,.6);text-decoration:none;margin-right:4px;margin-top:2px;">'+site+'</a>';
+    }).join('');
+    list+='<div>'+siteTags+'</div>';
+    list+='</div>';
+  });
+
+  res.innerHTML=sceneHtml+list;
+}
+
 
 /* ══ PREMIUM ══ */
 function togglePromo(){const b=document.getElementById('promo-box');b.style.display=b.style.display==='flex'?'none':'flex';}
@@ -786,16 +1027,27 @@ function searchAmazon(el){
 
 function showCompare(q){
   if(!q)return;
+  var searchQ=q;
+  if(_packContext&&_packContext.length>3){
+    var ctx=_packContext.replace(/[0-9]/g,'').trim();
+    var words=ctx.split(' ');
+    var theme=[];
+    for(var wi=0;wi<words.length;wi++){if(words[wi].length>3)theme.push(words[wi]);}
+    if(theme.length>0&&!q.toLowerCase().includes(theme[0].toLowerCase())){
+      searchQ=q+' '+theme.slice(0,2).join(' ');
+    }
+  }
   var old=document.getElementById('cmp-modal');
   if(old)old.remove();
-  var enc=encodeURIComponent(q);
+  var enc=encodeURIComponent(searchQ);
+  var encB=encodeURIComponent(q);
   var sites=[
-    {n:'Amazon',   i:'📦',u:'https://www.amazon.fr/s?k='+enc+'&tag=bestdeal0e9d0-21'},
+    {n:'Amazon',    i:'📦',u:'https://www.amazon.fr/s?k='+enc+'&tag=bestdeal0e9d0-21'},
     {n:'AliExpress',i:'🛒',u:'https://fr.aliexpress.com/wholesale?SearchText='+enc},
-    {n:'Temu',     i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+enc},
-    {n:'eBay',     i:'🔵',u:'https://www.ebay.fr/sch/i.html?_nkw='+enc},
-    {n:'Cdiscount',i:'🏬',u:'https://www.cdiscount.com/search/10/'+enc+'.html'},
-    {n:'Fnac',     i:'📚',u:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+enc}
+    {n:'Temu',      i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+enc},
+    {n:'eBay',      i:'🔵',u:'https://www.ebay.fr/sch/i.html?_nkw='+enc},
+    {n:'Cdiscount', i:'🏬',u:'https://www.cdiscount.com/search/10/'+encB+'.html'},
+    {n:'Fnac',      i:'📚',u:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+encB}
   ];
   var m=document.createElement('div');
   m.id='cmp-modal';
