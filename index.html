@@ -167,8 +167,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="big-t">Les meilleures<br>offres du jour</div>
         <div class="tline">Amazon, Temu, AliExpress, Fnac</div>
         <div class="cards-row">
-          <div class="deal" onclick="window.open('https://fr.aliexpress.com/wholesale?SearchText=ecouteurs+sans+fil','_blank')"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Ecouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
-          <div class="deal" onclick="window.open('https://www.temu.com/search_result.html?search_key=robot+aspirateur','_blank')"><div class="deal-site">Temu vs Fnac</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
+          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'AliExpress',produit:'Ecouteurs sans fil'});}window.open('https://fr.aliexpress.com/wholesale?SearchText=ecouteurs+sans+fil','_blank')"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Ecouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
+          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'Temu',produit:'Robot aspirateur'});}window.open('https://www.temu.com/search_result.html?search_key=robot+aspirateur','_blank')"><div class="deal-site">Temu vs Fnac</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--or);color:#fff;" onclick="openApp()">Explorer toutes les offres →</button>
       </div>
@@ -556,7 +556,10 @@ function showCompare(q){
     r.appendChild(ic);r.appendChild(inf);r.appendChild(ar);
     r.onmouseover=function(){this.style.background='rgba(255,255,255,.11)';};
     r.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';};
-    (function(url){r.onclick=function(){window.open(url,'_blank');};})(s.u);
+    (function(url,name){r.onclick=function(){
+  if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:name,produit:q,url:url});}
+  window.open(url,'_blank');
+};})(s.u,s.n);
     wrap.appendChild(r);
   });
   m.appendChild(wrap);m.addEventListener('click',function(e){if(e.target===m)m.remove();});
