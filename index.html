@@ -14,7 +14,7 @@
 <title>BestDeal — Comparez tout, payez moins</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--or:#FF5E1A;--or2:rgba(255,94,26,.18);--gr:#00D478;--gr2:rgba(0,212,120,.15);--am:#FFB800;--am2:rgba(255,184,0,.15);--vi:#A855F7;--vi2:rgba(168,85,247,.15);--t2:rgba(255,255,255,.55);--t3:rgba(255,255,255,.30);}
+:root{--or:#FF5E1A;--or2:rgba(255,94,26,.18);--gr:#00D478;--gr2:rgba(0,212,120,.15);--am:#FFB800;--am2:rgba(255,184,0,.15);--vi:#A855F7;--vi2:rgba(168,85,247,.15);--eb:#86B817;--eb2:rgba(134,184,23,.15);--t2:rgba(255,255,255,.55);--t3:rgba(255,255,255,.30);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM Sans",sans-serif;}
 #home,#app{position:fixed;inset:0;transition:opacity .4s,transform .4s;}
@@ -107,7 +107,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
 .photo-drop{border:1.5px dashed rgba(255,255,255,.16);border-radius:14px;padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;margin-bottom:12px;}
 .ph-res{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .ph-card{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:12px;padding:11px;text-align:center;}
-/* Budget IA */
 .evt-card{background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.10);border-radius:13px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .22s;}
 .evt-card:hover{background:rgba(255,255,255,.12);transform:scale(1.04);}
 .evt-card.on{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4);}
@@ -117,7 +116,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
 .style-tag.on{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4);color:#C080FF;}
 .pack-item{background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.09);border-radius:13px;padding:13px 14px;margin-bottom:9px;cursor:pointer;transition:background .2s;}
 .pack-item:hover{background:rgba(255,255,255,.09);}
-/* Premium */
 #prem{position:fixed;bottom:14px;right:13px;z-index:500;background:var(--or);border-radius:18px;padding:8px 15px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 20px rgba(255,94,26,.45);}
 #sovl{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.90);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;padding:48px 18px 18px;opacity:0;pointer-events:none;transition:opacity .25s;}
 #sovl.open{opacity:1;pointer-events:all;}
@@ -165,10 +163,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
       <div class="ov">
         <div class="chip" style="background:rgba(255,94,26,.18);color:#FF7A40;">🛍 Shopping</div>
         <div class="big-t">Les meilleures<br>offres du jour</div>
-        <div class="tline">Amazon, Temu, AliExpress, Fnac</div>
+        <div class="tline">Amazon, Temu, AliExpress, eBay</div>
         <div class="cards-row">
           <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'AliExpress',produit:'Ecouteurs sans fil'});}window.open('https://fr.aliexpress.com/wholesale?SearchText=ecouteurs+sans+fil','_blank')"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Ecouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
-          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'Temu',produit:'Robot aspirateur'});}window.open('https://www.temu.com/search_result.html?search_key=robot+aspirateur','_blank')"><div class="deal-site">Temu vs Fnac</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
+          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'Temu',produit:'Robot aspirateur'});}window.open('https://www.temu.com/search_result.html?search_key=robot+aspirateur','_blank')"><div class="deal-site">Temu vs eBay</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--or);color:#fff;" onclick="openApp()">Explorer toutes les offres →</button>
       </div>
@@ -189,10 +187,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
       <div class="ov">
         <div class="chip" style="background:var(--am2);color:#FFD040;">🚗 Vehicules</div>
         <div class="big-t">Votre prochain<br>bolide vous attend</div>
-        <div class="tline">AutoScout24, LeBonCoin</div>
+        <div class="tline">AutoScout24, LeBonCoin, eBay Motors</div>
         <div class="cards-row">
           <div class="deal" onclick="window.open('https://www.autoscout24.fr','_blank')"><div class="deal-site">AutoScout vs LeBonCoin</div><div class="deal-name">Peugeot 308 SW 2022</div><div class="deal-old">24 000€</div><div class="deal-new" style="color:var(--am);">17 500€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
-          <div class="deal" onclick="window.open('https://www.autoscout24.fr','_blank')"><div class="deal-site">AutoScout</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+          <div class="deal" onclick="window.open('https://www.ebay.fr/sch/i.html?_nkw=tesla+model+3','_blank')"><div class="deal-site">eBay Motors</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--am);color:#2a1e00;" onclick="openApp()">Explorer les vehicules →</button>
       </div>
@@ -204,7 +202,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="tline">MacBook, iPhone, PS5</div>
         <div class="cards-row">
           <div class="deal" onclick="window.open('https://www.amazon.fr/s?k=iphone+15+pro&tag=bestdeal0e9d0-21','_blank')"><div class="deal-site">Amazon vs Fnac</div><div class="deal-name">iPhone 15 Pro 256GB</div><div class="deal-old">1 229€</div><div class="deal-new" style="color:var(--vi);">949€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-23%</div></div>
-          <div class="deal" onclick="window.open('https://www.amazon.fr/s?k=macbook+air+m3&tag=bestdeal0e9d0-21','_blank')"><div class="deal-site">Cdiscount vs Amazon</div><div class="deal-name">MacBook Air M3</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
+          <div class="deal" onclick="window.open('https://www.ebay.fr/sch/i.html?_nkw=macbook+air+m3','_blank')"><div class="deal-site">eBay vs Amazon</div><div class="deal-name">MacBook Air M3</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--vi);color:#fff;" onclick="openApp()">Explorer la high-tech →</button>
       </div>
@@ -247,32 +245,33 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
 
     <div id="p-recherche" class="panel on">
       <div class="res-list" id="res-grid">
-        <div class="res-card" style="cursor:pointer;" onclick="showCompare('Ecouteurs Sony WF-1000XM5')"><div><div class="rc-name">Ecouteurs Sony WF-1000XM5</div><div class="rc-sites">AliExpress · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">289€</div><div class="rc-new" style="color:var(--or);">149€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-48%</div></div></div>
-        <div class="res-card" style="cursor:pointer;" onclick="showCompare('Robot aspirateur Roborock S7')"><div><div class="rc-name">Robot aspirateur Roborock S7</div><div class="rc-sites">Temu · Amazon · Cdiscount</div></div><div class="rc-p"><div class="rc-old">399€</div><div class="rc-new" style="color:var(--or);">219€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-45%</div></div></div>
-        <div class="res-card" style="cursor:pointer;" onclick="showCompare('Galaxy Watch 6 Classic')"><div><div class="rc-name">Galaxy Watch 6 Classic</div><div class="rc-sites">Samsung · Amazon · Fnac</div></div><div class="rc-p"><div class="rc-old">299€</div><div class="rc-new" style="color:var(--or);">189€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-37%</div></div></div>
+        <div class="res-card" onclick="showCompare('Ecouteurs Sony WF-1000XM5')"><div><div class="rc-name">Ecouteurs Sony WF-1000XM5</div><div class="rc-sites">AliExpress · Amazon · eBay · Fnac</div></div><div class="rc-p"><div class="rc-old">289€</div><div class="rc-new" style="color:var(--or);">149€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-48%</div></div></div>
+        <div class="res-card" onclick="showCompare('Robot aspirateur Roborock S7')"><div><div class="rc-name">Robot aspirateur Roborock S7</div><div class="rc-sites">Temu · Amazon · eBay · Cdiscount</div></div><div class="rc-p"><div class="rc-old">399€</div><div class="rc-new" style="color:var(--or);">219€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-45%</div></div></div>
+        <div class="res-card" onclick="showCompare('Galaxy Watch 6 Classic')"><div><div class="rc-name">Galaxy Watch 6 Classic</div><div class="rc-sites">Samsung · Amazon · eBay · Fnac</div></div><div class="rc-p"><div class="rc-old">299€</div><div class="rc-new" style="color:var(--or);">189€</div><div class="rc-save" style="background:var(--or2);color:#FF7A40;">-37%</div></div></div>
       </div>
     </div>
 
     <div id="p-partenaires" class="panel">
       <div class="sec-h">🏪 Boutiques &amp; Partenaires</div>
       <div class="cat-grid">
-        <div class="cat-card" style="background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.25);" onclick="goTo(0);closeApp()"><div class="cat-icon">🛍️</div><div class="cat-name">Shopping</div><div class="cat-sub">Amazon · Temu · AliExpress</div></div>
+        <div class="cat-card" style="background:rgba(255,94,26,.12);border:.5px solid rgba(255,94,26,.25);" onclick="goTo(0);closeApp()"><div class="cat-icon">🛍️</div><div class="cat-name">Shopping</div><div class="cat-sub">Amazon · Temu · AliExpress · eBay</div></div>
         <div class="cat-card" style="background:rgba(0,212,120,.10);border:.5px solid rgba(0,212,120,.22);" onclick="goTo(1);closeApp()"><div class="cat-icon">✈️</div><div class="cat-name">Voyage</div><div class="cat-sub">Skyscanner · Booking</div></div>
-        <div class="cat-card" style="background:rgba(255,184,0,.10);border:.5px solid rgba(255,184,0,.22);" onclick="goTo(2);closeApp()"><div class="cat-icon">🚗</div><div class="cat-name">Vehicules</div><div class="cat-sub">AutoScout · LeBonCoin</div></div>
-        <div class="cat-card" style="background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);" onclick="goTo(3);closeApp()"><div class="cat-icon">💻</div><div class="cat-name">High-Tech</div><div class="cat-sub">Amazon · Fnac · Cdiscount</div></div>
+        <div class="cat-card" style="background:rgba(255,184,0,.10);border:.5px solid rgba(255,184,0,.22);" onclick="goTo(2);closeApp()"><div class="cat-icon">🚗</div><div class="cat-name">Vehicules</div><div class="cat-sub">AutoScout · eBay Motors</div></div>
+        <div class="cat-card" style="background:rgba(168,85,247,.10);border:.5px solid rgba(168,85,247,.22);" onclick="goTo(3);closeApp()"><div class="cat-icon">💻</div><div class="cat-name">High-Tech</div><div class="cat-sub">Amazon · eBay · Fnac</div></div>
       </div>
       <div class="bsect-t">🔥 Partenaires actifs</div>
       <div class="bout-grid">
         <div class="bout-card" onclick="window.open('https://www.amazon.fr/?tag=bestdeal0e9d0-21','_blank')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
         <div class="bout-card" onclick="window.open('https://s.click.aliexpress.com/e/_c3EseUaH','_blank')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
         <div class="bout-card" onclick="window.open('https://temu.to/k/eai20w7hh1c','_blank')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
+        <div class="bout-card" onclick="window.open('https://www.ebay.fr','_blank')"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(134,184,23,.15);color:#86B817;">Partenaire</div></div>
       </div>
       <div class="bsect-t">⏳ Bientot disponibles</div>
       <div class="bout-grid">
         <div class="bout-card" style="opacity:.5"><div class="bl">📚</div><div class="bn">Fnac</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
         <div class="bout-card" style="opacity:.5"><div class="bl">🏬</div><div class="bn">Cdiscount</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
         <div class="bout-card" style="opacity:.5"><div class="bl">🔨</div><div class="bn">ManoMano</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
-        <div class="bout-card" style="opacity:.5"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
+        <div class="bout-card" style="opacity:.5"><div class="bl">🏨</div><div class="bn">Booking</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
         <div class="bout-card" style="opacity:.5"><div class="bl">🎨</div><div class="bn">Etsy</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
         <div class="bout-card" style="opacity:.5"><div class="bl">👕</div><div class="bn">Vinted</div><div class="bb" style="background:rgba(255,184,0,.12);color:#E2A612;">En attente</div></div>
       </div>
@@ -282,7 +281,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
       <div class="sec-h">❤️ Mes favoris</div>
       <div id="fav-list">
         <div class="fav-item" onclick="showCompare('Sony WH-1000XM5')"><div class="fav-e">🎧</div><div><div class="fav-n">Sony WH-1000XM5</div><div class="fav-s">Amazon · il y a 2 jours</div></div><div class="fav-p" style="color:var(--or);">279€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
-        <div class="fav-item" onclick="showCompare('MacBook Air M2')"><div class="fav-e">💻</div><div><div class="fav-n">MacBook Air M2</div><div class="fav-s">Fnac · il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
+        <div class="fav-item" onclick="showCompare('MacBook Air M2')"><div class="fav-e">💻</div><div><div class="fav-n">MacBook Air M2</div><div class="fav-s">eBay · il y a 5 jours</div></div><div class="fav-p" style="color:var(--vi);">999€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
         <div class="fav-item" onclick="showCompare('PS5 Slim Digital')"><div class="fav-e">🎮</div><div><div class="fav-n">PS5 Slim Digital</div><div class="fav-s">Cdiscount · hier</div></div><div class="fav-p" style="color:var(--gr);">399€</div><button class="fav-del" onclick="event.stopPropagation();this.closest('.fav-item').remove()">×</button></div>
       </div>
     </div>
@@ -335,9 +334,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
       <div class="sec-s">Produits dont le prix a le plus baisse ces 24h</div>
       <div class="radar-grid">
         <div class="radar-card" onclick="showCompare('AirPods Pro 2')"><div class="ri">🎧</div><div class="rn">AirPods Pro 2</div><div class="rd">Amazon · 2h</div><div class="rp" style="color:var(--gr);">-31%</div></div>
-        <div class="radar-card" onclick="showCompare('Dell XPS 15')"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">Fnac · 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
+        <div class="radar-card" onclick="showCompare('Dell XPS 15')"><div class="ri">💻</div><div class="rn">Dell XPS 15</div><div class="rd">eBay · 5h</div><div class="rp" style="color:var(--gr);">-22%</div></div>
         <div class="radar-card" onclick="showCompare('TV Samsung 55 QLED')"><div class="ri">📺</div><div class="rn">TV Samsung 55" QLED</div><div class="rd">Cdiscount · 8h</div><div class="rp" style="color:var(--gr);">-40%</div></div>
-        <div class="radar-card" onclick="showCompare('PS5 Slim manette')"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">Amazon · 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
+        <div class="radar-card" onclick="showCompare('PS5 Slim manette')"><div class="ri">🎮</div><div class="rn">PS5 Slim + manette</div><div class="rd">eBay · 1h</div><div class="rp" style="color:var(--gr);">-18%</div></div>
         <div class="radar-card" onclick="showCompare('Samsung Galaxy S24')"><div class="ri">📱</div><div class="rn">Samsung Galaxy S24</div><div class="rd">Fnac · 3h</div><div class="rp" style="color:var(--gr);">-25%</div></div>
         <div class="radar-card" onclick="showCompare('HP LaserJet Pro')"><div class="ri">🖨️</div><div class="rn">HP LaserJet Pro</div><div class="rd">Amazon · 6h</div><div class="rp" style="color:var(--gr);">-35%</div></div>
       </div>
@@ -402,20 +401,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
 
 <script>
 /* ── USAGE LIMITS ── */
-var _isPremium = false;
+var _isPremium=false;
 function getUsage(key){try{var d=JSON.parse(localStorage.getItem('bd_usage')||'{}');return d[key]||{count:0,month:''};}catch(e){return{count:0,month:''};}}
 function setUsage(key,val){try{var d=JSON.parse(localStorage.getItem('bd_usage')||'{}');d[key]=val;localStorage.setItem('bd_usage',JSON.stringify(d));}catch(e){}}
 function getMonth(){var n=new Date();return n.getFullYear()+'-'+(n.getMonth()+1);}
-function canUse(f){
-  if(_isPremium)return true;
-  if(f==='radar'||f==='alertes')return false; // Premium only
-  var u=getUsage(f);return u.month!==getMonth()||u.count<1; // 1/month free
-}
+function canUse(f){if(_isPremium)return true;if(f==='radar'||f==='alertes')return false;var u=getUsage(f);return u.month!==getMonth()||u.count<1;}
 function markUsed(f){var m=getMonth();var u=getUsage(f);if(u.month!==m)u={count:0,month:m};u.count++;setUsage(f,u);}
-function accessPremium(feature){
-  if(_isPremium){showTab(feature);return;}
-  showLimitModal(feature);
-}
+function accessPremium(feature){if(_isPremium){showTab(feature);return;}showLimitModal(feature);}
 
 function showLimitModal(feature){
   var old=document.getElementById('limit-modal');if(old)old.remove();
@@ -430,7 +422,7 @@ function showLimitModal(feature){
   var h=document.createElement('div');h.style.cssText='font-family:Syne,sans-serif;font-size:18px;font-weight:900;color:#fff;margin-bottom:8px;';h.textContent='Limite mensuelle atteinte';
   var p=document.createElement('div');p.style.cssText='font-size:13px;color:rgba(255,255,255,.5);margin-bottom:20px;line-height:1.6;';
   var isFullBlock=(feature==='radar'||feature==='alertes');
-  p.innerHTML='<strong style="color:#fff;">'+fname+'</strong>'+(isFullBlock?' est reservee aux membres <strong style="color:#fff;">Premium</strong>.':'  : 1 utilisation/mois en gratuit.')+'<br><br>Passez Premium pour un acces illimite.';
+  p.innerHTML='<strong style="color:#fff;">'+fname+'</strong>'+(isFullBlock?' est reservee aux membres <strong style="color:#fff;">Premium</strong>.':' : 1 utilisation/mois en gratuit.')+'<br><br>Passez Premium pour un acces illimite.';
   var b1=document.createElement('button');b1.style.cssText='width:100%;background:var(--or);border:none;border-radius:12px;padding:13px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:Syne,sans-serif;margin-bottom:10px;';
   b1.textContent='✨ Passer Premium — 9€/mois';
   b1.onclick=function(){m.remove();document.getElementById('pmoda').classList.add('open');};
@@ -473,21 +465,21 @@ function showTab(id){
 
 /* ── SEARCH ── */
 var PRODS=[
-  {n:'iPhone 17 Pro Max',s:'Amazon · Fnac · Cdiscount',o:'1 499€',p:'1 299€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'iPhone 16 Pro Max',s:'Amazon · Fnac',o:'1 329€',p:'999€',sv:'-25%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'iPhone 15 Pro 256GB',s:'Amazon · Fnac · Cdiscount',o:'1 229€',p:'849€',sv:'-31%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 17 Pro Max',s:'Amazon · Fnac · eBay',o:'1 499€',p:'1 299€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 16 Pro Max',s:'Amazon · eBay · Fnac',o:'1 329€',p:'999€',sv:'-25%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'iPhone 15 Pro 256GB',s:'Amazon · eBay · Cdiscount',o:'1 229€',p:'849€',sv:'-31%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
   {n:'Coque iPhone 17 Pro Max',s:'Amazon · AliExpress · Temu',o:'29€',p:'8€',sv:'-72%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'Samsung Galaxy S25 Ultra',s:'Samsung · Amazon · Fnac',o:'1 299€',p:'999€',sv:'-23%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'MacBook Air M3',s:'Cdiscount · Amazon · Fnac',o:'1 499€',p:'1 099€',sv:'-27%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'MacBook Pro M4',s:'Amazon · Apple · Fnac',o:'1 999€',p:'1 749€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'AirPods Pro 2',s:'Amazon · Fnac · Apple',o:'279€',p:'189€',sv:'-32%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'Ecouteurs Sony WF-1000XM5',s:'AliExpress · Amazon · Fnac',o:'289€',p:'149€',sv:'-48%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'PS5 Slim manette',s:'Amazon · Cdiscount · Fnac',o:'449€',p:'379€',sv:'-16%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
-  {n:'Nintendo Switch 2',s:'Amazon · Fnac · Cdiscount',o:'349€',p:'299€',sv:'-14%',c:'var(--gr)',b:'var(--gr2)',sc:'#00E88A'},
-  {n:'TV Samsung 55 QLED',s:'Cdiscount · Amazon · Fnac',o:'899€',p:'549€',sv:'-39%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'Robot aspirateur Roborock S7',s:'Temu · Amazon · Cdiscount',o:'399€',p:'219€',sv:'-45%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'Dyson V15 Detect',s:'Dyson · Amazon · Fnac',o:'749€',p:'499€',sv:'-33%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
-  {n:'Nike Air Max 270',s:'AliExpress · Temu · Zalando',o:'150€',p:'67€',sv:'-55%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Samsung Galaxy S25 Ultra',s:'Samsung · Amazon · eBay',o:'1 299€',p:'999€',sv:'-23%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'MacBook Air M3',s:'Cdiscount · Amazon · eBay',o:'1 499€',p:'1 099€',sv:'-27%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'MacBook Pro M4',s:'Amazon · eBay · Fnac',o:'1 999€',p:'1 749€',sv:'-13%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'AirPods Pro 2',s:'Amazon · eBay · Apple',o:'279€',p:'189€',sv:'-32%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'Ecouteurs Sony WF-1000XM5',s:'AliExpress · Amazon · eBay',o:'289€',p:'149€',sv:'-48%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'PS5 Slim manette',s:'Amazon · eBay · Fnac',o:'449€',p:'379€',sv:'-16%',c:'var(--vi)',b:'var(--vi2)',sc:'#C080FF'},
+  {n:'Nintendo Switch 2',s:'Amazon · eBay · Cdiscount',o:'349€',p:'299€',sv:'-14%',c:'var(--gr)',b:'var(--gr2)',sc:'#00E88A'},
+  {n:'TV Samsung 55 QLED',s:'Cdiscount · Amazon · eBay',o:'899€',p:'549€',sv:'-39%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Robot aspirateur Roborock S7',s:'Temu · Amazon · eBay',o:'399€',p:'219€',sv:'-45%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Dyson V15 Detect',s:'Dyson · Amazon · eBay',o:'749€',p:'499€',sv:'-33%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
+  {n:'Nike Air Max 270',s:'AliExpress · eBay · Zalando',o:'150€',p:'67€',sv:'-55%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
 ];
 var _lastQuery='';
 function doSearch(q){
@@ -525,14 +517,12 @@ document.getElementById('openS').addEventListener('click',function(){
 function showCompare(q){
   if(!q)return;
   var old=document.getElementById('cmp-modal');if(old)old.remove();
-  // Use product name directly - already theme-enriched from pack
   var enc=encodeURIComponent(q);
-  var searchQ=q;
   var sites=[
     {n:'Amazon',i:'📦',u:'https://www.amazon.fr/s?k='+enc+'&tag=bestdeal0e9d0-21'},
-    {n:'AliExpress',i:'🛒',u:'https://fr.aliexpress.com/wholesale?SearchText='+encodeURIComponent(q)},
-    {n:'Temu',i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+encodeURIComponent(q)},
     {n:'eBay',i:'🔵',u:'https://www.ebay.fr/sch/i.html?_nkw='+enc},
+    {n:'AliExpress',i:'🛒',u:'https://fr.aliexpress.com/wholesale?SearchText='+enc},
+    {n:'Temu',i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+enc},
     {n:'Cdiscount',i:'🏬',u:'https://www.cdiscount.com/search/10/'+enc+'.html'},
     {n:'Fnac',i:'📚',u:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+enc}
   ];
@@ -557,9 +547,9 @@ function showCompare(q){
     r.onmouseover=function(){this.style.background='rgba(255,255,255,.11)';};
     r.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';};
     (function(url,name){r.onclick=function(){
-  if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:name,produit:q,url:url});}
-  window.open(url,'_blank');
-};})(s.u,s.n);
+      if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:name,produit:q,url:url});}
+      window.open(url,'_blank');
+    };})(s.u,s.n);
     wrap.appendChild(r);
   });
   m.appendChild(wrap);m.addEventListener('click',function(e){if(e.target===m)m.remove();});
@@ -588,7 +578,7 @@ function addAl(){
 }
 
 /* ── BUDGET IA ── */
-var _evt='',_style='fun',_packCtx='';
+var _evt='',_style='fun';
 function parseDesc(txt){
   var hint=document.getElementById('parsed-hint');if(!txt||txt.length<3){hint.textContent='';return;}
   var persMatch=txt.match(/(\d+)\s*(?:personnes?|pers|invites?|enfants?|kids?|amis?)/i);
@@ -612,7 +602,6 @@ function genBudget(){
     if(pm)persons=parseInt(pm[1]);
     if(bm)budget=parseInt(bm[1]);
   }
-  _packCtx=txt||_evt;
   var pack,emoji,label;
   var t=txt.toLowerCase();
   if(txt.length>3){
@@ -629,40 +618,39 @@ function genBudget(){
       pack=[
         {n:'decoration anniversaire '+th,e:'🎈',r:.18,s:'Amazon · AliExpress · Temu'},
         {n:'gateau anniversaire '+th,e:'🎂',r:.16,s:'Amazon · Cdiscount'},
-        {n:'jouets cadeaux '+th,e:'🎁',r:.28,s:'Amazon · AliExpress · Temu'},
-        {n:'costume deguisement '+th,e:'🦸',r:.16,s:'Amazon · Temu · AliExpress'},
+        {n:'jouets cadeaux '+th,e:'🎁',r:.28,s:'Amazon · eBay · Temu'},
+        {n:'costume deguisement '+th,e:'🦸',r:.16,s:'Amazon · eBay · AliExpress'},
         {n:'vaisselle assiette verre '+th,e:'🍽️',r:.12,s:'Amazon · Temu'},
-        {n:'jeux animation '+th,e:'🕹️',r:.10,s:'Amazon · Fnac'},
+        {n:'jeux animation '+th,e:'🕹️',r:.10,s:'Amazon · eBay · Fnac'},
       ];
     } else if(t.includes('anniversaire')){
       emoji='🎉';label='Anniversaire';
-      pack=[{n:'Decoration festive',e:'🎉',r:.20,s:'Amazon · AliExpress'},{n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · Fnac'},{n:'Boissons degust',e:'🍾',r:.25,s:'Amazon · Cdiscount'},{n:'Photo booth souvenirs',e:'📸',r:.20,s:'Amazon · AliExpress'}];
+      pack=[{n:'Decoration festive',e:'🎉',r:.20,s:'Amazon · AliExpress'},{n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · eBay'},{n:'Boissons degust',e:'🍾',r:.25,s:'Amazon · Cdiscount'},{n:'Photo booth souvenirs',e:'📸',r:.20,s:'Amazon · AliExpress'}];
     } else if(t.includes('mariage')||t.includes('wedding')){
       emoji='💒';label='Mariage';
-      pack=[{n:'Tenue ceremonie',e:'👗',r:.25,s:'AliExpress · Etsy'},{n:'Alliance bijoux',e:'💍',r:.20,s:'Amazon · Etsy'},{n:'Decoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},{n:'Champagne traiteur',e:'🍾',r:.15,s:'Amazon · Cdiscount'},{n:'Appareil photo',e:'📷',r:.25,s:'Amazon · Fnac'}];
+      pack=[{n:'Tenue ceremonie',e:'👗',r:.25,s:'AliExpress · eBay'},{n:'Alliance bijoux',e:'💍',r:.20,s:'Amazon · eBay'},{n:'Decoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},{n:'Champagne traiteur',e:'🍾',r:.15,s:'Amazon · Cdiscount'},{n:'Appareil photo',e:'📷',r:.25,s:'Amazon · eBay'}];
     } else if(t.includes('voyage')||t.includes('vacances')){
       emoji='✈️';label='Voyage';
-      pack=[{n:'Vols transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},{n:'Hebergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},{n:'Bagages equipement',e:'🧳',r:.20,s:'Amazon · AliExpress'},{n:'Activites loisirs',e:'🗺️',r:.15,s:'Booking · Amazon'}];
+      pack=[{n:'Vols transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},{n:'Hebergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},{n:'Bagages equipement',e:'🧳',r:.20,s:'Amazon · eBay'},{n:'Activites loisirs',e:'🗺️',r:.15,s:'Booking · Amazon'}];
     } else if(t.includes('gaming')||t.includes('setup')){
       emoji='🎮';label='Setup Gaming';
-      pack=[{n:'Console PC gaming',e:'🎮',r:.40,s:'Amazon · Fnac · Cdiscount'},{n:'Ecran haute perfo',e:'🖥️',r:.25,s:'Amazon · Cdiscount'},{n:'Casque peripheriques',e:'🎧',r:.20,s:'Amazon · AliExpress'},{n:'Eclairage RGB deco',e:'💡',r:.15,s:'Temu · Amazon'}];
+      pack=[{n:'Console PC gaming',e:'🎮',r:.40,s:'Amazon · eBay · Fnac'},{n:'Ecran haute perfo',e:'🖥️',r:.25,s:'Amazon · eBay'},{n:'Casque peripheriques',e:'🎧',r:.20,s:'Amazon · AliExpress'},{n:'Eclairage RGB deco',e:'💡',r:.15,s:'Temu · Amazon'}];
     } else {
       var shortTxt=txt.slice(0,30);
       emoji='✨';label=shortTxt;
-      pack=[{n:shortTxt,e:'🎁',r:.35,s:'Amazon · AliExpress · Temu'},{n:'Idees cadeaux',e:'🎀',r:.25,s:'Amazon · Etsy'},{n:'Accessoires tendance',e:'🛍️',r:.25,s:'Amazon · AliExpress'},{n:'Deco ambiance',e:'✨',r:.15,s:'Amazon · Temu'}];
+      pack=[{n:shortTxt,e:'🎁',r:.35,s:'Amazon · eBay · Temu'},{n:'Idees cadeaux',e:'🎀',r:.25,s:'Amazon · eBay'},{n:'Accessoires tendance',e:'🛍️',r:.25,s:'Amazon · AliExpress'},{n:'Deco ambiance',e:'✨',r:.15,s:'Amazon · Temu'}];
     }
   } else if(_evt){
     var DB={
-      mariage:[{n:'Tenue ceremonie',e:'👗',r:.25,s:'AliExpress · Etsy'},{n:'Alliance bijoux',e:'💍',r:.20,s:'Amazon · Etsy'},{n:'Decoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},{n:'Champagne traiteur',e:'🍾',r:.15,s:'Amazon · Cdiscount'},{n:'Appareil photo',e:'📷',r:.25,s:'Amazon · Fnac'}],
-      anniversaire:[{n:'Decoration festive',e:'🎉',r:.25,s:'Amazon · AliExpress'},{n:'Gateau bougies',e:'🎂',r:.20,s:'Amazon · Cdiscount'},{n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · Fnac'},{n:'Animation jeux',e:'🎮',r:.20,s:'Amazon · Fnac'}],
-      voyage:[{n:'Vols transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},{n:'Hebergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},{n:'Bagages',e:'🧳',r:.20,s:'Amazon · AliExpress'},{n:'Activites',e:'🗺️',r:.15,s:'Booking'}],
-      gaming:[{n:'Console gaming',e:'🎮',r:.40,s:'Amazon · Fnac'},{n:'Ecran',e:'🖥️',r:.25,s:'Amazon · Cdiscount'},{n:'Casque',e:'🎧',r:.20,s:'Amazon · AliExpress'},{n:'Eclairage RGB',e:'💡',r:.15,s:'Temu · Amazon'}],
-      maison:[{n:'Mobilier',e:'🛋️',r:.35,s:'Amazon · ManoMano'},{n:'Eclairage',e:'💡',r:.20,s:'Temu · Amazon'},{n:'Deco plantes',e:'🪴',r:.20,s:'Amazon · Temu'},{n:'Electromenager',e:'🍳',r:.25,s:'Amazon · Fnac'}],
-      sport:[{n:'Equipement sport',e:'⚽',r:.35,s:'Amazon · AliExpress'},{n:'Tenue chaussures',e:'👟',r:.30,s:'Amazon · Temu'},{n:'Accessoires',e:'💪',r:.20,s:'Amazon · AliExpress'},{n:'Nutrition',e:'🥤',r:.15,s:'Amazon'}]
+      mariage:[{n:'Tenue ceremonie',e:'👗',r:.25,s:'AliExpress · eBay'},{n:'Alliance bijoux',e:'💍',r:.20,s:'Amazon · eBay'},{n:'Decoration florale',e:'💐',r:.15,s:'Amazon · AliExpress'},{n:'Champagne traiteur',e:'🍾',r:.15,s:'Amazon · Cdiscount'},{n:'Appareil photo',e:'📷',r:.25,s:'Amazon · eBay'}],
+      anniversaire:[{n:'Decoration festive',e:'🎉',r:.25,s:'Amazon · AliExpress'},{n:'Gateau bougies',e:'🎂',r:.20,s:'Amazon · Cdiscount'},{n:'Cadeau surprise',e:'🎁',r:.35,s:'Amazon · eBay'},{n:'Animation jeux',e:'🎮',r:.20,s:'Amazon · eBay'}],
+      voyage:[{n:'Vols transport',e:'✈️',r:.35,s:'Skyscanner · Kayak'},{n:'Hebergement',e:'🏨',r:.30,s:'Booking · Hotels.com'},{n:'Bagages',e:'🧳',r:.20,s:'Amazon · eBay'},{n:'Activites',e:'🗺️',r:.15,s:'Booking'}],
+      gaming:[{n:'Console gaming',e:'🎮',r:.40,s:'Amazon · eBay'},{n:'Ecran',e:'🖥️',r:.25,s:'Amazon · eBay'},{n:'Casque',e:'🎧',r:.20,s:'Amazon · AliExpress'},{n:'Eclairage RGB',e:'💡',r:.15,s:'Temu · Amazon'}],
+      maison:[{n:'Mobilier',e:'🛋️',r:.35,s:'Amazon · eBay'},{n:'Eclairage',e:'💡',r:.20,s:'Temu · Amazon'},{n:'Deco plantes',e:'🪴',r:.20,s:'Amazon · Temu'},{n:'Electromenager',e:'🍳',r:.25,s:'Amazon · eBay'}],
+      sport:[{n:'Equipement sport',e:'⚽',r:.35,s:'Amazon · eBay'},{n:'Tenue chaussures',e:'👟',r:.30,s:'Amazon · AliExpress'},{n:'Accessoires',e:'💪',r:.20,s:'Amazon · AliExpress'},{n:'Nutrition',e:'🥤',r:.15,s:'Amazon'}]
     };
     var evtIcons={mariage:'💒',anniversaire:'🎂',voyage:'✈️',gaming:'🎮',maison:'🏠',sport:'⚽'};
-    var rawItems=DB[_evt]||DB.anniversaire;
-    pack=rawItems;emoji=evtIcons[_evt]||'✨';label=_evt.charAt(0).toUpperCase()+_evt.slice(1);
+    pack=DB[_evt]||DB.anniversaire;emoji=evtIcons[_evt]||'✨';label=_evt.charAt(0).toUpperCase()+_evt.slice(1);
   } else {
     alert('Decrivez votre projet ou choisissez une categorie');return;
   }
@@ -672,8 +660,6 @@ function genBudget(){
 
   var res=document.getElementById('pack-result');
   var cols=['#FF5E1A','#00D478','#FFB800','#A855F7','#FF5E1A','#00D478'];
-
-  // Moodboard visuel
   var html='<div style="background:linear-gradient(135deg,#0d0d1f 0%,#1a0d2e 50%,#0d1a0d 100%);border-radius:18px;padding:16px;margin-bottom:14px;">';
   html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">';
   pack.forEach(function(it,i){
@@ -690,12 +676,10 @@ function genBudget(){
   html+='<div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;">'+persons+' pers · '+budget+'€ · '+(Math.round(budget/persons))+'€/pers</div></div>';
   var total=pack.reduce(function(s,i){return s+i.p;},0);
   html+='<div style="text-align:right;"><div style="font-size:10px;color:rgba(255,255,255,.35);">Total</div><div style="font-family:Syne,sans-serif;font-size:20px;font-weight:900;color:#fff;">'+total+'€</div></div></div>';
-
-  // Site par site
   var siteMap={};
   pack.forEach(function(it){var site=it.s.split(' · ')[0].trim();if(!siteMap[site])siteMap[site]=[];siteMap[site].push(it.n);});
   html+='<div style="margin-top:10px;">';
-  var siteColors={Amazon:'#FF9900',AliExpress:'#FF6A00',Temu:'#FF6900',Fnac:'#E2A612',Cdiscount:'#E2001A',Skyscanner:'#0770E3',Booking:'#003580'};
+  var siteColors={Amazon:'#FF9900',AliExpress:'#FF6A00',Temu:'#FF6900',Fnac:'#E2A612',Cdiscount:'#E2001A',Skyscanner:'#0770E3',Booking:'#003580',eBay:'#86B817'};
   Object.keys(siteMap).forEach(function(site){
     var sc=siteColors[site]||'#fff';
     html+='<div style="background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.10);border-radius:10px;padding:8px 12px;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px;">';
@@ -704,8 +688,6 @@ function genBudget(){
     html+='</div>';
   });
   html+='</div></div>';
-
-  // Liste cliquable
   html+='<div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px;margin-top:4px;">Cliquez pour comparer</div>';
   pack.forEach(function(it,i){
     var col=cols[i%cols.length];
@@ -719,7 +701,6 @@ function genBudget(){
     html+='<div style="font-size:10px;color:var(--t3);">'+it.s+'</div>';
     html+='</div>';
   });
-
   res.innerHTML=html;
 }
 
@@ -742,7 +723,7 @@ function initCanvases(){
   function sc(id){var cv=document.getElementById(id);if(!cv)return null;cv.width=IW;cv.height=IH;return cv;}
   var cv0=sc('c0');if(!cv0)return;
   (function(){var cv=cv0,ctx=cv.getContext('2d'),w=IW,h=IH;
-    var IC=['🛍','📦','💳','🏷️','🎁','🛒','📱','👟'];
+    var IC=['🛍','📦','💳','🏷️','🎁','🛒','📱','👟','🔵'];
     var orbs=IC.map(function(ic,i){return{ic:ic,ang:(i/IC.length)*Math.PI*2,r:.15+(i%3)*.07,spd:.005+(i%4)*.002,sz:24+(i%3)*6};});
     var pr=['34€','89€','22€','159€','45€','12€','299€','67€'];
     var bl=Array.from({length:12},function(_,i){return{x:Math.random(),y:Math.random(),vy:-(5e-4+Math.random()*4e-4),lb:pr[i%pr.length],a:.15+Math.random()*.25,sz:12+Math.random()*8};});
