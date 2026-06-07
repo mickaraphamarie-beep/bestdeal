@@ -165,8 +165,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="big-t">Les meilleures<br>offres du jour</div>
         <div class="tline">Amazon, Temu, AliExpress, eBay</div>
         <div class="cards-row">
-          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'AliExpress',produit:'Ecouteurs sans fil'});}window.open('https://fr.aliexpress.com/wholesale?SearchText=ecouteurs+sans+fil','_blank')"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Ecouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
-          <div class="deal" onclick="if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:'Temu',produit:'Robot aspirateur'});}window.open('https://www.temu.com/search_result.html?search_key=robot+aspirateur','_blank')"><div class="deal-site">Temu vs eBay</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
+          <div class="deal" onclick="trackAndOpen('AliExpress','Ecouteurs sans fil','https://fr.aliexpress.com/wholesale?SearchText=ecouteurs+sans+fil')"><div class="deal-site">AliExpress vs Amazon</div><div class="deal-name">Ecouteurs sans fil Pro</div><div class="deal-old">89€</div><div class="deal-new" style="color:var(--or);">34€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-62%</div></div>
+          <div class="deal" onclick="trackAndOpen('Temu','Robot aspirateur','https://www.temu.com/search_result.html?search_key=robot+aspirateur')"><div class="deal-site">Temu vs eBay</div><div class="deal-name">Robot aspirateur i7</div><div class="deal-old">299€</div><div class="deal-new" style="color:var(--or);">129€</div><div class="deal-badge" style="background:var(--or2);color:#FF7A40;">-57%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--or);color:#fff;" onclick="openApp()">Explorer toutes les offres →</button>
       </div>
@@ -177,8 +177,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="big-t">Partez plus loin<br>pour moins cher</div>
         <div class="tline">Skyscanner, Booking, Kayak</div>
         <div class="cards-row">
-          <div class="deal" onclick="window.open('https://www.skyscanner.fr','_blank')"><div class="deal-site">Skyscanner vs Kayak</div><div class="deal-name">Paris Ibiza A/R</div><div class="deal-old">210€</div><div class="deal-new" style="color:var(--gr);">67€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-68%</div></div>
-          <div class="deal" onclick="window.open('https://www.booking.com','_blank')"><div class="deal-site">Booking vs Hotels.com</div><div class="deal-name">Hotel Barcelone 3j</div><div class="deal-old">480€</div><div class="deal-new" style="color:var(--gr);">195€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-59%</div></div>
+          <div class="deal" onclick="trackAndOpen('Skyscanner','Paris Ibiza AR','https://www.skyscanner.fr')"><div class="deal-site">Skyscanner vs Kayak</div><div class="deal-name">Paris Ibiza A/R</div><div class="deal-old">210€</div><div class="deal-new" style="color:var(--gr);">67€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-68%</div></div>
+          <div class="deal" onclick="trackAndOpen('Booking','Hotel Barcelone','https://www.booking.com')"><div class="deal-site">Booking vs Hotels.com</div><div class="deal-name">Hotel Barcelone 3j</div><div class="deal-old">480€</div><div class="deal-new" style="color:var(--gr);">195€</div><div class="deal-badge" style="background:var(--gr2);color:#00E88A;">-59%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--gr);color:#023a1e;" onclick="openApp()">Explorer les voyages →</button>
       </div>
@@ -189,8 +189,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="big-t">Votre prochain<br>bolide vous attend</div>
         <div class="tline">AutoScout24, LeBonCoin, eBay Motors</div>
         <div class="cards-row">
-          <div class="deal" onclick="window.open('https://www.autoscout24.fr','_blank')"><div class="deal-site">AutoScout vs LeBonCoin</div><div class="deal-name">Peugeot 308 SW 2022</div><div class="deal-old">24 000€</div><div class="deal-new" style="color:var(--am);">17 500€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
-          <div class="deal" onclick="window.open('https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw=tesla+model+3','_blank')"><div class="deal-site">eBay Motors</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+          <div class="deal" onclick="trackAndOpen('AutoScout','Peugeot 308 SW','https://www.autoscout24.fr')"><div class="deal-site">AutoScout vs LeBonCoin</div><div class="deal-name">Peugeot 308 SW 2022</div><div class="deal-old">24 000€</div><div class="deal-new" style="color:var(--am);">17 500€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
+          <div class="deal" onclick="trackAndOpen('eBay','Tesla Model 3','https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw=tesla+model+3')"><div class="deal-site">eBay Motors</div><div class="deal-name">Tesla Model 3 2021</div><div class="deal-old">38 000€</div><div class="deal-new" style="color:var(--am);">27 900€</div><div class="deal-badge" style="background:var(--am2);color:#FFD040;">-27%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--am);color:#2a1e00;" onclick="openApp()">Explorer les vehicules →</button>
       </div>
@@ -201,8 +201,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
         <div class="big-t">La tech au<br>vrai bon prix</div>
         <div class="tline">MacBook, iPhone, PS5</div>
         <div class="cards-row">
-          <div class="deal" onclick="window.open('https://www.amazon.fr/s?k=iphone+15+pro&tag=bestdeal0e9d0-21','_blank')"><div class="deal-site">Amazon vs Fnac</div><div class="deal-name">iPhone 15 Pro 256GB</div><div class="deal-old">1 229€</div><div class="deal-new" style="color:var(--vi);">949€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-23%</div></div>
-          <div class="deal" onclick="window.open('https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw=macbook+air+m3','_blank')"><div class="deal-site">eBay vs Amazon</div><div class="deal-name">MacBook Air M3</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
+          <div class="deal" onclick="trackAndOpen('Amazon','iPhone 15 Pro 256GB','https://www.amazon.fr/s?k=iphone+15+pro&tag=bestdeal0e9d0-21')"><div class="deal-site">Amazon vs Fnac</div><div class="deal-name">iPhone 15 Pro 256GB</div><div class="deal-old">1 229€</div><div class="deal-new" style="color:var(--vi);">949€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-23%</div></div>
+          <div class="deal" onclick="trackAndOpen('eBay','MacBook Air M3','https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw=macbook+air+m3')"><div class="deal-site">eBay vs Amazon</div><div class="deal-name">MacBook Air M3</div><div class="deal-old">1 499€</div><div class="deal-new" style="color:var(--vi);">1 099€</div><div class="deal-badge" style="background:var(--vi2);color:#C080FF;">-27%</div></div>
         </div>
         <button class="enter-btn" style="background:var(--vi);color:#fff;" onclick="openApp()">Explorer la high-tech →</button>
       </div>
@@ -261,10 +261,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
       </div>
       <div class="bsect-t">🔥 Partenaires actifs</div>
       <div class="bout-grid">
-        <div class="bout-card" onclick="window.open('https://www.amazon.fr/?tag=bestdeal0e9d0-21','_blank')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
-        <div class="bout-card" onclick="window.open('https://s.click.aliexpress.com/e/_c3EseUaH','_blank')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
-        <div class="bout-card" onclick="window.open('https://temu.to/k/eai20w7hh1c','_blank')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
-        <div class="bout-card" onclick="window.open('https://www.ebay.fr/?mkcid=1&mkrid=709-53476-1925','_blank')"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(134,184,23,.15);color:#86B817;">Partenaire</div></div>
+        <div class="bout-card" onclick="trackAndOpen('Amazon','Homepage','https://www.amazon.fr/?tag=bestdeal0e9d0-21')"><div class="bl">📦</div><div class="bn">Amazon</div><div class="bb" style="background:rgba(255,153,0,.15);color:#FF9900;">Partenaire</div></div>
+        <div class="bout-card" onclick="trackAndOpen('AliExpress','Homepage','https://s.click.aliexpress.com/e/_c3EseUaH')"><div class="bl">🛒</div><div class="bn">AliExpress</div><div class="bb" style="background:rgba(255,106,0,.15);color:#FF6A00;">Partenaire</div></div>
+        <div class="bout-card" onclick="trackAndOpen('Temu','Homepage','https://temu.to/k/eai20w7hh1c')"><div class="bl">🏷️</div><div class="bn">Temu</div><div class="bb" style="background:rgba(255,105,0,.15);color:#FF6900;">Partenaire</div></div>
+        <div class="bout-card" onclick="trackAndOpen('eBay','Homepage','https://www.ebay.fr/?mkcid=1&mkrid=709-53476-1925')"><div class="bl">🔵</div><div class="bn">eBay</div><div class="bb" style="background:rgba(134,184,23,.15);color:#86B817;">Partenaire</div></div>
       </div>
       <div class="bsect-t">⏳ Bientot disponibles</div>
       <div class="bout-grid">
@@ -400,6 +400,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:"DM
 </div>
 
 <script>
+/* ══════════════════════════════════════════
+   TRACKING UNIVERSEL — trackAndOpen()
+   Utiliser pour TOUS les liens affiliés
+   trackAndOpen(site, produit, url)
+══════════════════════════════════════════ */
+function trackAndOpen(site,produit,url){
+  try{if(typeof gtag!=='undefined'){gtag('event','click_affilie',{site:site,produit:produit,url:url,timestamp:Date.now()});}}catch(e){}
+  window.open(url,'_blank');
+}
+
 /* ── USAGE LIMITS ── */
 var _isPremium=false;
 function getUsage(key){try{var d=JSON.parse(localStorage.getItem('bd_usage')||'{}');return d[key]||{count:0,month:''};}catch(e){return{count:0,month:''};}}
@@ -481,6 +491,17 @@ var PRODS=[
   {n:'Dyson V15 Detect',s:'Dyson · Amazon · eBay',o:'749€',p:'499€',sv:'-33%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
   {n:'Nike Air Max 270',s:'AliExpress · eBay · Zalando',o:'150€',p:'67€',sv:'-55%',c:'var(--or)',b:'var(--or2)',sc:'#FF7A40'},
 ];
+
+/* URLs affiliés par site — centralisés ici pour faciliter les mises à jour */
+var AFFILIATE_URLS={
+  'Amazon':function(q){return 'https://www.amazon.fr/s?k='+encodeURIComponent(q)+'&tag=bestdeal0e9d0-21';},
+  'eBay':function(q){return 'https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw='+encodeURIComponent(q);},
+  'AliExpress':function(q){return 'https://fr.aliexpress.com/wholesale?SearchText='+encodeURIComponent(q);},
+  'Temu':function(q){return 'https://www.temu.com/search_result.html?search_key='+encodeURIComponent(q);},
+  'Cdiscount':function(q){return 'https://www.cdiscount.com/search/10/'+encodeURIComponent(q)+'.html';},
+  'Fnac':function(q){return 'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+encodeURIComponent(q);}
+};
+
 var _lastQuery='';
 function doSearch(q){
   if(!q||!q.trim())return;
@@ -513,18 +534,17 @@ document.getElementById('openS').addEventListener('click',function(){
   setTimeout(function(){document.getElementById('sovl-input').focus();},100);
 });
 
-/* ── COMPARE MODAL ── */
+/* ── COMPARE MODAL — tracking automatique sur tous les sites ── */
 function showCompare(q){
   if(!q)return;
   var old=document.getElementById('cmp-modal');if(old)old.remove();
-  var enc=encodeURIComponent(q);
   var sites=[
-    {n:'Amazon',i:'📦',u:'https://www.amazon.fr/s?k='+enc+'&tag=bestdeal0e9d0-21'},
-    {n:'eBay',i:'🔵',u:'https://www.ebay.fr/sch/i.html?mkcid=1&mkrid=709-53476-1925&_nkw='+enc},
-    {n:'AliExpress',i:'🛒',u:'https://fr.aliexpress.com/wholesale?SearchText='+enc},
-    {n:'Temu',i:'🏷️',u:'https://www.temu.com/search_result.html?search_key='+enc},
-    {n:'Cdiscount',i:'🏬',u:'https://www.cdiscount.com/search/10/'+enc+'.html'},
-    {n:'Fnac',i:'📚',u:'https://www.fnac.com/SearchResult/ResultList.aspx?Search='+enc}
+    {n:'Amazon',i:'📦'},
+    {n:'eBay',i:'🔵'},
+    {n:'AliExpress',i:'🛒'},
+    {n:'Temu',i:'🏷️'},
+    {n:'Cdiscount',i:'🏬'},
+    {n:'Fnac',i:'📚'}
   ];
   var m=document.createElement('div');m.id='cmp-modal';
   m.style.cssText='position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.93);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
@@ -535,6 +555,7 @@ function showCompare(q){
   x.onclick=function(){m.remove();};
   hd.appendChild(ti);hd.appendChild(x);wrap.appendChild(hd);
   sites.forEach(function(s){
+    var url=AFFILIATE_URLS[s.n]?AFFILIATE_URLS[s.n](q):'#';
     var r=document.createElement('div');
     r.style.cssText='display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.06);border:.5px solid rgba(255,255,255,.11);border-radius:13px;padding:12px 15px;margin-bottom:8px;cursor:pointer;';
     var ic=document.createElement('span');ic.style.fontSize='24px';ic.textContent=s.i;
@@ -546,10 +567,9 @@ function showCompare(q){
     r.appendChild(ic);r.appendChild(inf);r.appendChild(ar);
     r.onmouseover=function(){this.style.background='rgba(255,255,255,.11)';};
     r.onmouseout=function(){this.style.background='rgba(255,255,255,.06)';};
-    (function(url,name){r.onclick=function(){
-      if(typeof gtag!=='undefined'){gtag('event','click_affilié',{site:name,produit:q,url:url});}
-      window.open(url,'_blank');
-    };})(s.u,s.n);
+    (function(siteName,siteUrl,produit){
+      r.onclick=function(){trackAndOpen(siteName,produit,siteUrl);};
+    })(s.n,url,q);
     wrap.appendChild(r);
   });
   m.appendChild(wrap);m.addEventListener('click',function(e){if(e.target===m)m.remove();});
@@ -692,7 +712,9 @@ function genBudget(){
   pack.forEach(function(it,i){
     var col=cols[i%cols.length];
     var safeN=it.n.replace(/[^a-zA-Z0-9 ]/g,' ');
-    html+='<div class="pack-item" data-nm="'+safeN+'" onclick="showCompare(this.dataset.nm)" style="border-left:3px solid '+col+';">';
+    var firstSite=it.s.split(' · ')[0].trim();
+    var siteUrl=AFFILIATE_URLS[firstSite]?AFFILIATE_URLS[firstSite](it.n):'#';
+    html+='<div class="pack-item" onclick="trackAndOpen(\''+firstSite+'\',\''+safeN+'\',\''+siteUrl+'\')" style="border-left:3px solid '+col+';">';
     html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">';
     html+='<span style="font-size:20px;">'+it.e+'</span>';
     html+='<span style="font-size:13px;font-weight:600;color:#fff;flex:1;">'+it.n+'</span>';
@@ -709,10 +731,10 @@ function togglePromo(){var b=document.getElementById('promo-box');b.style.displa
 function usePromo(){
   var code=document.getElementById('promo-in').value.trim().toUpperCase();
   var msg=document.getElementById('promo-msg');msg.style.display='block';
-  if(code==='NINJAMIAPANPAN3'){msg.style.color='var(--gr)';msg.textContent='✓ Code valide ! Redirection...';setTimeout(function(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3','_blank');document.getElementById('pmoda').classList.remove('open');},800);}
+  if(code==='NINJAMIAPANPAN3'){msg.style.color='var(--gr)';msg.textContent='✓ Code valide ! Redirection...';setTimeout(function(){trackAndOpen('Stripe','Premium',`https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3`);document.getElementById('pmoda').classList.remove('open');},800);}
   else{msg.style.color='rgba(255,80,80,.8)';msg.textContent='Code invalide.';}
 }
-function payP(){window.open('https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00','_blank');document.getElementById('pmoda').classList.remove('open');}
+function payP(){trackAndOpen('Stripe','Premium','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00');document.getElementById('pmoda').classList.remove('open');}
 
 /* ── CANVAS ── */
 function initCanvases(){
