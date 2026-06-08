@@ -434,7 +434,7 @@ body.noscroll{overflow:hidden;}
           <div class="cat-card cat-maison" onclick="openCategory('maison')">
             <span class="cat-ico">🏠</span>
             <div class="cat-nm">Maison & Déco</div>
-            <div class="cat-count">4 boutiques</div>
+            <div class="cat-count">5 boutiques</div>
             <span class="cat-arr">›</span>
           </div>
           <div class="cat-card cat-voyage" onclick="openCategory('voyage')">
@@ -503,6 +503,11 @@ body.noscroll{overflow:hidden;}
         <div class="part-card" onclick="trackAndOpen('eBay','Homepage','https://www.ebay.fr/?mkcid=1&mkrid=709-53476-1925')">
           <div class="pl" style="background:#E53238;border-radius:12px;">🔵</div>
           <div><div class="pn">eBay</div><div class="pd">High-tech · Véhicules · Occasion</div></div>
+          <span class="pbadge pb-a">Actif ✓</span>
+        </div>
+        <div class="part-card" onclick="trackAndOpen('Navimow','Homepage','https://www.awin1.com/cread.php?awinmid=123746&awinaffid=2923001&ued=https%3A%2F%2Fwww.navimow.com%2Ffr%2F')">
+          <div class="pl" style="background:#2D7D46;border-radius:12px;">🤖</div>
+          <div><div class="pn">Navimow</div><div class="pd">Tondeuses robotiques · Jardin intelligent</div></div>
           <span class="pbadge pb-a">Actif ✓</span>
         </div>
       </div>
@@ -937,11 +942,12 @@ var CATEGORY_DATA = {
   },
   maison: {
     label: '🏠 Maison & Déco',
-    sub: '4 boutiques sélectionnées',
+    sub: '5 boutiques sélectionnées',
     partners: [
       {name:'Amazon', icon:'📦', bg:'#FF9900', desc:'Électroménager, déco, livraison', url:'https://www.amazon.fr/s?k=maison&tag=bestdeal0e9d0-21', cta:'#FF9900'},
       {name:'ManoMano', icon:'🔨', bg:'#00A651', desc:'Bricolage, jardinage, outillage', url:'https://www.manomano.fr', cta:'#00A651'},
       {name:'IKEA', icon:'🏠', bg:'#0058A3', desc:'Meubles, déco, accessoires', url:'https://www.ikea.com/fr', cta:'#0058A3'},
+      {name:'Navimow', icon:'🤖', bg:'#2D7D46', desc:'Tondeuses robotiques sans fil · 5% commission', url:'https://www.awin1.com/cread.php?awinmid=123746&awinaffid=2923001&ued=https%3A%2F%2Fwww.navimow.com%2Ffr%2F', cta:'#2D7D46'},
       {name:'Temu', icon:'🏷️', bg:'#FF6900', desc:'Déco & accessoires maison', url:'https://temu.to/k/eai20w7hh1c', cta:'#FF6900'},
     ]
   },
