@@ -564,7 +564,7 @@ body.noscroll{overflow:hidden;}
         </div>
         <div class="plan-c plan-premium featured">
           <div class="plan-nm">PREMIUM</div>
-          <div class="plan-pr">10€<span>/mois</span></div>
+          <div class="plan-pr">10€<span> à vie</span></div>
           <ul class="plan-feats">
             <li>Tout Starter IA</li>
             <li>Alertes illimitées</li>
@@ -575,8 +575,8 @@ body.noscroll{overflow:hidden;}
         </div>
       </div>
       <div class="buy-btns">
-        <button class="bbtn bbtn-vi" onclick="trackAndOpen('Stripe','Starter','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00')">Starter — 2€/mois</button>
-        <button class="bbtn bbtn-or" onclick="trackAndOpen('Stripe','Premium','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00')">Premium — 10€/mois</button>
+        <button class="bbtn bbtn-vi" onclick="trackAndOpen('Stripe','Starter','https://buy.stripe.com/cNi8wO0CZbb290l0B89IQ01')">Starter — 2€/mois</button>
+        <button class="bbtn bbtn-or" onclick="trackAndOpen('Stripe','Premium','https://buy.stripe.com/14A5kC5Xj92U0tPfw29IQ02')">Premium — 10€ à vie</button>
       </div>
       <div class="prem-feats-list">
         <div class="pf-item">
@@ -821,8 +821,8 @@ function showSearchResults(q){
   lockDiv.innerHTML=`<div class="lock-ico">🤖</div><div class="lock-title">Analyse IA disponible</div>
     <div class="lock-sub">Obtenez un score d'achat, l'historique des prix et une recommandation personnalisée pour <strong style="color:#fff;">${q}</strong></div>
     <div class="lock-plans">
-      <div class="lplan lplan-starter" onclick="trackAndOpen('Stripe','Starter','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00')"><div class="lplan-price">2€</div><div class="lplan-name">/mois · Starter IA</div><div class="lplan-feats">✓ Copilote IA<br>✓ Score d'achat<br>✓ 10 alertes</div></div>
-      <div class="lplan lplan-premium" onclick="trackAndOpen('Stripe','Premium','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00')"><div class="lplan-price">10€</div><div class="lplan-name">/mois · Premium</div><div class="lplan-feats">✓ Tout Starter<br>✓ Radar illimité<br>✓ Photo search</div></div>
+      <div class="lplan lplan-starter" onclick="trackAndOpen('Stripe','Starter','https://buy.stripe.com/cNi8wO0CZbb290l0B89IQ01')"><div class="lplan-price">2€</div><div class="lplan-name">/mois · Starter IA</div><div class="lplan-feats">✓ Copilote IA<br>✓ Score d'achat<br>✓ 10 alertes</div></div>
+      <div class="lplan lplan-premium" onclick="trackAndOpen('Stripe','Premium','https://buy.stripe.com/14A5kC5Xj92U0tPfw29IQ02')"><div class="lplan-price">10€</div><div class="lplan-name">à vie · Premium</div><div class="lplan-feats">✓ Tout Starter<br>✓ Radar illimité<br>✓ Photo search</div></div>
     </div>
     <button class="lock-cta" onclick="scrollToSection('sec-premium')">Voir les offres →</button>
     <button class="lock-skip" onclick="this.closest('.lock-card').remove()">Continuer en gratuit</button>`;
@@ -1116,7 +1116,7 @@ function genBudget(){
 function usePromo(){
   var code=document.getElementById('promo-inp').value.trim().toUpperCase();
   var msg=document.getElementById('promo-msg');msg.style.display='block';
-  if(code==='NINJAMIAPANPAN3'){msg.style.color='#00B86B';msg.textContent='✓ Code valide ! Redirection...';setTimeout(()=>{trackAndOpen('Stripe','Premium','https://buy.stripe.com/7sY00iadz6UMa4pfw29IQ00?prefilled_promo_code=NINJAMIAPANPAN3');},800);}
+  if(code==='NINJAMIAPANPAN3'){msg.style.color='#00B86B';msg.textContent='✓ Code valide ! Redirection...';setTimeout(()=>{trackAndOpen('Stripe','Premium','https://buy.stripe.com/14A5kC5Xj92U0tPfw29IQ02?prefilled_promo_code=NINJAMIAPANPAN3');},800);}
   else{msg.style.color='#C02020';msg.textContent='Code invalide.';}
 }
 
